@@ -1,11 +1,9 @@
 * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   margin: 0;
-  padding: 0;
-}
+  padding: 0; }
 
 body {
-  background: #F4E6DC;
-}
+  background: #F4E6DC; }
+
 /*# sourceMappingURL=index.css.map */
