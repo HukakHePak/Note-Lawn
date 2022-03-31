@@ -1,0 +1,46 @@
+* 
+    
+    box-sizing: border-box
+
+$mainColor: #FCF5F0 
+$additionalColor: #F5DECE
+$toolsSize: 63px
+
+body
+    height: 100vh
+
+#root
+    height: 100%
+
+.app
+    height: 100%
+
+    
+.main-board
+    height: 100%
+    width: 100%
+    background: $mainColor
+    display: flex
+    justify-content: space-between
+    align-items: center
+    position: relative
+
+.board
+    position: absolute
+    height: 100%
+    width: 100%
+
+.tool-panel
+    display: flex
+    flex-direction: column
+    gap: 10px
+    margin: 0 22px
+
+
+.tool-item 
+    width: $toolsSize
+    height: $toolsSize
+    background: $additionalColor
+    border: none
+    z-index: 100
+    
