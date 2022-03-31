@@ -1,33 +1,45 @@
 import React, { useState } from 'react'
 import '../../styles/home.css'
-import FavoritesList from './FavoritesList'
+import FavoriteNoteList from "./FavoriteNoteList";
 import SearchBar from './SearchBar'
-import PagesList from './PagesList';
+import BoardList from "./BoardList";
+import { AddBoardBar } from './AddBoardBar'
 
 function Home() {
-  const [search, setSearch] = useState('')
-  const Pageitems = [{ name: 'Late', date: '29/03/22' },
-  { name: 'Late', date: '29/03/22' },
-  { name: 'Late', date: '29/03/22' },
-  { name: 'Late', date: '29/03/22' },
-  { name: 'Late', date: '29/03/22' },
-  ]
-  const FavoritesItems = ['First', 'Second', 'Thirt']
+  const [search, setSearch] = useState("");
 
+  // будем брать из state
+  const BoardsList = [
+    { name: "Late", date: "29/03/22" },
+    { name: "Late", date: "29/03/22" },
+    { name: "Late", date: "29/03/22" },
+    { name: "Late", date: "29/03/22" },
+    { name: "Late", date: "29/03/22" },
+  ];
+
+  // будем брать из state
+  const FavoriteNotes = ["First", "Second", "Thirt"];
 
   return (
-    <div className='home home__wrapper'>
-        <div className='home__main'>
-          <div className='home__search'>
-          
+    <div className="home home__wrapper">
+      <div className="home__main">
+        <div className="home__main-left left">
+          <div className="left__header">
+            <AddBoardBar />
             <SearchBar setSearch={setSearch} />
           </div>
-          <PagesList items={Pageitems} search={search}/>
+
+          <div className="left__main">
+            <BoardList list={BoardsList} search={search} />
+          </div>
         </div>
-        <FavoritesList items={FavoritesItems} />
+
+        <div className="home__main-right right">
+          <FavoriteNoteList list={FavoriteNotes} />
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Home
-
+export default Home;

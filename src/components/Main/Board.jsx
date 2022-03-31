@@ -1,5 +1,5 @@
 import React from "react";
-import '../../styles/main.css';
+import "../../styles/main.css";
 
 export function Board(props) {
   const { iconSrc, notes, title, onClick } = props;
