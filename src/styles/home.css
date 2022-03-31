@@ -5,7 +5,11 @@
   .home__wrapper {
     display: flex;
     justify-content: space-between;
+<<<<<<< HEAD
     color: #3a3845; }
+=======
+    color: #3A3845; }
+>>>>>>> main
   .home__main-btn {
     position: relative;
     background: transparent;
@@ -27,7 +31,11 @@
     .home__search-input {
       font-size: 20px;
       width: 100%;
+<<<<<<< HEAD
       background: #fcf5f0;
+=======
+      background: #FCF5F0;
+>>>>>>> main
       border: none;
       padding: 10px 25px; }
     .home__search-btn {
@@ -48,7 +56,11 @@
       height: 150px;
       color: inherit;
       text-decoration: none;
+<<<<<<< HEAD
       background: #d8b499;
+=======
+      background: #D8B499;
+>>>>>>> main
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -63,13 +75,18 @@
       margin-bottom: 69px; }
     .home__favorites-item {
       width: 600px;
+<<<<<<< HEAD
       background: #d8b499;
+=======
+      background: #D8B499;
+>>>>>>> main
       text-decoration: none;
       font-size: 20px;
       color: inherit;
       padding: 5px;
       margin-bottom: 10px; }
 
+<<<<<<< HEAD
 .setting-btn {
   width: 40px;
   height: 44px;
@@ -100,4 +117,6 @@
     display: flex;
     justify-content: space-between; }
 
+=======
+>>>>>>> main
 /*# sourceMappingURL=home.css.map */
