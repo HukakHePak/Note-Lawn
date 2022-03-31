@@ -1,4 +1,5 @@
 .home {
+<<<<<<< HEAD
   padding-top: 100px;
   width: 90%;
   margin: 0 auto; }
@@ -120,3 +121,126 @@
 =======
 >>>>>>> main
 /*# sourceMappingURL=home.css.map */
+=======
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.home__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: #3A3845;
+}
+.home__main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 100px auto;
+}
+.home__main-btn {
+  position: relative;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 30px;
+  font-weight: 700;
+  padding: 0 70px 35px 0;
+}
+.home__main-btn img {
+  position: absolute;
+  width: 35px;
+  right: 20px;
+}
+.home__main-left {
+  padding: 0 76px 0 0;
+}
+.home__search {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 30px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+.home__search-input {
+  font-size: 20px;
+  width: 100%;
+  background: #FCF5F0;
+  border: none;
+  padding: 10px 25px;
+}
+.home__search-btn {
+  background: transparent;
+  border: none;
+  position: absolute;
+  top: 7px;
+  right: 10px;
+}
+.home__search-btn img {
+  width: 25px;
+  height: 25px;
+}
+.home__pages {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 50px 1fr 50px 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+}
+.home__pages-item {
+  width: 300px;
+  height: 150px;
+  color: inherit;
+  text-decoration: none;
+  background: #D8B499;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 10px;
+}
+.home__pages-title {
+  font-size: 32px;
+}
+.home__favorites {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.home__favorites-title {
+  font-size: 30px;
+  margin-bottom: 35px;
+}
+.home__favorites-item {
+  width: 600px;
+  background: #D8B499;
+  text-decoration: none;
+  font-size: 20px;
+  color: inherit;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.left__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+>>>>>>> main

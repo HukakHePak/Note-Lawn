@@ -1,6 +1,6 @@
 .home {
-  padding-top: 100px;
-  width: 90%;
+  max-width: 1920px;
+  width: 100%;
   margin: 0 auto;
 
   &__wrapper {
@@ -10,6 +10,8 @@
   }
 
   &__main {
+    display: flex;
+    margin: 100px auto;
     &-btn {
       position: relative;
       background: transparent;
@@ -17,7 +19,7 @@
       cursor: pointer;
       font-size: 30px;
       font-weight: 700;
-      padding-right: 70px;
+      padding: 0 70px 35px 0;
 
       img {
         position: absolute;
@@ -25,6 +27,10 @@
         right: 20px;
       }
     }
+  }
+
+  &__main-left {
+    padding: 0 76px 0 0;
   }
 
   &__search {
@@ -84,7 +90,7 @@
 
     &-title {
       font-size: 30px;
-      margin-bottom: 69px;
+      margin-bottom: 35px;
     }
 
     &-item {
