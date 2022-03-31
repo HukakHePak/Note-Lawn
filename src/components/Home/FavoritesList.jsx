@@ -1,8 +1,9 @@
-import React from "react";
-import SettingButton from "./setting/settingButton";
-import SettingModal from "./setting/settingModal";
+import React, { useState } from "react";
+import Settings from "./settings/Settings";
 
 function FavoritesList({ items }) {
+  const [active, setActive] = useState(false);
+
   return (
     <div className="home__favorites">
       <h2 className="home__favorites-title">Favourites</h2>
@@ -11,8 +12,8 @@ function FavoritesList({ items }) {
           {item}
         </a>
       ))}
-      <SettingButton />
-      {/* <SettingModal /> */}
+      
+      <Settings />
     </div>
   );
 }
