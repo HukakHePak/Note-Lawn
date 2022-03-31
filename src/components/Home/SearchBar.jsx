@@ -1,32 +1,38 @@
-import React, { useState } from 'react'
-import SearchBtn from '../../img/search.svg'
-import AddBtn from '../../img/addpage.svg'
+import React, { useState } from "react";
+import SearchBtn from "../../img/search.svg";
 
-function SearchBar({setSearch}) {
-  const [value, setValue] = useState('')
+function SearchBar(props) {
+  const { onGetTargetBoard } = props;
+
+  const [inputValue, setInputValue] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    onGetTargetBoard(e.target[0].value);
+
+    setInputValue("");
+  };
+
   const handleChange = (e) => {
-    setValue(e.target.value)
-    setSearch(e.target.value)
-  }
+    setInputValue(e.target.value);
+  };
 
   return (
-    <form className='home__search'>
-    <button className='home__main-btn'>
-    Boards
-    <img src={AddBtn} alt=''/>
-    </button>
-      <input 
-      className='home__search-input'
-      type='text'
-      value={value}
-      onChange={handleChange}
-      placeholder='Search...'
+    <form className="home__search" onSubmit={handleSubmit}>
+      <input
+        className="home__search-input"
+        type="text"
+        value={inputValue}
+        onChange={handleChange}
+        placeholder="Search..."
       />
-      <button className='home__search-btn' type='button'>
-        <img src={SearchBtn} alt=''/>
+
+      <button className="home__search-btn" type="button">
+        <img src={SearchBtn} alt="" />
       </button>
     </form>
-  )
+  );
 }
 
-export default SearchBar
+export default SearchBar;

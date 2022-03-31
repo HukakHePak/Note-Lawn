@@ -1,23 +1,28 @@
 .home {
-  padding-top: 100px;
-  width: 90%;
+  max-width: 1920px;
+  width: 100%;
   margin: 0 auto; }
   .home__wrapper {
     display: flex;
     justify-content: space-between;
     color: #3a3845; }
-  .home__main-btn {
-    position: relative;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 30px;
-    font-weight: 700;
-    padding-right: 70px; }
-    .home__main-btn img {
-      position: absolute;
-      width: 35px;
-      right: 20px; }
+  .home__main {
+    display: flex;
+    margin: 100px auto; }
+    .home__main-btn {
+      position: relative;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 30px;
+      font-weight: 700;
+      padding: 0 70px 35px 0; }
+      .home__main-btn img {
+        position: absolute;
+        width: 35px;
+        right: 20px; }
+  .home__main-left {
+    padding: 0 76px 0 0; }
   .home__search {
     position: relative;
     display: flex;
@@ -60,7 +65,7 @@
     flex-direction: column; }
     .home__favorites-title {
       font-size: 30px;
-      margin-bottom: 69px; }
+      margin-bottom: 35px; }
     .home__favorites-item {
       width: 600px;
       background: #d8b499;
