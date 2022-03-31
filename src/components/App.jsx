@@ -1,7 +1,7 @@
 import React from 'react'
 import Home from './Home/Home';
 import { Main } from './Main/Main';
-import '../styles/main.css'
+import '../styles/index.css'
 
 function App() {
   return (
