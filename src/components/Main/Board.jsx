@@ -11,7 +11,7 @@ export function Board(props) {
       onClick={onClick}
       style={{ backgroundImage: `url(${iconSrc})` }}
     >
-      {/* {notes} */}
+      {notes}
     </div>
   );
 }
