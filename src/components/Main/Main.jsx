@@ -16,9 +16,6 @@ import forwardIcon from "../../img/right-tool/forwardIcon.svg";
 import colorIcon from "../../img/right-tool/colorIcon.svg";
 
 export function Main(props) {
-
-  const array = [];
-
   const text = new CreateTool("Добавить текстовую заметку", addTextIcon);
   const list = new CreateTool("Добавить список", addListIcon);
   const image = new CreateTool("Добавить картинку", addImageIcon);
@@ -31,14 +28,14 @@ export function Main(props) {
   const forward = new CreateTool("На шаг вперед", forwardIcon);
   const color = new CreateTool("Выбрать цвет фона", colorIcon);
 
-  const leftToolArray = array.concat(text, list, image, music, video, paint);
-  const rightToolArray = array.concat(home, back, forward, color);
+  const leftToolArray = [text, list, image, music, video, paint];
+  const rightToolArray = [home, back, forward, color];
 
   return (
     <div className="main-board">
       <ToolPanel tools={leftToolArray} />
-      <ToolPanel tools={rightToolArray} />
-      {/* <Board notes={notes} /> */}
+      <ToolPanel right tools={rightToolArray} />
+      <Board notes />
     </div>
   );
 }

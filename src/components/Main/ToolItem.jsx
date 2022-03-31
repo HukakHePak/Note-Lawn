@@ -4,14 +4,15 @@ import '../../styles/main.css';
 export function ToolItem (props) {
   const { hoverText, icon } = props.tool;
 
+  const style = { backgroundImage: `url(${icon})`};
+
   return (
     <button
       className="tool-item"
-      hoverText={hoverText}
+      //hoverText={hoverText}
       // onClick={onClick}
-      // action
+      style={style}
     >
-      <img src={icon} alt="-" />
     </button>
   );
 }
