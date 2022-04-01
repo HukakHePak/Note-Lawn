@@ -1,13 +1,13 @@
 
 import addBoardBtn from "../../img/addBoardBtn.svg";
 
-export function AddBoardBar(params) {
-    
+export function AddBoardBar() {
     return (
-      <button className="home__main-btn">
-        Boards
+      <button 
+      className="home__main-btn"
+      onClick={() => console.log(1)}
+      > Boards
         <img src={addBoardBtn} alt="Add Board" />
       </button>
     );
-    
 }
