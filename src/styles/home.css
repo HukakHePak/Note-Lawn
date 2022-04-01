@@ -1,7 +1,7 @@
 .home {
-  max-width: 1920px;
-  width: 100%;
+  max-width: 1680px;
   margin: 0 auto;
+  padding: 100px 15px;
 }
 
 .home__wrapper {
@@ -18,7 +18,18 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 100px auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-right: 30px;
+  max-width: 990px;
+}
+
+.home__main-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .home__main-btn {
@@ -35,10 +46,6 @@
   position: absolute;
   width: 35px;
   right: 20px;
-}
-
-.home__main-left {
-  padding: 0 76px 0 0;
 }
 
 .home__search {
@@ -75,11 +82,11 @@
 }
 
 .home__pages {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
-  gap: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .home__pages-item {
@@ -99,6 +106,7 @@
       -ms-flex-pack: end;
           justify-content: flex-end;
   padding: 10px;
+  margin: 10px;
 }
 
 .home__pages-title {
@@ -106,6 +114,7 @@
 }
 
 .home__favorites {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -136,6 +145,7 @@
   display: inline-block;
   border: none;
   background-color: transparent;
+  background-image: url("../img/setting.svg");
   margin-top: auto;
   -ms-flex-item-align: end;
       -ms-grid-row-align: end;
@@ -144,23 +154,20 @@
 }
 
 .setting-modal {
-  display: none;
-  width: 293px;
-  height: 224px;
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  width: 300px;
   background: #fcf5f0;
   -webkit-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
-  padding: 26px 21px 26px 38px;
+  padding: 20px;
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
   line-height: 29px;
   color: #000000;
-}
-
-.setting-modal :not(:last-child) {
-  margin-bottom: 19px;
 }
 
 .setting-modal--active {
@@ -174,5 +181,12 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.setting-modal__item:not(:last-child) {
+  margin-bottom: 10px;
 }
 /*# sourceMappingURL=home.css.map */

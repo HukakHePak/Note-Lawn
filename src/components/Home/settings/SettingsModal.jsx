@@ -1,19 +1,28 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import { useDispatch } from "react-redux";
+import ColorSetter from "../../Global/ColorSetter";
+import {changeCurrentTheme} from '../../../store/actions'
 
-function SettingsModal() {
+function SettingsModal({ hiddenModal }) {
+  const [mainColor, setMainColor] = useState('')
+  const [secondColor, setSecondColor] = useState('')
+  const dispatch = useDispatch()
+
+  // useEffect(() => {
+  //   dispatch(changeCurrentTheme(mainColor, secondColor))
+  // }, [mainColor, secondColor])
+
+  if (hiddenModal) return null
   return (
-    // {/* { ? "setting-modal--active" : "setting-modal"} */}
-    <div>
-      <div className="setting-modal--active">
-        <div className="setting-modal__item setting-modal__item--main">
-          Main color<span>blu</span>
-        </div>
-        <div className="setting-modal__item setting-modal__item--second">
-          Second color<span>red</span>
-        </div>
-        <div className="setting-modal__item setting-modal__item--scale">
-          Scale<span>40</span>
-        </div>
+    <div className="setting-modal" >
+      <div className="setting-modal__item">
+        <div>Main Color </div>
+        <ColorSetter setColor={setMainColor}/>
+
+      </div>
+      <div className="setting-modal__item">
+        <div>Second color </div>
+        <ColorSetter setColor={setSecondColor}/>
       </div>
     </div>
   );
