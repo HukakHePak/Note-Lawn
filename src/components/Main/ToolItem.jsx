@@ -1,18 +1,17 @@
 import React from "react";
-import '../../styles/main.css';
+import "../../styles/main.css";
 
 export function ToolItem(props) {
-  const { iconSrc, onClick, title } = props.tool;
+  const { type, hoverText, icon } = props.tool;
 
-  const style = { backgroundImage: `url(${iconSrc})`};
-
-  if(!iconSrc) style.visibility = 'hidden';
+  const style = { backgroundImage: `url(${icon})` };
 
   return (
     <button
+      // onClick={onToolClick}
+      type={type}
       className="tool-item"
-      title={title}
-      onClick={onClick}
+      //hoverText={hoverText}
       style={style}
     ></button>
   );

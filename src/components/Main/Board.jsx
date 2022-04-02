@@ -1,17 +1,19 @@
 import React from "react";
-import '../../styles/main.css';
+import "../../styles/main.css";
+import { TextNote } from "./Notes/TextNote";
 
 export function Board(props) {
-  const { iconSrc, notes, title, onClick } = props;
+  const { src, notes, title, onClick } = props;
 
   return (
     <div
       className="board"
       title={title}
       onClick={onClick}
-      style={{ backgroundImage: `url(${iconSrc})` }}
+      style={{ backgroundImage: `url(${src})` }}
     >
-      {/* {notes} */}
+      {notes}
+      <TextNote />
     </div>
   );
 }

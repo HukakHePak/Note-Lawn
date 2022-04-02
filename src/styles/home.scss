@@ -1,15 +1,24 @@
 .home {
-  padding-top: 100px;
-  width: 90%;
+  max-width: 1680px;
   margin: 0 auto;
+  padding: 100px 15px;
 
   &__wrapper {
     display: flex;
     justify-content: space-between;
-    color: #3A3845;
+    color: #3a3845;
   }
 
   &__main {
+    display: flex;
+    flex-direction: column;
+    padding-right: 30px;
+    max-width: 990px;
+
+    &-top {
+      display: flex;
+    }
+
     &-btn {
       position: relative;
       background: transparent;
@@ -17,7 +26,7 @@
       cursor: pointer;
       font-size: 30px;
       font-weight: 700;
-      padding-right: 70px;
+      padding: 0 70px 35px 0;
 
       img {
         position: absolute;
@@ -37,7 +46,7 @@
     &-input {
       font-size: 20px;
       width: 100%;
-      background: #FCF5F0;
+      background: #fcf5f0;
       border: none;
       padding: 10px 25px;
     }
@@ -57,39 +66,40 @@
   }
 
   &__pages {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 50px;
+    display: flex;
+    flex-wrap: wrap;
 
     &-item {
       width: 300px;
       height: 150px;
       color: inherit;
       text-decoration: none;
-      background: #D8B499;
+      background: #d8b499;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       padding: 10px;
+      margin: 10px;
     }
-
+  
     &-title {
       font-size: 32px;
     }
   }
 
   &__favorites {
+    position: relative;
     display: flex;
     flex-direction: column;
 
     &-title {
       font-size: 30px;
-      margin-bottom: 69px;
+      margin-bottom: 35px;
     }
 
     &-item {
       width: 600px;
-      background: #D8B499;
+      background: #d8b499;
       text-decoration: none;
       font-size: 20px;
       color: inherit;
@@ -98,3 +108,49 @@
     }
   }
 }
+
+.setting {
+  &-btn {
+    width: 40px;
+    height: 44px;
+    display: inline-block;
+    border: none;
+    background-color: transparent;
+    background-image: url('../img/setting.svg');
+    margin-top: auto;
+    align-self: end;
+    cursor: pointer;
+  }
+
+  &-modal {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    width: 300px;
+    background: #fcf5f0;
+    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+
+    &--active {
+      display: block;
+    }
+
+    &__item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
