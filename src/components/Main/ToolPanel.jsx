@@ -8,7 +8,11 @@ export function ToolPanel (props) {
   return (
     <div className={"tool-panel " + (right && "tool-panel--right")}>
       { tools.map ( (tool, index) => (
-        <ToolItem key={index} tool={tool} />
+        <ToolItem 
+          key={index} 
+          tool={tool} 
+          // onToolClick = {onToolClick}
+          />
       )) }
     </div>
   );
