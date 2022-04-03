@@ -1,29 +1,23 @@
 import React from "react";
+import "react-color-palette/lib/css/styles.css";
+import Settings from "./settings/Settings";
 
-function FavoriteNoteList(props) {
-  const { list } = props;
+
+function FavoriteNoteList({ list }) {
+  
 
   return (
     <div className="home__favorites">
       <h2 className="home__favorites-title">Favourites</h2>
       {list.map((item, index) => (
-        <FavoriteNoteItem 
-          item={item}
-          key={index} 
-        />
+        <a className="home__favorites-item" href="#pageId" key={index}>
+          {item}
+        </a>
       ))}
+      <Settings />
     </div>
   );
 }
 
-function FavoriteNoteItem(props) {
-  const { item } = props;
-
-  return (
-    <a className="home__favorites-item" href="#pageId">
-      {item}
-    </a>
-  );
-}
 
 export default FavoriteNoteList;

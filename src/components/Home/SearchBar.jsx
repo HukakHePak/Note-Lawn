@@ -1,29 +1,20 @@
 import React, { useState } from "react";
 import SearchBtn from "../../img/search.svg";
 
-function SearchBar(props) {
-  const { onGetTargetBoard } = props;
-
-  const [inputValue, setInputValue] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    onGetTargetBoard(e.target[0].value);
-
-    setInputValue("");
-  };
+function SearchBar({setSearch}) {
+  const [value, setValue] = useState("");
 
   const handleChange = (e) => {
-    setInputValue(e.target.value);
+    setValue(e.target.value);
+    setSearch(e.target.value)
   };
 
   return (
-    <form className="home__search" onSubmit={handleSubmit}>
+    <form className="home__search">
       <input
         className="home__search-input"
         type="text"
-        value={inputValue}
+        value={value}
         onChange={handleChange}
         placeholder="Search..."
       />

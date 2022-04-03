@@ -1,7 +1,7 @@
 .home {
-  max-width: 1920px;
-  width: 100%;
+  max-width: 1680px;
   margin: 0 auto;
+  padding: 100px 15px;
 
   &__wrapper {
     display: flex;
@@ -11,7 +11,14 @@
 
   &__main {
     display: flex;
-    margin: 100px auto;
+    flex-direction: column;
+    padding-right: 30px;
+    max-width: 990px;
+
+    &-top {
+      display: flex;
+    }
+
     &-btn {
       position: relative;
       background: transparent;
@@ -63,9 +70,8 @@
   }
 
   &__pages {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 50px;
+    display: flex;
+    flex-wrap: wrap;
 
     &-item {
       width: 300px;
@@ -77,14 +83,16 @@
       flex-direction: column;
       justify-content: flex-end;
       padding: 10px;
+      margin: 10px;
     }
-
+  
     &-title {
       font-size: 32px;
     }
   }
 
   &__favorites {
+    position: relative;
     display: flex;
     flex-direction: column;
 
@@ -112,18 +120,20 @@
     display: inline-block;
     border: none;
     background-color: transparent;
+    background-image: url('../img/setting.svg');
     margin-top: auto;
     align-self: end;
     cursor: pointer;
   }
 
   &-modal {
-    display: none;
-    width: 293px;
-    height: 224px;
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    width: 300px;
     background: #fcf5f0;
     box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
-    padding: 26px 21px 26px 38px;
+    padding: 20px;
 
     font-family: "Inter";
     font-style: normal;
@@ -131,9 +141,6 @@
     font-size: 24px;
     line-height: 29px;
     color: #000000;
-    :not(:last-child) {
-      margin-bottom: 19px;
-    }
 
     &--active {
       display: block;
@@ -142,6 +149,12 @@
     &__item {
       display: flex;
       justify-content: space-between;
+      align-items: center;
+
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
     }
   }
 }
+

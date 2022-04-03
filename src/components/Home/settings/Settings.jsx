@@ -1,16 +1,21 @@
-import React from "react";
-import settingBtn from "../../../img/setting.svg";
+import React, { useState } from "react";
 import SettingsModal from "./SettingsModal";
 
+
 function Settings() {
+  const [hiddenModal, setHiddenModal] = useState(true)
+
   return (
-    <div>
-      <button className="setting-btn">
-        <img src={settingBtn} alt="" />
-      </button>
-      <SettingsModal />
-    </div>
+    <>
+      <button
+        className="setting-btn"
+        onClick={() => setHiddenModal(!hiddenModal)}
+      ></button>
+      <SettingsModal hiddenModal={hiddenModal}/>
+    </>
   );
 }
 
 export default Settings;
+
+
