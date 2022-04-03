@@ -13,17 +13,14 @@ function Home() {
   const favoritesList = useSelector(state => state.existenceBoards.favorites);
   const mainColor = useSelector(state => state.currentTheme.currentTheme.mainColor)
 
-  // будем брать из state
-  const BoardsList = [
-    { name: "Late", date: "29/03/22" },
-    { name: "Late", date: "29/03/22" },
-    { name: "Late", date: "29/03/22" },
-    { name: "Late", date: "29/03/22" },
-    { name: "Late", date: "29/03/22" },
-  ];
 
-  // будем брать из state
-  const FavoriteNotes = ["First", "Second", "Thirt"];
+  useEffect(() => {
+    setBoardsList(
+      boards.filter(
+        (item) => item.name.toLowerCase().includes(search.toLowerCase())
+      )
+    );
+  }, [search, boards])
 
   useEffect(() => {
     setBoardsList(
