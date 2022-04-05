@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ColorSetterWrapper } from "../Global/ColorSetterWrapper";
+import { ColorSetterWrapper } from "./ColorSetterWrapper";
 
 export function SmallModal({
   colorPallet,

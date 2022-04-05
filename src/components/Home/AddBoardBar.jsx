@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import addBoardBtn from "../../img/addBoardBtn.svg";
-import { SmallModal } from "./SmallModal";
+import { SmallModal } from "../Global/SmallModal"
 
 export function AddBoardBar() {
   const [hiddenModal, setHiddenModal] = useState(false);

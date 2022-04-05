@@ -6,12 +6,30 @@
   height: 100%;
   width: 100%;
   background: #FCF5F0;
+  position: relative;
 }
 
 .board {
   height: 2000px;
   width: 2000px;
   background: #ff9191;
+}
+
+.board-name {
+  position: fixed;
+  left: 12px;
+  top: 20px;
+}
+
+.board-name__btn {
+  font-size: 26px;
+  line-height: 31px;
+  cursor: pointer;
+}
+
+.board-name__modal {
+  top: 32px;
+  left: 0;
 }
 
 .tool-panel {
