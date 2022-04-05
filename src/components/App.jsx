@@ -6,8 +6,8 @@ import "../styles/index.css";
 function App() {
   return (
     <div className="app">
-      <Home />
-      {/* <Main /> */}
+      {/* <Home /> */}
+      <Main />
     </div>
   );
 }

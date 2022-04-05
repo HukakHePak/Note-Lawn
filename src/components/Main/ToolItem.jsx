@@ -9,7 +9,6 @@ export function ToolItem (props) {
   return (
     <button
       // onClick={onToolClick}
-      type={type}
       className="tool-item"
       //hoverText={hoverText}
       // onClick={onClick}

@@ -1,4 +1,5 @@
-
+import { TextNote } from "./TextNote";
+import "../../../styles/noteWrap.css";
 
 export function NoteWrap(props) {
     const {note} = props;
@@ -6,11 +7,10 @@ export function NoteWrap(props) {
     const style = {};
 
     return (
-        <div className="note"
-            style={style}
-            >
+      <div className="note-wrap" draggable="true" style={style}>
         {note}
-        <button>resize</button>
-        </div>
+        <TextNote />
+        {/* <button>resize</button> */}
+      </div>
     );
 }
