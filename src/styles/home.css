@@ -42,6 +42,10 @@
   padding: 0 70px 35px 0;
 }
 
+.home__main-btn--wrapper {
+  position: relative;
+}
+
 .home__main-btn img {
   position: absolute;
   width: 35px;
@@ -155,8 +159,8 @@
 
 .setting-modal {
   position: absolute;
-  bottom: 40px;
-  right: 40px;
+  bottom: 20px;
+  right: 20px;
   width: 300px;
   background: #fcf5f0;
   -webkit-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
@@ -186,7 +190,12 @@
           align-items: center;
 }
 
-.setting-modal__item:not(:last-child) {
+.setting-modal :not(:last-child) {
   margin-bottom: 10px;
+}
+
+.new-board-modal {
+  left: 137px;
+  top: 19px;
 }
 /*# sourceMappingURL=home.css.map */
