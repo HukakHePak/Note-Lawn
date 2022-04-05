@@ -1,7 +1,9 @@
 import React from "react";
 import "../../styles/main.css";
+
 import { NoteImage } from "./Notes/NoteImage";
 import { NoteVideo } from "./Notes/NoteVideo";
+import { TextNote } from "./Notes/TextNote";
 
 export function Board(props) {
   const { src, notes, title, onClick } = props;
@@ -16,12 +18,12 @@ export function Board(props) {
       onClick={onClick}
       style={{ backgroundImage: `url(${src})` }}
     >
+
       {/* {notes} */}
-
-
       <NoteImage imageSrc={imageSrc} />
       <NoteVideo link={link} />
-    
+      {notes}
+      <TextNote />
     </div>
   );
 }

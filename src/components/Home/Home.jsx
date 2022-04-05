@@ -22,6 +22,14 @@ function Home() {
     );
   }, [search, boards])
 
+  useEffect(() => {
+    setBoardsList(
+      boards.filter(
+        (item) => item.name.toLowerCase().includes(search.toLowerCase())
+      )
+    );
+  }, [search, boards])
+
   return (
     <div className="home home__wrapper" style={{background: `${mainColor}`}}>
       <div className="home__main">
