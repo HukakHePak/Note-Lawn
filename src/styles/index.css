@@ -16,6 +16,10 @@ button {
   background-color: transparent;
 }
 
+input {
+  outline: 0 !important;
+}
+
 button {
   cursor: pointer;
 }
