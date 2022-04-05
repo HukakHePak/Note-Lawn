@@ -118,4 +118,26 @@
 .loading-link-modal__input::placeholder {
   color: #000;
 }
+
+.note-item {
+  cursor: pointer;
+  position: absolute;
+  z-index: 10;
+}
+
+.note-item--image {
+  width: 200px;
+  left: 600px;
+  top: 300px;
+}
+
+.note-item__img {
+  width: 100%;
+  height: 100%;
+}
+
+.note-item--video {
+  left: 1000px;
+  top: 100px;
+}
 /*# sourceMappingURL=main.css.map */

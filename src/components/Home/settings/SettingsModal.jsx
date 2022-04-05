@@ -12,7 +12,7 @@ function SettingsModal({ hiddenModal }) {
 
   if (hiddenModal) return null;
   return (
-    <div className="setting-modal">
+    <div className="small-modal small-modal--setting">
       <ColorSetterWrapper text="Main Color " setColor={setMainColor} />
       <ColorSetterWrapper text="Second color " setColor={setSecondColor} />
     </div>

@@ -85,4 +85,12 @@ button {
     font-size: 24px;
     line-height: 29px;
   }
+  &--setting {
+    height: 145px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    right: 20px;
+    bottom: 20px;
+  }
 }
