@@ -1,6 +1,7 @@
 import { createStore, combineReducers } from 'redux'
-import { existenceBoardsReducer } from './reducers/existenceBoardsReducer';
-import { currentThemeReducer } from './reducers/currentThemeReducer';
+import { existenceBoards } from './reducers/existenceBoards';
+import { currentTheme } from './reducers/currentTheme';
+import { openedWindow } from './reducers/openedWindow';
 
 export const defaultState = {
   currentBoardId: null,
@@ -17,8 +18,9 @@ export const defaultState = {
 }
 
 const rootReducer = combineReducers({
-  existenceBoards: existenceBoardsReducer,
-  currentTheme: currentThemeReducer,
+  existenceBoards,
+  currentTheme,
+  openedWindow
 })
 
 

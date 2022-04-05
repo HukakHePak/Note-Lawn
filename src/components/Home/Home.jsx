@@ -1,37 +1,36 @@
-import React, { useState, useEffect } from 'react'
-import '../../styles/home.css'
+import React, { useState, useEffect } from "react";
+import "../../styles/home.css";
 import FavoriteNoteList from "./FavoriteNoteList";
-import SearchBar from './SearchBar'
+import SearchBar from "./SearchBar";
 import BoardList from "./BoardList";
-import { AddBoardBar } from './AddBoardBar'
-import { useSelector } from 'react-redux';
+import { AddBoardBar } from "./AddBoardBar";
+import { useSelector } from "react-redux";
 
-function Home() {
+function Home(props) {
   const [search, setSearch] = useState("");
-  const boards = useSelector(state => state.existenceBoards.boards)
-  const [boardsList, setBoardsList] = useState(boards)
-  const favoritesList = useSelector(state => state.existenceBoards.favorites);
-  const mainColor = useSelector(state => state.currentTheme.currentTheme.mainColor)
-
-
-  useEffect(() => {
-    setBoardsList(
-      boards.filter(
-        (item) => item.name.toLowerCase().includes(search.toLowerCase())
-      )
-    );
-  }, [search, boards])
+  const boards = useSelector((state) => state.existenceBoards.boards);
+  const [boardsList, setBoardsList] = useState(boards);
+  const favoritesList = useSelector((state) => state.existenceBoards.favorites);
+  const mainColor = useSelector(
+    (state) => state.currentTheme.currentTheme.mainColor
+  );
 
   useEffect(() => {
     setBoardsList(
-      boards.filter(
-        (item) => item.name.toLowerCase().includes(search.toLowerCase())
+      boards.filter((item) =>
+        item.name.toLowerCase().includes(search.toLowerCase())
       )
     );
-  }, [search, boards])
+  }, [search, boards]);
 
   return (
-    <div className="home home__wrapper" style={{background: `${mainColor}`}}>
+    <div
+      className="home home__wrapper"
+      style={{
+        background: `${mainColor}`,
+        display: props.active ? 'flex' : 'none'
+      }}
+    >
       <div className="home__main">
         <div className="home__main-top">
           <AddBoardBar />
