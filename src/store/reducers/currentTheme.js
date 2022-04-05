@@ -1,7 +1,7 @@
-import { defaultState } from "../index.js";
-import { ACTIONS } from './../actions/index';
+import { defaultState } from "../store.js";
+import { ACTIONS } from '../actions/index';
 
-export const currentThemeReducer = (state = defaultState, action) => {
+export const currentTheme = (state = defaultState, action) => {
   switch (action.type) {
     case ACTIONS.CHANGE_CURRENT_THEME:
       return { ...state, currentTheme: { mainColor: action.mainColor, secondColor: action.secondColor } }
