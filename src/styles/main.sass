@@ -11,12 +11,24 @@ $toolsGap: 0.6vw
     height: 100%
     width: 100%
     background: $mainColor
+    position: relative
 
 .board
     height: 2000px
     width: 2000px
-    background: #FCF5F0
+    background: #ff9191
+    &-name
+        position: fixed
+        left: 12px
+        top: 20px
 
+        &__btn
+            font-size: 26px
+            line-height: 31px
+            cursor: pointer
+        &__modal
+            top: 32px
+            left: 0
 .tool-panel
     position: fixed
     top: 50%
@@ -38,3 +50,55 @@ $toolsGap: 0.6vw
     height: $toolsSize
     border: none
     z-index: 100
+
+.loading-link-modal
+    width: 740px
+    height: 272px
+    background: #F4E6DC
+    display: flex
+    justify-content: center
+    align-items: center
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -50%)
+    position: fixed
+    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25)
+
+    &--background
+        width: 100%
+        height: 100%
+        position: absolute
+        left: 0
+        top: 0
+        background: #00000065
+
+    &__form
+
+    &__input
+        width: 576px
+        height: 76px
+        padding: 13px 20px
+        font-size: 40px
+        line-height: 48px
+        background: #D8B499
+        &::placeholder
+            color: #000
+
+.note
+    &-item
+        cursor: pointer
+        position: absolute
+        z-index: 10
+
+        &--image
+            width: 200px
+            left: 600px
+            top: 300px
+
+        &__img
+            width: 100%
+            height: 100%
+
+        &--video
+            left: 1000px
+            top: 100px

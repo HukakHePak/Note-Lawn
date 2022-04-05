@@ -1,6 +1,8 @@
 import React from "react";
 import { Board } from "./Board";
 import { ToolPanel } from "./ToolPanel";
+import { BoardName } from "./BoardName";
+import { LoadingLinkModal } from "./LoadingLinkModal";
 import "../../styles/main.css";
 
 import addTextIcon from "../../img/tools-icon/addTextIcon.svg";
@@ -36,6 +38,8 @@ export function Main(props) {
       <ToolPanel tools={leftToolArray} />
       <ToolPanel right tools={rightToolArray} />
       <Board notes />
+      <BoardName />
+      {/* <LoadingLinkModal /> */}
     </div>
   );
 }

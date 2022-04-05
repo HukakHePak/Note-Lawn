@@ -23,7 +23,7 @@ function ColorSetter({ setColor }) {
         : <div className='palette'>
           <ColorPicker
             width={456}
-            height={228}
+            height={128}
             color={paletteColor}
             onChange={setPaletteColor}
             hideHSV

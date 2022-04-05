@@ -5,8 +5,22 @@
 }
 
 body {
-  background: #F4E6DC;
-  height: 100vh
+  background: #f4e6dc;
+  height: 100vh;
+}
+
+input,
+button {
+  border: none;
+  background-color: transparent;
+}
+
+input {
+  outline: 0 !important;
+}
+
+button {
+  cursor: pointer;
 }
 
 #root {
@@ -33,6 +47,63 @@ body {
   height: 40px;
   border: 2px solid #000;
   border-radius: 50%;
-  background: #D8B499;
+  background: #d8b499;
   cursor: pointer;
+}
+
+.small-modal {
+  position: absolute;
+  width: 359px;
+  height: 156px;
+  background: #fcf5f0;
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
+  padding: 27px 20px;
+  font-size: 24px;
+  line-height: 29px;
+  z-index: 10;
+
+  &__input {
+    font-size: 24px;
+    line-height: 29px;
+    width: 100%;
+    border-bottom: 4px solid #d8b499;
+    margin-bottom: 35px;
+
+    &::placeholder {
+      font-size: 24px;
+      line-height: 29px;
+      color: #000;
+    }
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__text {
+    margin-right: 10px;
+  }
+
+  &__btn {
+    background: #d8b499;
+    padding: 4px 15px;
+    font-size: 24px;
+    line-height: 29px;
+  }
+  &--setting {
+    height: 145px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    right: 20px;
+    bottom: 20px;
+  }
 }

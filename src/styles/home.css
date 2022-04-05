@@ -37,6 +37,9 @@
   font-weight: 700;
   padding: 0 70px 35px 0;
 }
+.home__main-btn--wrapper {
+  position: relative;
+}
 .home__main-btn img {
   position: absolute;
   width: 35px;
@@ -137,36 +140,7 @@
       align-self: end;
   cursor: pointer;
 }
-.setting-modal {
-  position: absolute;
-  bottom: 40px;
-  right: 40px;
-  width: 300px;
-  background: #fcf5f0;
-  -webkit-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
-          box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
-  padding: 20px;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 29px;
-  color: #000000;
-}
-.setting-modal--active {
-  display: block;
-}
-.setting-modal__item {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-.setting-modal__item:not(:last-child) {
-  margin-bottom: 10px;
+.new-board-modal {
+  left: 137px;
+  top: 19px;
 }
