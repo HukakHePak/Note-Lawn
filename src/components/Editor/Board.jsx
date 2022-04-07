@@ -3,7 +3,7 @@ import "../../styles/main.css";
 
 import { NoteImage } from "./Notes/NoteImage";
 import { NoteVideo } from "./Notes/NoteVideo";
-import { TextNote } from "./Notes/TextNote";
+import { NoteWrap } from "./Notes/NoteWrap";
 
 export function Board(props) {
   const { src, notes, title, onClick } = props;
@@ -18,12 +18,12 @@ export function Board(props) {
       onClick={onClick}
       style={{ backgroundImage: `url(${src})` }}
     >
-
       {/* {notes} */}
-      <NoteImage imageSrc={imageSrc} />
-      <NoteVideo link={link} />
+      {/* <NoteImage imageSrc={imageSrc} /> */}
+
       {notes}
-      <TextNote />
+      <NoteWrap note={<NoteImage imageSrc={imageSrc} />} />
+      <NoteWrap note={<NoteVideo link={link} />} />
     </div>
   );
 }

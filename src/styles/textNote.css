@@ -74,15 +74,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .note__text {
-  background: #F4E6DC;
-  max-width: 390px;
-  width: 100%;
-  min-height: 480px;
-  position: relative;
-  margin: 0 auto;
-}
-
-.text__wrap {
   padding: 35px;
 }
 
@@ -100,23 +91,5 @@ h1, h2, h3, h4, h5, h6 {
 .text__subtitle {
   font-size: 24px;
   line-height: 1.5;
-}
-
-.text__close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 30px;
-  height: 30px;
-  background: #F4E6DC;
-}
-
-.text__favourite {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  width: 30px;
-  height: 30px;
-  background: #F4E6DC;
 }
 /*# sourceMappingURL=textNote.css.map */

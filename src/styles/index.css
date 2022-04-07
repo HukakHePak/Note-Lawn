@@ -24,6 +24,20 @@ button {
   cursor: pointer;
 }
 
+#root {
+  height: 100%;
+}
+
+.app {
+  height: 100%;
+}
+
+.palette {
+  position: absolute;
+  bottom: 0;
+  right: 50px;
+}
+
 .palette {
   position: absolute;
   bottom: 0;
