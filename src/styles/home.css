@@ -13,6 +13,7 @@
           justify-content: space-between;
   color: #3a3845;
 }
+
 .home__main {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -50,6 +51,7 @@
   width: 35px;
   right: 20px;
 }
+
 .home__search {
   position: relative;
   display: -webkit-box;

@@ -1,9 +1,11 @@
 import "../../../styles/textNote.css";
 
-export function TextNote() {
+export function NoteText(props) {
+const {title} = props;
+
   return (
-    <div className="note__text text">
-      <TextNoteTitle title="Title" />
+    <div className="note__text text" >
+      <TextNoteTitle title={title} />
       <div className="text__line"></div>
       <div
         className="text__subtitle"
