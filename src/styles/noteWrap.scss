@@ -10,4 +10,12 @@
     position: relative;
     margin: 0 auto;
     resize: both;
+
+    >div {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        left: 0;
+        top: 0;
+    }
 }

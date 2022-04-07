@@ -8,3 +8,13 @@
   margin: 0 auto;
   resize: both;
 }
+
+.note-wrap > div {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  left: 0;
+  top: 0;
+  /* padding: 15px; */
+}
+/*# sourceMappingURL=noteWrap.css.map */

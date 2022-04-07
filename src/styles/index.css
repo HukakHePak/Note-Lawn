@@ -6,10 +6,38 @@
 }
 
 body {
-  background: #F4E6DC;
+  background: #f4e6dc;
   height: 100vh;
 }
 
+input,
+button {
+  border: none;
+  background-color: transparent;
+}
+
+input {
+  outline: 0 !important;
+}
+
+button {
+  cursor: pointer;
+}
+
+#root {
+  height: 100%;
+}
+
+.app {
+  height: 100%;
+}
+
+.palette {
+  position: absolute;
+  bottom: 0;
+  right: 50px;
+}
+
 .palette {
   position: absolute;
   bottom: 0;
@@ -21,22 +49,103 @@ body {
   height: 40px;
   border: 2px solid #000;
   border-radius: 50%;
-  background: #D8B499;
+  background: #d8b499;
   cursor: pointer;
 }
 
-.palette {
+.small-modal {
   position: absolute;
-  bottom: 0;
-  right: 50px;
+  width: 359px;
+  height: 156px;
+  background: #fcf5f0;
+  -webkit-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
+  padding: 27px 20px;
+  font-size: 24px;
+  line-height: 29px;
+  z-index: 10;
 }
 
-.circle {
-  width: 40px;
-  height: 40px;
-  border: 2px solid #000;
-  border-radius: 50%;
-  background: #D8B499;
-  cursor: pointer;
+.small-modal__input {
+  font-size: 24px;
+  line-height: 29px;
+  width: 100%;
+  border-bottom: 4px solid #d8b499;
+  margin-bottom: 35px;
+}
+
+.small-modal__input::-webkit-input-placeholder {
+  font-size: 24px;
+  line-height: 29px;
+  color: #000;
+}
+
+.small-modal__input:-ms-input-placeholder {
+  font-size: 24px;
+  line-height: 29px;
+  color: #000;
+}
+
+.small-modal__input::-ms-input-placeholder {
+  font-size: 24px;
+  line-height: 29px;
+  color: #000;
+}
+
+.small-modal__input::placeholder {
+  font-size: 24px;
+  line-height: 29px;
+  color: #000;
+}
+
+.small-modal__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.small-modal__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.small-modal__text {
+  margin-right: 10px;
+}
+
+.small-modal__btn {
+  background: #d8b499;
+  padding: 4px 15px;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.small-modal--setting {
+  height: 145px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  right: 20px;
+  bottom: 20px;
 }
 /*# sourceMappingURL=index.css.map */
