@@ -12,6 +12,7 @@
 .board {
   height: 2000px;
   width: 2000px;
+  position: relative;
 }
 
 .board-name {
