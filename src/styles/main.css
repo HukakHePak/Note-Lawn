@@ -5,7 +5,6 @@
 .main-board {
   height: 100%;
   width: 100%;
-  background: #FCF5F0;
   position: relative;
 }
 
@@ -46,6 +45,7 @@
           flex-direction: column;
   gap: 0.6vw;
   margin-left: 0.6vw;
+  z-index: 5;
 }
 
 .tool-panel--right {

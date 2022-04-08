@@ -70,6 +70,7 @@
   }
 
   &__pages {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
 
@@ -84,10 +85,20 @@
       justify-content: flex-end;
       padding: 10px;
       margin: 10px;
+
+      &:hover {
+        .home__pages-remove {
+          display: block;
+        }
+      }
     }
 
     &-title {
       font-size: 32px;
+    }
+
+    &-remove {
+      display: none;
     }
   }
 

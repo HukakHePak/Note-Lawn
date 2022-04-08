@@ -15,7 +15,7 @@ export function ToolItem (props) {
       //type={type}
       className="tool-item"
       //hoverText={hoverText}
-      onClick={ () => dispatch(action())}
+      onClick={() => dispatch(action)}
       style={style}
     >
     </button>

@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { ColorSetterWrapper } from "./ColorSetterWrapper";
 
 export function SmallModal({
-  colorPallet,
   hiddenModal,
+  action,
+  defaultColor,
   styleClasses,
   placeholderText,
   buttonText,
@@ -16,26 +17,25 @@ export function SmallModal({
     styleClassString += " " + styleClasses[styleClass];
   }
 
-  function handleChange(event) {
-    setValue(event.target.value);
-  }
-
-  if (!hiddenModal) return null;
+  function addBoardToStore(e) {
+    e.preventDefault()
+    action(value, boardColor)
+    hiddenModal()
+  } 
 
   return (
     <div className={styleClassString}>
-      <form className="small-modal__form">
+      <form className="small-modal__form" onSubmit={addBoardToStore}>
         <input
           className="small-modal__input"
           placeholder={placeholderText}
           value={value}
-          onChange={handleChange}
+          onChange={e => setValue(e.target.value)}
         />
         <div className="small-modal__wrapper">
           <button className="small-modal__btn">{buttonText}</button>
-          {colorPallet && (
-            <ColorSetterWrapper text="Color" setColor={setBoardColor} />
-          )}
+
+            <ColorSetterWrapper text="Color" setColor={setBoardColor} defaultColor={defaultColor}/>
         </div>
       </form>
     </div>

@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import "../../styles/home.css";
 import FavoriteNoteList from "./FavoriteNoteList";
 import SearchBar from "./SearchBar";
 import BoardList from "./BoardList";
 import { AddBoardBar } from "./AddBoardBar";
-import { useSelector } from "react-redux";
+import { getBoadrds, getFavoriteNotes } from "../../store/selectors/existenceBoards";
+import { getAppTheme } from './../../store/selectors/appTheme';
 
-function Home(props) {
+
+function Home() {
   const [search, setSearch] = useState("");
-  const boards = useSelector((state) => state.existenceBoards.boards);
+  const boards = useSelector(getBoadrds);
   const [boardsList, setBoardsList] = useState(boards);
-  const favoritesList = useSelector((state) => state.existenceBoards.favorites);
-  const mainColor = useSelector(
-    (state) => state.currentTheme.currentTheme.mainColor
-  );
+  const favoritesList = useSelector(getFavoriteNotes);
+  const {mainColor, secondColor} = useSelector(getAppTheme);
 
   useEffect(() => {
     setBoardsList(
@@ -25,12 +26,7 @@ function Home(props) {
 
   return (
     <div
-      className="home home__wrapper"
-      style={{
-        background: `${mainColor}`,
-        display: props.active ? 'flex' : 'none'
-      }}
-    >
+      className="home home__wrapper">
       <div className="home__main">
         <div className="home__main-top">
           <AddBoardBar />
@@ -38,7 +34,6 @@ function Home(props) {
         </div>
         <BoardList list={boardsList} />
       </div>
-
       <FavoriteNoteList list={favoritesList} />
     </div>
   );

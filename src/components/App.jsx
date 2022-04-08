@@ -3,20 +3,19 @@ import Home from "./Home/Home";
 import { Editor } from "./Editor/Editor";
 import "../styles/index.css";
 import { useSelector } from "react-redux";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+import { getCurrentBoardId, getBoard } from './../store/selectors/existenceBoards';
+import { getAppTheme } from './../store/selectors/appTheme';
+
 
 function App() {
-  const { home, editor } = useSelector(state=>state.openedWindow);
+  const boardId = useSelector(getCurrentBoardId);
+  const background = useSelector(boardId ? state => getBoard(state, boardId) : getAppTheme)[boardId ? 'color' : 'mainColor']
 
   return (
-    <div className="app">
-      <Home active={home}/>
-
-      <DndProvider backend={HTML5Backend}>
-        <Editor active={editor}/>
-      </DndProvider>
-      
+    <div className="app" style={{ background }}>
+      {boardId
+        ? <Editor boardId={boardId} />
+        : <Home />}
     </div>
   );
 }

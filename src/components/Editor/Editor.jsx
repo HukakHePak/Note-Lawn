@@ -6,20 +6,20 @@ import { LoadingLinkModal } from "./LoadingLinkModal";
 import "../../styles/main.css";
 import { createNotesTools } from "../../tools/createNotesTools";
 import { functionalTools } from "../../tools/functionalTools";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
-export function Editor(props) {
+
+export function Editor({boardId}) {
   return (
-    <div
-      className="main-board"
-      style={{
-        display: props.active ? "flex" : "none",
-      }}
-    >
+    <DndProvider backend={HTML5Backend}>
+    <div className="main-board">
       <ToolPanel tools={createNotesTools} />
       <ToolPanel right tools={functionalTools} />
       <Board />
-      <BoardName />
+      <BoardName boardId={boardId}/>
       {/* <LoadingLinkModal /> */}
     </div>
+    </DndProvider>
   );
 }
