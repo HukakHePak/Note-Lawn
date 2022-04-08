@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { openEditor } from "../../store/actions/openWindow/openEditor";
+import { removeBoard, setBoard } from "../../store/actions/existenceBoards";
+
 
 function BoardList({ list }) {
   return (
@@ -10,27 +11,27 @@ function BoardList({ list }) {
           key={index}
           boardTitle={item.name}
           boardDate={item.date}
-          // onClick = {}
+          boardId={item.id}
         />
       ))}
     </div>
   );
 }
 
-function BoardItem({ boardDate, boardTitle }) {
+function BoardItem({ boardDate, boardTitle, boardId }) {
   const dispatch = useDispatch();
 
+  function removeBoardToStore(e) {
+    e.stopPropagation()
+    dispatch(removeBoard(boardId))
+  }
+
   return (
-    <a
-      className="home__pages-item"
-      onClick={() => {
-        dispatch(openEditor());
-        console.log("test");
-      }}
-    >
+    <div className="home__pages-item" onClick={() => dispatch(setBoard(boardId))}>
       <h3 className="home__pages-title">{boardTitle}</h3>
       <span className="home__pages-date">{boardDate}</span>
-    </a>
+      <button className="home__pages-remove" onClick={removeBoardToStore}>Remove</button>
+    </div>
   );
 }
 

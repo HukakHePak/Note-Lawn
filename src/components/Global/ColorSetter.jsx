@@ -3,10 +3,10 @@ import { ColorPicker, useColor } from "react-color-palette";
 import "react-color-palette/lib/css/styles.css";
 
 
-function ColorSetter({ setColor }) {
-  const [paletteColor, setPaletteColor] = useColor("hex", "#121212");
+function ColorSetter({ setColor, defaultColor }) {
+  const [paletteColor, setPaletteColor] = useColor("hex", defaultColor || '#fff');
   const [hiddenPalette, setHiddenPalette] = useState(true)
-
+  
   useEffect(() => {
     setColor(paletteColor.hex)
   }, [paletteColor, setColor])

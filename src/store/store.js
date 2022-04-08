@@ -1,27 +1,12 @@
-import { createStore, combineReducers } from 'redux'
+import { createStore, combineReducers, compose } from 'redux'
 import { existenceBoards } from './reducers/existenceBoards';
-import { currentTheme } from './reducers/currentTheme';
-import { openedWindow } from './reducers/openedWindow';
+import { appTheme } from './reducers/appTheme';
 
-export const defaultState = {
-  currentBoardId: null,
-  currentNoteId: null,
-  currentTheme: { mainColor: '#F4E6DC', secondColor: '#D8B499' },
-  themes: [],
-  boards: [
-    { name: "Late", date: "29/03/22" },
-    { name: "Late", date: "29/03/22" },
-    { name: "Late", date: "29/03/22" },
-    { name: "Late", date: "29/03/22" },
-    { name: "Late", date: "29/03/22" }],
-  favorites: ["First", "Second", "Thirt"],
-}
 
 const rootReducer = combineReducers({
   existenceBoards,
-  currentTheme,
-  openedWindow
+  appTheme
 })
 
-
-export const store = createStore(rootReducer)
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const store = createStore(rootReducer, composeEnhancers())

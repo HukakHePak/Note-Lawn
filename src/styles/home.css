@@ -86,6 +86,7 @@
 }
 
 .home__pages {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -113,8 +114,16 @@
   margin: 10px;
 }
 
+.home__pages-item:hover .home__pages-remove {
+  display: block;
+}
+
 .home__pages-title {
   font-size: 32px;
+}
+
+.home__pages-remove {
+  display: none;
 }
 
 .home__favorites {
