@@ -3,7 +3,6 @@ import { useDrag } from "react-dnd";
 
 export function NoteWrap(props) {
   const { note, left, top, id } = props;
-  console.log(note);
 
   const style = {};
 

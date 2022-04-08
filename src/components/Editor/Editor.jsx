@@ -1,25 +1,39 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Board } from "./Board";
 import { ToolPanel } from "./ToolPanel";
 import { BoardName } from "./BoardName";
-import { LoadingLinkModal } from "./LoadingLinkModal";
 import "../../styles/main.css";
-import { createNotesTools } from "../../tools/createNotesTools";
-import { functionalTools } from "../../tools/functionalTools";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { DndProvider } from "react-dnd";
+import { addNotesTools } from "./tools/addNotesTools";
+import { functionalTools } from "./tools/functionalTools";
 
 export function Editor(props) {
+  const b = useRef(null);
+
+  useEffect(() => {
+    if(b) {
+      //b.current.scrollLeft="2000";
+      b.current.scroll(5000, 5000)
+    }
+  });
+
   return (
-    <div
-      className="main-board"
-      style={{
-        display: props.active ? "flex" : "none",
-      }}
-    >
-      <ToolPanel tools={createNotesTools} />
-      <ToolPanel right tools={functionalTools} />
-      <Board />
-      <BoardName />
-      {/* <LoadingLinkModal /> */}
-    </div>
+    <DndProvider backend={HTML5Backend}>
+      <div
+        ref={b}
+        className="editor"
+        style={{
+          display: props.active ? "flex" : "none",
+          scrollLeft: '200px'
+        }}
+        
+      >
+        <ToolPanel tools={addNotesTools} />
+        <ToolPanel right tools={functionalTools} />
+        <Board />
+        <BoardName />
+      </div>
+    </DndProvider>
   );
 }

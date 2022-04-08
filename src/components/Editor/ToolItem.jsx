@@ -2,22 +2,19 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import "../../styles/main.css";
 
-export function ToolItem (props) {
-  const { hoverText, icon, action } = props.tool;
+export function ToolItem(props) {
+  const { title, icon, action, value } = props;
 
   const dispatch = useDispatch();
 
-  const style = { backgroundImage: `url(${icon})`};
-
   return (
     <button
-      // onClick={onToolClick}
-      //type={type}
       className="tool-item"
-      //hoverText={hoverText}
-      onClick={ () => dispatch(action())}
-      style={style}
+      title={title}
+      onClick={(event) => dispatch(action(event))}
+      style={{ backgroundImage: `url(${icon})` }}
     >
+      {value}
     </button>
   );
 }

@@ -11,12 +11,12 @@ import { useDrop } from "react-dnd";
 import update from "immutability-helper";
 
 export function Board(props) {
-  const { src, title, onClick } = props;
+  const { src, title, onClick, size } = props;
 
   const [notes, setNotes] = useState({
-    1: { top: 5, left: 80, title: 1 },
-    2: { top: 10, left: 100, title: 2 },
-    3: { top: 200, left: 150, title: 3 },
+    1: { top: 5000, left: 5000, title: 1 },
+    2: { top: 5000, left: 5000, title: 2 },
+    3: { top: 5000, left: 5000, title: 3 },
   });
 
   const imageSrc =
@@ -38,7 +38,7 @@ export function Board(props) {
 
   const [, drop] = useDrop(
     () => ({
-      accept: 'note',
+      accept: "note",
       drop(item, monitor) {
         const { x, y } = monitor.getDifferenceFromInitialOffset();
         const left = Math.round(item.left + x);
@@ -50,13 +50,17 @@ export function Board(props) {
     [moveBox]
   );
 
+
+
   return (
     <div
       ref={drop}
       className="board"
       title={title}
       onClick={onClick}
-      style={{ backgroundImage: `url(${src})` }}
+      style={{
+        backgroundImage: `url(${src})`,
+      }}
     >
       {/* <NoteWrap note={<NoteVideo link={link} />} /> */}
 
@@ -64,11 +68,11 @@ export function Board(props) {
         const { left, top, title } = notes[item];
         return (
           <NoteWrap
-          note={<NoteText title = {title}/>}
-          left={left}
-          top={top}
-          id={item}
-        />
+            note={<NoteText title={title} />}
+            left={left}
+            top={top}
+            id={item}
+          />
         );
       })}
     </div>

@@ -5,8 +5,8 @@ export function NoteVideo({ link }) {
   const videoId = link.slice(-11);
 
   const opts = {
-    width: "450",
-    height: "250",
+    width: "100%",
+    minHeight: "100%",
     playerVars: {
       autoplay: 1,
     },
