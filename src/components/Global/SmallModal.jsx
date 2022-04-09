@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import { ColorSetterWrapper } from "./ColorSetterWrapper";
+import BackgroundLInk from './BackgroundLInk';
 
-export function SmallModal({
-  hiddenModal,
-  action,
-  defaultColor,
-  styleClasses,
-  placeholderText,
-  buttonText,
-}) {
+export function SmallModal({ hiddenModal, action, defaultColor, defaultBackground, defaultIdRepeat, styleClasses, placeholderText, buttonText }) {
   const [boardColor, setBoardColor] = useState("");
   const [value, setValue] = useState("");
+  const [background, setBackground] = useState(defaultBackground || '')
+  const [isRepeat, setIsRepeat] = useState(defaultIdRepeat || false);
 
   let styleClassString = "small-modal";
   for (const styleClass in styleClasses) {
@@ -19,9 +15,9 @@ export function SmallModal({
 
   function addBoardToStore(e) {
     e.preventDefault()
-    action(value, boardColor)
+    action(value, boardColor, background, isRepeat)
     hiddenModal()
-  } 
+  }
 
   return (
     <div className={styleClassString}>
@@ -32,10 +28,15 @@ export function SmallModal({
           value={value}
           onChange={e => setValue(e.target.value)}
         />
+        <BackgroundLInk
+          defaultBackground={background}
+          defaultIsRepeat={isRepeat}
+          setBackground={setBackground}
+          setIsRepeat={setIsRepeat}
+        />
         <div className="small-modal__wrapper">
           <button className="small-modal__btn">{buttonText}</button>
-
-            <ColorSetterWrapper text="Color" setColor={setBoardColor} defaultColor={defaultColor}/>
+          <ColorSetterWrapper text="Color" setColor={setBoardColor} defaultColor={defaultColor} />
         </div>
       </form>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SearchBtn from "../../img/search.svg";
 
-function SearchBar({setSearch}) {
+function SearchBar({setSearch, background}) {
   const [value, setValue] = useState("");
 
   const handleChange = (e) => {
@@ -17,6 +17,7 @@ function SearchBar({setSearch}) {
         value={value}
         onChange={handleChange}
         placeholder="Search..."
+        style={{background}}
       />
 
       <button className="home__search-btn" type="button">

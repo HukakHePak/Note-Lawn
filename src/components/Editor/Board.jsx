@@ -60,15 +60,16 @@ export function Board(props) {
     >
       {/* <NoteWrap note={<NoteVideo link={link} />} /> */}
 
-      {Object.keys(notes).map((item) => {
+      {Object.keys(notes).map((item, index) => {
         const { left, top, title } = notes[item];
         return (
           <NoteWrap
-          note={<NoteText title = {title}/>}
-          left={left}
-          top={top}
-          id={item}
-        />
+            key={index}
+            note={<NoteText title={title} />}
+            left={left}
+            top={top}
+            id={item}
+          />
         );
       })}
     </div>
