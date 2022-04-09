@@ -25,7 +25,6 @@ export function Editor(props) {
         className="editor"
         style={{
           display: props.active ? "flex" : "none",
-          scrollLeft: '200px'
         }}
         
       >

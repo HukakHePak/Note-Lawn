@@ -23,38 +23,38 @@ export function Board(props) {
     "https://upload.wikimedia.org/wikipedia/ru/thumb/f/f9/Film_2567_03.jpg/274px-Film_2567_03.jpg";
   const link = "https://youtu.be/fdJSYEtADxQ";
 
-  const moveBox = useCallback(
-    (id, left, top) => {
-      setNotes(
-        update(notes, {
-          [id]: {
-            $merge: { left, top },
-          },
-        })
-      );
-    },
-    [notes, setNotes]
-  );
+  // const moveBox = useCallback(
+  //   (id, left, top) => {
+  //     setNotes(
+  //       update(notes, {
+  //         [id]: {
+  //           $merge: { left, top },
+  //         },
+  //       })
+  //     );
+  //   },
+  //   [notes, setNotes]
+  // );
 
-  const [, drop] = useDrop(
-    () => ({
-      accept: "note",
-      drop(item, monitor) {
-        const { x, y } = monitor.getDifferenceFromInitialOffset();
-        const left = Math.round(item.left + x);
-        const top = Math.round(item.top + y);
-        moveBox(item.id, left, top);
-        return undefined;
-      },
-    }),
-    [moveBox]
-  );
+  // const [, drop] = useDrop(
+  //   () => ({
+  //     accept: "note",
+  //     drop(item, monitor) {
+  //       const { x, y } = monitor.getDifferenceFromInitialOffset();
+  //       const left = Math.round(item.left + x);
+  //       const top = Math.round(item.top + y);
+  //       moveBox(item.id, left, top);
+  //       return undefined;
+  //     },
+  //   }),
+  //   [moveBox]
+  // );
 
 
 
   return (
     <div
-      ref={drop}
+      //ref={drop}
       className="board"
       title={title}
       onClick={onClick}
