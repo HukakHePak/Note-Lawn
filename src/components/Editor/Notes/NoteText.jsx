@@ -9,7 +9,7 @@ const {title} = props;
       <div className="text__line"></div>
       <div
         className="text__subtitle"
-        contentEditable="true" // для редактирования текста в диве
+        // contentEditable="true" // для редактирования текста в диве
       >
         Lorem Lorem
       </div>
@@ -21,7 +21,7 @@ function TextNoteTitle (props) {
   const {title} = props;
 
   return (
-    <div className="text__title" contentEditable="true">
+    <div className="text__title">
       {title}
     </div>
   );

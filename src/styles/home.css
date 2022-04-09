@@ -30,6 +30,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 30px;
 }
 
 .home__main-btn {
@@ -39,17 +43,18 @@
   cursor: pointer;
   font-size: 30px;
   font-weight: 700;
-  padding: 0 70px 35px 0;
+  padding: 4px 50px 5px 3px;
 }
 
 .home__main-btn--wrapper {
   position: relative;
+  margin-right: 10px;
 }
 
 .home__main-btn img {
   position: absolute;
   width: 35px;
-  right: 20px;
+  right: 5px;
 }
 
 .home__search {
@@ -57,7 +62,6 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 30px;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -92,6 +96,7 @@
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  margin: 0 -10px;
 }
 
 .home__pages-item {
@@ -152,6 +157,14 @@
   margin-bottom: 10px;
 }
 
+.setting {
+  position: relative;
+  margin-top: auto;
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
+}
+
 .setting-btn {
   width: 40px;
   height: 44px;
@@ -159,14 +172,11 @@
   border: none;
   background-color: transparent;
   background-image: url("../img/setting.svg");
-  margin-top: auto;
-  -ms-flex-item-align: end;
-      -ms-grid-row-align: end;
-      align-self: end;
   cursor: pointer;
 }
 
 .new-board-modal {
+  position: absolute;
   left: 137px;
   top: 19px;
 }

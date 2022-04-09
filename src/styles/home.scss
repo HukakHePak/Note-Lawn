@@ -17,6 +17,8 @@
 
     &-top {
       display: flex;
+      align-items: center;
+      margin-bottom: 30px;
     }
 
     &-btn {
@@ -26,16 +28,18 @@
       cursor: pointer;
       font-size: 30px;
       font-weight: 700;
-      padding: 0 70px 35px 0;
+      padding: 4px 50px 5px 3px;
+      
 
       &--wrapper {
         position: relative;
+        margin-right: 10px;
       }
 
       img {
         position: absolute;
         width: 35px;
-        right: 20px;
+        right: 5px;
       }
     }
   }
@@ -43,7 +47,6 @@
   &__search {
     position: relative;
     display: flex;
-    margin-bottom: 30px;
     justify-content: space-between;
     width: 100%;
 
@@ -73,6 +76,7 @@
     position: relative;
     display: flex;
     flex-wrap: wrap;
+    margin: 0 -10px;
 
     &-item {
       width: 300px;
@@ -125,6 +129,10 @@
 }
 
 .setting {
+  position: relative;
+  margin-top: auto;
+  align-self: end;
+  
   &-btn {
     width: 40px;
     height: 44px;
@@ -132,13 +140,13 @@
     border: none;
     background-color: transparent;
     background-image: url("../img/setting.svg");
-    margin-top: auto;
-    align-self: end;
+
     cursor: pointer;
   }
 }
 
 .new-board-modal {
+  position: absolute;
   left: 137px;
   top: 19px;
 }

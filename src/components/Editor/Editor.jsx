@@ -10,16 +10,16 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
 
-export function Editor({boardId}) {
+export function Editor({ boardId }) {
   return (
     <DndProvider backend={HTML5Backend}>
-    <div className="main-board">
-      <ToolPanel tools={createNotesTools} />
-      <ToolPanel right tools={functionalTools} />
-      <Board />
-      <BoardName boardId={boardId}/>
-      {/* <LoadingLinkModal /> */}
-    </div>
+      <div className="main-board">
+        <ToolPanel tools={createNotesTools} />
+        <ToolPanel right tools={functionalTools} />
+        <Board />
+        <BoardName boardId={boardId} />
+        {/* <LoadingLinkModal /> */}
+      </div>
     </DndProvider>
   );
 }

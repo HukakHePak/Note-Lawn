@@ -6,7 +6,6 @@
 }
 
 body {
-  background: #f4e6dc;
   height: 100vh;
 }
 
@@ -57,9 +56,8 @@ button {
 .small-modal {
   position: absolute;
   top: 35px;
-  left: 100px;
   width: 359px;
-  height: 156px;
+  min-height: 156px;
   background: #fcf5f0;
   -webkit-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
@@ -113,6 +111,10 @@ button {
           align-items: center;
 }
 
+.small-modal__item:not(:last-child) {
+  margin-bottom: 10px;
+}
+
 .small-modal__wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -123,6 +125,7 @@ button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-bottom: 10px;
 }
 
 .small-modal__text {
@@ -136,19 +139,8 @@ button {
   line-height: 29px;
 }
 
-.small-modal--setting {
-  height: 145px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  right: 20px;
-  bottom: 20px;
+.small-modal_setting {
+  top: 50px;
+  right: 40px;
 }
 /*# sourceMappingURL=index.css.map */

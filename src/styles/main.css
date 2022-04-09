@@ -16,7 +16,9 @@
 
 .board-name {
   position: fixed;
-  left: 12px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   top: 20px;
 }
 
@@ -27,8 +29,9 @@
 }
 
 .board-name__modal {
-  top: 32px;
-  left: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 .tool-panel {

@@ -14,7 +14,8 @@ function Home() {
   const boards = useSelector(getBoadrds);
   const [boardsList, setBoardsList] = useState(boards);
   const favoritesList = useSelector(getFavoriteNotes);
-  const {mainColor, secondColor} = useSelector(getAppTheme);
+  const secondColor = useSelector(getAppTheme).secondColor
+
 
   useEffect(() => {
     setBoardsList(
@@ -25,16 +26,15 @@ function Home() {
   }, [search, boards]);
 
   return (
-    <div
-      className="home home__wrapper">
+    <div className="home home__wrapper">
       <div className="home__main">
         <div className="home__main-top">
-          <AddBoardBar />
-          <SearchBar setSearch={setSearch} />
+          <AddBoardBar background={secondColor}/>
+          <SearchBar setSearch={setSearch} background={secondColor}/>
         </div>
-        <BoardList list={boardsList} />
+        <BoardList list={boardsList} background={secondColor}/>
       </div>
-      <FavoriteNoteList list={favoritesList} />
+      <FavoriteNoteList list={favoritesList} background={secondColor}/>
     </div>
   );
 }

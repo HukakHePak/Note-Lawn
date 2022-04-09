@@ -10,10 +10,10 @@ export function BoardName({boardId}) {
   const styleClasses = ["board-name__modal"];
   const dispatch = useDispatch()
   const board = useSelector(state => getBoard(state, boardId))
-  
+  const {img: defaultBackground, isRepeat: defaultIdRepeat} = board.theme.bg
 
-  function action(value, boardColor) {
-    dispatch(changeBoard(boardId, value || board.name, boardColor))
+  function action(value, boardColor, background, isRepeat) {
+    dispatch(changeBoard(boardId, value || board.name, boardColor, background, isRepeat))
   }
 
   return (
@@ -27,7 +27,9 @@ export function BoardName({boardId}) {
       {hiddenModal && <SmallModal
         hiddenModal={() => setHiddenModal(false)}
         action={action}
-        defaultColor={board.color}
+        defaultColor={board.theme.color}
+        defaultBackground={defaultBackground}
+        defaultIdRepeat={defaultIdRepeat}
         styleClasses={styleClasses}
         placeholderText="New board name"
         buttonText="Change"

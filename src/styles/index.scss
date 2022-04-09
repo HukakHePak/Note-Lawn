@@ -5,7 +5,6 @@
 }
 
 body {
-  background: #f4e6dc;
   height: 100vh;
 }
 
@@ -55,9 +54,8 @@ button {
 .small-modal {
   position: absolute;
   top: 35px;
-  left: 100px;
   width: 359px;
-  height: 156px;
+  min-height: 156px;
   background: #fcf5f0;
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
   padding: 27px 20px;
@@ -83,12 +81,17 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
   }
 
   &__wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px;
   }
 
   &__text {
@@ -101,12 +104,9 @@ button {
     font-size: 24px;
     line-height: 29px;
   }
-  &--setting {
-    height: 145px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    right: 20px;
-    bottom: 20px;
+  
+  &_setting {
+    top: 50px;
+    right: 40px;
   }
 }
