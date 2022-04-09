@@ -1,16 +1,15 @@
 import React from "react";
+import useColor from './../hooks/useColor.js';
+import "../styles/index.css";
 import Home from "./Home/Home";
 import { Editor } from "./Editor/Editor";
-import "../styles/index.css";
 import { useSelector } from "react-redux";
 import { getCurrentBoardId } from './../store/selectors/existenceBoards';
-import useColor from './../hooks/useColor.js';
-
 
 
 function App() {
   const boardId = useSelector(getCurrentBoardId);
-  const styles = useColor(boardId)
+  const styles = useColor(boardId);
 
   return (
     <div className="app" style={styles}>
@@ -19,6 +18,6 @@ function App() {
         : <Home />}
     </div>
   );
-}
+};
 
 export default App;
