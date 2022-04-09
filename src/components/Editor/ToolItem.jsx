@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import "../../styles/main.css";
 
 export function ToolItem(props) {
-  const { title, icon, action, value } = props;
+  const { title, icon, action, children, draggable } = props;
 
   const dispatch = useDispatch();
 
@@ -11,10 +11,12 @@ export function ToolItem(props) {
     <button
       className="tool-item"
       title={title}
-      onClick={(event) => dispatch(action(event))}
+      onClick={(event) => action && dispatch(action(event))}
       style={{ backgroundImage: `url(${icon})` }}
+      draggable={draggable}
+      onDragEnd={(event) => action && dispatch(action(event))}
     >
-      {value}
+      {children}
     </button>
   );
 }
