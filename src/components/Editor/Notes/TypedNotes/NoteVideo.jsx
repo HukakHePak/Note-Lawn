@@ -7,9 +7,9 @@ export function NoteVideo(props) {
 
   const videoId = src.slice(-11);
 
-  const opts = {
+  const opts = {  // TODO: сделать нормальный ресайз. сейчас высота не изменяется
     width: "100%",
-    minHeight: "100%",
+    height: "100%",
     playerVars: {
       autoplay: 1,
     },

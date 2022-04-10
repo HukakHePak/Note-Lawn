@@ -25,17 +25,17 @@ export function NoteWrap(props) {
         };
         setPos(pos);
         
-        //onReplace(pos);
+        //onReplace(pos); replace action
 
         setClickedPosition(null);      
       }}
-      onMouseUp={(event) => {
+      onMouseUp={(event) => { // resize action
         //onResize({
         //   width: event.target.clientWidth,
         //   height: event.target.clientHeight,
         // });
       }}
-      onDoubleClick={event => {
+      onDoubleClick={event => { // select action
         // set note select
       }}
     >
