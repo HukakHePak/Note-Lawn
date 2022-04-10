@@ -5,8 +5,8 @@ export function NoteVideo({ link }) {
   const videoId = link.slice(-11);
 
   const opts = {
-    width: "450",
-    height: "250",
+    width: "250px",
+    height: "406px",
     playerVars: {
       autoplay: 1,
     },
@@ -18,7 +18,12 @@ export function NoteVideo({ link }) {
 
   return (
     <div className="note-item note-item--video">
-      <YouTube videoId={videoId} opts={opts} onReady={videoOnReady} />
+      <YouTube
+        videoId={videoId}
+        opts={opts}
+        onReady={videoOnReady}
+        className="additionalPlayerStyles"
+      />
     </div>
   );
 }

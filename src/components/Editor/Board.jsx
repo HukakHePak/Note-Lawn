@@ -9,7 +9,7 @@ export function Board(props) {
   const { src, notes, title, onClick } = props;
   const imageSrc =
     "https://upload.wikimedia.org/wikipedia/ru/thumb/f/f9/Film_2567_03.jpg/274px-Film_2567_03.jpg";
-  const link = "https://youtu.be/fdJSYEtADxQ";
+  const link = "https://youtu.be/tMB4knXZNHM";
 
   return (
     <div
