@@ -15,8 +15,10 @@
 
 .board-name {
   position: fixed;
-  left: 1.5vw;
-  top: 1.5vw;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  top: 20px;
 }
 
 .board-name__btn {

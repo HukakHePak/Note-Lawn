@@ -1,7 +1,7 @@
 import "../../../../styles/textNote.css";
 
 export function NoteText(props) {
-  const { title, content, backgroundImage, backgroundColor } = props.note;
+  const { title, content } = props.note;
 
   return (
     <div className="note__text text">

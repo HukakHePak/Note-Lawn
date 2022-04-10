@@ -1,46 +1,40 @@
-import React, { useState } from "react";
-import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getNotes } from "../../store/selectors/note/getNotes";
 import "../../styles/main.css";
-import { NOTE_TYPES } from "./Notes/noteTypes";
 import { NoteWrap } from "./Notes/NoteWrap";
-import { selectNote } from "./Notes/selectNote";
+import { selectNote } from "../../store/actions/note/selectNote";
+import { CreateNote } from "./Notes/TypedNotes/CreateNote";
+import { getSelectedNoteId } from "../../store/selectors/note/getSelectedNoteId";
+import { editNote } from "../../store/actions/note/editNote";
 
-export function Board(props) {
-  const { src, title, onClick, size } = props;
-
-  const [notes, setNotes] = useState([
-    {
-      type: NOTE_TYPES.TEXT,
-      id: 1,
-      top: 200,
-      left: 200,
-      title: "nice title",
-      content: "nice content",
-    },
-    {
-      type: NOTE_TYPES.IMAGE,
-      id: 2,
-      top: 200,
-      left: 200,
-      title: "nice title",
-      content: "nice content",
-      isSelected: true,
-    },
-  ]);
+export function Board() {
+  const notes = useSelector(getNotes);
+  const selectedNoteId = useSelector(getSelectedNoteId);
+  const dispatch = useDispatch();
 
   return (
-    <div
-      className="board"
-      title={title}
-      style={{
-        backgroundImage: `url(${src})`,
-      }}
-    >
-      {notes.map((note) => (
-        <NoteWrap note={note} key={note.id}>
-          {selectNote(note)}
-        </NoteWrap>
-      ))}
+    <div className="board">
+      {notes?.map((note) => {
+        const { id, position, size, theme } = note;
+        const selected = id === selectedNoteId;
+
+        return (
+          <NoteWrap
+            key={id}
+            position={position}
+            selected={selected}
+            size={size}
+            onChange={note => dispatch(editNote(id, note))} // add one listener
+            // onResize={(size) => dispatch(resizeNote(id, {size}))}
+            // onReplace={(position) => dispatch(replaceNote(id, {position}))}
+            onSelect={()=> dispatch(selectNote(id))}
+            theme={theme}
+          >
+            {CreateNote(note, selected)}
+          </NoteWrap>
+        );
+      })}
     </div>
   );
 }
