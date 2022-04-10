@@ -6,6 +6,8 @@ import {
 import { SET_BOARD } from "./../actions/existenceBoards";
 import { getCreatedDate } from "./../../tools/time.js";
 import { NOTE_TYPES } from "../../components/Editor/Notes/TypedNotes/CreateNote";
+import { CREATE_NOTE } from "../actions/note/createNote";
+import { EDIT_NOTE } from "../actions/note/editNote";
 
 const defaultState = {
   currentBoardId: null,
@@ -71,6 +73,7 @@ export const existenceBoards = (state = defaultState, action) => {
   switch (action.type) {
     case SET_BOARD:
       return { ...state, currentBoardId: action.boardId };
+
     case ADD_BOARD:
       return {
         ...state,
@@ -81,6 +84,7 @@ export const existenceBoards = (state = defaultState, action) => {
             name: action.name,
             date: getCreatedDate(),
             theme: {
+              // дублирование
               color: action.color,
               bg: { img: action.background, isRepeat: action.isRepeat },
             },
@@ -88,27 +92,53 @@ export const existenceBoards = (state = defaultState, action) => {
           },
         ],
       };
+
     case REMOVE_BOARD:
       return {
         ...state,
-        boards: state.boards.filter((board) => board.id !== action.id),
+        boards: removeItem(state.boards, action.id),
       };
+
     case CHANGE_BOARD:
       return {
         ...state,
         boards: [
-          ...state.boards.filter((board) => board.id !== action.id),
+          ...removeItem(state.boards, action.id),
           {
-            ...state.boards.find((board) => board.id === action.id),
+            ...getItem(state.boards,action.id),
             name: action.name,
             theme: {
+              // дублирование
               color: action.color,
               bg: { img: action.background, isRepeat: action.isRepeat },
             },
           },
         ],
       };
+
+    case CREATE_NOTE:
+      // return {
+      //   ...state,
+      //   boards: [
+      //     ...boards
+      //   ]
+      // }
+      break;
+
+    case EDIT_NOTE:
+
+      break;
+      
     default:
-      return state;
+      break;
   }
+  return state;
 };
+
+function removeItem(list, id) {
+  return list.filter((item) => item.id !== id);
+}
+
+function getItem(list, id) {
+  return list.find((item) => item.id === id)
+}

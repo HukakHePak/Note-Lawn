@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { Board } from "./Board";
 import { ToolPanel } from "./ToolPanel";
 import { BoardName } from "./BoardName";
