@@ -35,4 +35,8 @@
   margin: auto;
   width: 80%;
 }
+
+.note-wrap--selected {
+  outline: 3px solid rgba(0, 0, 0, 0.367);
+}
 /*# sourceMappingURL=noteWrap.css.map */

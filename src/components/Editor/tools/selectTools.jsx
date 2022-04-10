@@ -1,4 +1,4 @@
-import { NOTE_TYPES } from "../Notes/noteTypes";
+import { NOTE_TYPES } from "../Notes/TypedNotes/CreateNote";
 import { addNotesTools } from "./addNotesTools";
 import { functionalTools } from "./functionalTools";
 
