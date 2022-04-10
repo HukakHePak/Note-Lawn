@@ -38,12 +38,6 @@ button {
   right: 50px;
 }
 
-.palette {
-  position: absolute;
-  bottom: 0;
-  right: 50px;
-}
-
 .circle {
   width: 40px;
   height: 40px;

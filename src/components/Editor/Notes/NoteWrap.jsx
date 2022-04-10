@@ -1,34 +1,45 @@
 import "../../../styles/noteWrap.css";
-import { useDrag } from "react-dnd";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 export function NoteWrap(props) {
-  const { note, left, top, id } = props;
-  console.log(note);
+  const { note, children } = props;
 
-  const style = {};
+  const dispatch = useDispatch();
 
-  const [{ isDragging }, drag] = useDrag(
-    () => ({
-      type: 'note',
-      item: { id, left, top },
-      collect: (monitor) => ({
-        isDragging: monitor.isDragging(),
-      }),
-    }),
-    [id, left, top]
-  );
-  if (isDragging) {
-    return <div ref={drag} />;
-  }
+  const [{ x, y }, setPos] = useState({ x: note.left, y: note.top });
+  const [clickedPosition, setClickedPosition] = useState(null);
 
   return (
     <div
-      ref={drag}
       className="note-wrap"
       draggable="true"
-      style={{ left, top }}
+      style={{ left: x, top: y, width: 300, height: 300 }}
+      onDragStart={(event) =>
+        setClickedPosition({ startX: event.clientX, startY: event.clientY })
+      }
+      onDragEnd={(event) => {
+        const pos = {
+          x: x + event.clientX - clickedPosition.startX,
+          y: y + event.clientY - clickedPosition.startY,
+        };
+        setPos(pos);
+        
+        //onReplace(pos); replace action
+
+        setClickedPosition(null);      
+      }}
+      onMouseUp={(event) => { // resize action
+        //onResize({
+        //   width: event.target.clientWidth,
+        //   height: event.target.clientHeight,
+        // });
+      }}
+      onDoubleClick={event => { // select action
+        // set note select
+      }}
     >
-      {note}
+      {children}
     </div>
   );
 }

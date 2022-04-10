@@ -1,25 +1,23 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Board } from "./Board";
 import { ToolPanel } from "./ToolPanel";
 import { BoardName } from "./BoardName";
-import { LoadingLinkModal } from "./LoadingLinkModal";
 import "../../styles/main.css";
-import { createNotesTools } from "../../tools/createNotesTools";
-import { functionalTools } from "../../tools/functionalTools";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+import { selectTools } from "./tools/selectTools";
 
+export function Editor(props) {
 
-export function Editor({ boardId }) {
   return (
-    <DndProvider backend={HTML5Backend}>
-      <div className="main-board">
-        <ToolPanel tools={createNotesTools} />
-        <ToolPanel right tools={functionalTools} />
-        <Board />
-        <BoardName boardId={boardId} />
-        {/* <LoadingLinkModal /> */}
-      </div>
-    </DndProvider>
+    <div
+      className="editor"
+      style={{
+        display: props.active ? "flex" : "none",
+      }}
+    >
+      <ToolPanel tools={selectTools()} />
+      <ToolPanel right tools={selectTools(false)} />
+      <Board />
+      <BoardName />
+    </div>
   );
 }
