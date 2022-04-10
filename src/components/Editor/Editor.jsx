@@ -6,18 +6,14 @@ import "../../styles/main.css";
 import { selectTools } from "./tools/selectTools";
 
 export function Editor(props) {
+  const { boardId } = props;
 
   return (
-    <div
-      className="editor"
-      style={{
-        display: props.active ? "flex" : "none",
-      }}
-    >
+    <div className="editor">
       <ToolPanel tools={selectTools()} />
       <ToolPanel right tools={selectTools(false)} />
       <Board />
-      <BoardName />
+      <BoardName boardId={boardId}/>
     </div>
   );
 }
