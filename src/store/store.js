@@ -1,10 +1,12 @@
 import { createStore, combineReducers, compose } from 'redux'
 import { existenceBoards } from './reducers/existenceBoards';
 import { appTheme } from './reducers/appTheme';
+import { notesReducer } from './reducers/notesReducer';
 
 
 const rootReducer = combineReducers({
-  existenceBoards,
+  existenceBoards, 
+  notes: notesReducer,
   appTheme
 })
 
