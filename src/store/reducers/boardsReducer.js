@@ -28,15 +28,6 @@ const defaultBoards = [
 ];
 
 export function boardsReducer(state = defaultBoards, { type, payload }) {
-  console.log(payload)
-  console.log([
-    ...state,
-    {
-      id: uniqid(),
-      date: getCreatedDate(),
-      ...payload,
-    },
-  ])
   switch (type) {
     case ADD_BOARD:
       return [

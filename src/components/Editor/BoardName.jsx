@@ -22,7 +22,7 @@ export function BoardName({boardId}) {
       </button>
       {hiddenModal && <SmallModal
         hiddenModal={() => setHiddenModal(false)}
-        action={(...args) => dispatch(changeBoard(...args))}
+        action={(...args) => dispatch(changeBoard(boardId, ...args))}
         defaultColor={board.theme.color}
         defaultBackground={defaultBackground}
         defaultIdRepeat={defaultIdRepeat}

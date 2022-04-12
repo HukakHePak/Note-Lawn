@@ -1,10 +1,11 @@
 import { getItem } from "./getItem";
 
-export function changeItem(items, index, value) {
+export function changeItem(items, id, value) {
     const list = [...items];
-    const item = getItem(list, index);
+    const index = list.indexOf(getItem(list, id));
     
-    item = {...value};
+    list[index] = {...value};
+    console.log(value)
 
     return list;
 }
