@@ -1,9 +1,9 @@
 import homeIcon from "../../../img/right-tool/homeIcon.svg";
 import { createOptionTool, createTool } from "./createTool";
 import ColorSetter from "../../Global/ColorSetter";
-import { setBoard } from "../../../store/actions/existenceBoards";
+import { selectBoard } from "../../../store/actions/board/selectBoard";
 
-const home = createTool("Домой", homeIcon, () => setBoard(null));
+const home = createTool("Домой", homeIcon, () => selectBoard(null));
 const color = createOptionTool("Выбрать цвет фона", (<ColorSetter setColor={()=>{}}/>));
 
 export const functionalTools = [home, color];

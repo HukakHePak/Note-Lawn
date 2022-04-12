@@ -7,20 +7,20 @@ import BoardList from "./BoardList";
 import { AddBoardBar } from "./AddBoardBar";
 import { getBoadrds, getFavoriteNotes } from "../../store/selectors/existenceBoards";
 import { getAppTheme } from './../../store/selectors/appTheme';
+import Settings from "./settings/Settings";
 
 
 function Home() {
   const [search, setSearch] = useState("");
   const boards = useSelector(getBoadrds);
   const [boardsList, setBoardsList] = useState(boards);
-  const favoritesList = useSelector(getFavoriteNotes);
   const secondColor = useSelector(getAppTheme).secondColor
 
 
   useEffect(() => {
     setBoardsList(
       boards.filter((item) =>
-        item.name.toLowerCase().includes(search.toLowerCase())
+        item.name?.toLowerCase().includes(search.toLowerCase())
       )
     );
   }, [search, boards]);
@@ -34,7 +34,7 @@ function Home() {
         </div>
         <BoardList list={boardsList} background={secondColor}/>
       </div>
-      <FavoriteNoteList list={favoritesList} background={secondColor}/>
+      <Settings />
     </div>
   );
 }

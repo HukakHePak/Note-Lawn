@@ -1,5 +1,5 @@
-import { getCurrentBoard } from "../board/getCurrentBoard";
+import { getCurrentBoardId } from "../existenceBoards";
 
 export function getNotes(state) {
-    return getCurrentBoard(state).notes;
+    return state.notes.filter(({boardId}) => boardId === getCurrentBoardId(state));
 }

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { SmallModal } from "../Global/SmallModal";
 import { useDispatch } from 'react-redux';
-import { changeBoard } from './../../store/actions/existenceBoards';
 import { useSelector } from 'react-redux';
 import { getBoard } from "../../store/selectors/existenceBoards";
+import { changeBoard } from "../../store/actions/board/changeBoard";
 
 export function BoardName({boardId}) {
   const [hiddenModal, setHiddenModal] = useState(false);
@@ -11,10 +11,6 @@ export function BoardName({boardId}) {
   const dispatch = useDispatch()
   const board = useSelector(state => getBoard(state, boardId))
   const {img: defaultBackground, isRepeat: defaultIdRepeat} = board.theme.bg
-
-  function action(value, boardColor, background, isRepeat) {
-    dispatch(changeBoard(boardId, value || board.name, boardColor, background, isRepeat))
-  }
 
   return (
     <div className="board-name">
@@ -26,7 +22,7 @@ export function BoardName({boardId}) {
       </button>
       {hiddenModal && <SmallModal
         hiddenModal={() => setHiddenModal(false)}
-        action={action}
+        action={(...args) => dispatch(changeBoard(boardId, ...args))}
         defaultColor={board.theme.color}
         defaultBackground={defaultBackground}
         defaultIdRepeat={defaultIdRepeat}
