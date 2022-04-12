@@ -12,7 +12,7 @@ function FavoriteNoteList({ list, background }) {
           {item}
         </a>
       ))}
-      <Settings />
+      
     </div>
   );
 }

@@ -1,20 +1,13 @@
-import { SET_BOARD } from "../actions/existenceBoards";
+import { SELECT_BOARD } from "../actions/board/selectBoard";
 import { SELECT_NOTE } from "../actions/note/selectNote";
 
 const defaultState = { boardId: null, noteId: null };
 
 export function selectsReducer(state = defaultState, { type, payload }) {
-  const selects = { ...state };
-
   switch (type) {
-    case SET_BOARD:
-      selects.boardId = payload.boardId;
-      break;
-
+    case SELECT_BOARD:
     case SELECT_NOTE:
-      selects.noteId = payload.noteId;
-      break;
-
+      return { ...state, ...payload };
     default:
       break;
   }

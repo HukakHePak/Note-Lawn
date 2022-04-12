@@ -1,12 +1,10 @@
-import {
-  ADD_BOARD,
-  CHANGE_BOARD,
-  REMOVE_BOARD,
-} from "../actions/existenceBoards";
 import { getCreatedDate } from "./../../tools/time.js";
 import { removeItem } from "../../tools/immutable/list/removeItem";
 import uniqid from "uniqid";
 import { changeItem } from "../../tools/immutable/list/changeItem";
+import { REMOVE_BOARD } from "../actions/board/removeBoard";
+import { ADD_BOARD } from "../actions/board/addBoard.js";
+import { CHANGE_BOARD } from "../actions/board/changeBoard.js";
 
 const defaultBoards = [
   {
@@ -30,12 +28,21 @@ const defaultBoards = [
 ];
 
 export function boardsReducer(state = defaultBoards, { type, payload }) {
+  console.log(payload)
+  console.log([
+    ...state,
+    {
+      id: uniqid(),
+      date: getCreatedDate(),
+      ...payload,
+    },
+  ])
   switch (type) {
     case ADD_BOARD:
       return [
         ...state,
         {
-          id: uniqid,
+          id: uniqid(),
           date: getCreatedDate(),
           ...payload,
         },

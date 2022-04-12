@@ -1,4 +1,4 @@
-import { Action } from "../template";
+import { Action } from "../Action";
 
 export const CREATE_NOTE = 'createNote';
 
