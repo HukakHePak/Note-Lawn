@@ -25,9 +25,7 @@ export function Board() {
             position={position}
             selected={selected}
             size={size}
-            onChange={note => dispatch(editNote(id, note))} // add one listener
-            // onResize={(size) => dispatch(resizeNote(id, {size}))}
-            // onReplace={(position) => dispatch(replaceNote(id, {position}))}
+            onChange={note => dispatch(editNote(id, note))}
             onSelect={()=> dispatch(selectNote(id))}
             theme={theme}
           >
