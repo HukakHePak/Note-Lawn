@@ -1,10 +1,12 @@
 import { NOTE_TYPES } from "../Notes/TypedNotes/CreateNote";
 import { addNotesTools } from "./addNotesTools";
+import { textNoteTools } from "./textNoteTools";
 import { functionalTools } from "./functionalTools";
 
 export function selectTools(type) {
   switch (type) {
     case NOTE_TYPES.TEXT:
+      return textNoteTools
       break; // return text tools
 
     case NOTE_TYPES.VIDEO:

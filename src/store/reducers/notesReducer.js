@@ -53,14 +53,14 @@ const defaultState = [
 export function notesReducer(state = defaultState, action) {
   const { type, payload } = action;
 
-  console.log([
-    ...state,
-    {
-      id: uniqid(),
-      size: defaultSize,
-      ...payload,
-    },
-  ])
+  // console.log([
+  //   ...state,
+  //   {
+  //     id: uniqid(),
+  //     size: defaultSize,
+  //     ...payload,
+  //   },
+  // ])
 
   switch (type) {
     case CREATE_NOTE:
