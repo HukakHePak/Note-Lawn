@@ -7,7 +7,8 @@ export function NoteVideo(props) {
 
   const videoId = src.slice(-11);
 
-  const opts = {  // TODO: сделать нормальный ресайз. сейчас высота не изменяется
+  const opts = {
+    // TODO: сделать нормальный ресайз. сейчас высота не изменяется
     width: "100%",
     height: "100%",
     playerVars: {
@@ -22,7 +23,12 @@ export function NoteVideo(props) {
   return (
     <NoteMedia isSelected={isSelected}>
       <div className="note-item note-item--video">
-        <YouTube videoId={videoId} opts={opts} onReady={videoOnReady} />
+        <YouTube
+          videoId={videoId}
+          opts={opts}
+          onReady={videoOnReady}
+          className="additionalStyleYouTube"
+        />
       </div>
     </NoteMedia>
   );
