@@ -2,8 +2,7 @@ import "../../../styles/noteWrap.css";
 import { useState } from "react";
 
 export function NoteWrap(props) {
-  const { selected, position, size, children, onResize, onSelect, onReplace } =
-    props;
+  const { selected, position, size, children, onChange, onSelect } = props;
 
   const [{ x, y }, setPos] = useState({ x: position.left, y: position.top });
   const [clickedPosition, setClickedPosition] = useState(null);
@@ -28,23 +27,26 @@ export function NoteWrap(props) {
         };
         setPos(pos);
 
-        onReplace && onReplace(pos, event);
+        onChange && onChange({ position: { top: pos.y, left: pos.x } });
 
         setClickedPosition(null);
       }}
       onMouseUp={(event) => {
-        onResize &&
-          onResize(
+        onChange &&
+          onChange(
             {
-              width: event.target.clientWidth,
-              height: event.target.clientHeight,
-            },
-            event
+              size: {
+                width: event.target.clientWidth,
+                height: event.target.clientHeight,
+              },
+            }
           );
       }}
       onDoubleClick={(event) => {
         onSelect && onSelect(event);
       }}
+
+      onMouseMove={(event) => {event.stopPropagation();}}
     >
       {children}
     </div>
