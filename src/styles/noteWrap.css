@@ -38,5 +38,7 @@
 
 .note-wrap--selected {
   outline: 3px solid rgba(0, 0, 0, 0.367);
+  -webkit-box-shadow: 0 0 15px 2px white;
+          box-shadow: 0 0 15px 2px white;
 }
 /*# sourceMappingURL=noteWrap.css.map */
