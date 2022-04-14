@@ -37,8 +37,6 @@ const defaultBoards = [
 ];
 
 export function boardsReducer(state = defaultBoards, { type, payload }) {
-  console.log(changeItem(state, payload?.id, payload))
-  console.log(state, type)
   switch (type) {
     case ADD_BOARD:
       return [
