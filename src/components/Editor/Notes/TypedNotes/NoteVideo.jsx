@@ -5,12 +5,13 @@ import { NoteMedia } from "../NoteMedia";
 export function NoteVideo(props) {
   const { src, isSelected } = props.note;
 
-  const videoId = src.slice(-11);
+  // const videoId = src.slice(-11);
+  
 
   const opts = {
     // TODO: сделать нормальный ресайз. сейчас высота не изменяется
-    width: "100%",
-    height: "100%",
+    width: "400px",
+    height: "250px",
     playerVars: {
       autoplay: 1,
     },
@@ -24,7 +25,7 @@ export function NoteVideo(props) {
     <NoteMedia isSelected={isSelected}>
       <div className="note-item note-item--video">
         <YouTube
-          videoId={videoId}
+          videoId={'8LgNa7yRW3M'}
           opts={opts}
           onReady={videoOnReady}
           className="additionalStyleYouTube"
