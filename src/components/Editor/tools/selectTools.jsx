@@ -6,8 +6,8 @@ import { functionalTools } from "./functionalTools";
 export function selectTools(type) {
   switch (type) {
     case NOTE_TYPES.TEXT:
-      return textNoteTools
-      break; // return text tools
+      return textNoteTools;
+    // return text tools
 
     case NOTE_TYPES.VIDEO:
     case NOTE_TYPES.IMAGE:

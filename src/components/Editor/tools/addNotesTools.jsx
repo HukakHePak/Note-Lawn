@@ -11,7 +11,7 @@ import { NOTE_TYPES } from "../Notes/TypedNotes/CreateNote";
 
 function Positor(action) {
   return (event) => {
-    if(event.type === "click") return action;
+    if (event.type === "click") return action;
 
     return {
       ...action,

@@ -1,10 +1,12 @@
-import { CREATE_NOTE } from "../actions/note/createNote";
 import uniqid from "uniqid";
+import { CREATE_NOTE } from "../actions/note/createNote";
 import { REMOVE_NOTE } from "../actions/note/removeNote";
 import { EDIT_NOTE } from "../actions/note/editNote";
 import { NOTE_TYPES } from "../../components/Editor/Notes/TypedNotes/CreateNote";
 import { changeItem } from "../../tools/immutable/list/changeItem";
 import { removeItem } from "../../tools/immutable/list/removeItem";
+
+import { EditorState } from "draft-js";
 
 const defaultSize = {
   width: 300,
@@ -12,8 +14,9 @@ const defaultSize = {
 };
 
 const defaultPosition = {
-  top: 500, left: 500
-}
+  top: 500,
+  left: 500,
+};
 
 const defaultState = [
   {
@@ -24,6 +27,7 @@ const defaultState = [
       top: 200,
       left: 200,
     },
+    editorState: EditorState.createEmpty(), //
     size: {
       width: 400,
       height: 500,
@@ -53,17 +57,9 @@ const defaultState = [
 export function notesReducer(state = defaultState, action) {
   const { type, payload } = action;
 
-  // console.log([
-  //   ...state,
-  //   {
-  //     id: uniqid(),
-  //     size: defaultSize,
-  //     ...payload,
-  //   },
-  // ])
-
   switch (type) {
     case CREATE_NOTE:
+      console.log(state);
       return [
         ...state,
         {
@@ -72,6 +68,7 @@ export function notesReducer(state = defaultState, action) {
           theme: { color: "#98FB98", bg: { img: "", isRepeat: false } },
           position: defaultPosition,
           boardId: 1,
+          editorState: EditorState.createEmpty(),
           ...payload,
         },
       ];

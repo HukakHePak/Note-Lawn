@@ -1,5 +1,6 @@
 .home {
   max-width: 1680px;
+  height: 100%;
   margin: 0 auto;
   padding: 100px 15px;
 }

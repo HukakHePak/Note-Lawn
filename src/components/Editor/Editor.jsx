@@ -10,10 +10,10 @@ export function Editor(props) {
 
   return (
     <div className="editor">
-      <ToolPanel tools={selectTools('TEXT_TYPE')} />
+      <ToolPanel tools={selectTools()} />
       <ToolPanel right tools={selectTools(false)} />
       <Board />
-      <BoardName boardId={boardId}/>
+      <BoardName boardId={boardId} />
     </div>
   );
 }

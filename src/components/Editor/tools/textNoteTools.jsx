@@ -5,6 +5,8 @@ import fontItalicIcon from "../../../img/note-icon/text-note-tools/font-italic-b
 import textUnderlineIcon from "../../../img/note-icon/text-note-tools/text-underline-btn.svg";
 import textColorIcon from "../../../img/note-icon/text-note-tools/text-color-btn.svg";
 
+import { editNote } from "../../../store/actions/note/editNote";
+
 import { createDraggableTool } from "./createTool";
 
 const fontFamily = createDraggableTool("Шрифт", fontFamilyIcon);

@@ -1,13 +1,24 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import "../../../../styles/textNote.css";
-import { Editor, EditorState } from "draft-js";
+import { Editor } from "draft-js";
 import "../../../../../node_modules/draft-js/dist/Draft.css";
 
 export function NoteText(props) {
-  const [editorState, setEditorState] = useState(() =>
-    EditorState.createEmpty()
-  );
   const { title, content } = props.note;
+  //TODO: убрать во всех файлах content
+
+  const notes = useSelector((state) => state.notes);
+  let noteEditorState;
+  
+  notes.forEach((note) => {
+    if (note.id === 1) {
+      noteEditorState = note.editorState;
+    }
+  });
+  
+  const [editorState, setEditorState] = useState(noteEditorState);
 
   function onChange(editorState) {
     setEditorState(editorState);
