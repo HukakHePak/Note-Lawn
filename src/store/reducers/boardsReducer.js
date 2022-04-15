@@ -19,14 +19,14 @@ const defaultBoards = [
     id: 1,
     name: "Board 1",
     date: "08/03/2022 09:55",
-    theme: { color: "#98FB98", bg: { img: "", isRepeat: false } },
+    theme: { color: "#FCF5F0", bg: { img: "", isRepeat: false } },
     ...boardDefaults
   },
   {
     id: 2,
     name: "Board 2",
     date: "08/03/2022 09:55",
-    theme: { color: "#F08080", bg: { img: "", isRepeat: false } },
+    theme: { color: "#FCF5F0", bg: { img: "", isRepeat: false } },
     ...boardDefaults
   },
   {
