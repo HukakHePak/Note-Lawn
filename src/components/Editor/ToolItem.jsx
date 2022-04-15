@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import "../../styles/main.css";
+import "../../styles/editor.css";
 
 export function ToolItem(props) {
   const { title, icon, action, children, draggable } = props;
