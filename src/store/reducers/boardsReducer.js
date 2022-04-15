@@ -6,10 +6,12 @@ import { REMOVE_BOARD } from "../actions/board/removeBoard";
 import { ADD_BOARD } from "../actions/board/addBoard.js";
 import { CHANGE_BOARD } from "../actions/board/changeBoard.js";
 import { CHANGE_SCROLL } from "../actions/board/changeScrollPos.js";
+import { CHANGE_SCALE } from "../actions/board/changeScale.js";
 
 const boardDefaults = {
   size: { left: 10000, top: 10000 },
-  position: { left: 5000, top: 5000 },
+  position: { left: 5000, top: 5000 }, // - window.size oncreate
+  scale: 1
 };
 
 const defaultBoards = [
@@ -37,6 +39,8 @@ const defaultBoards = [
 ];
 
 export function boardsReducer(state = defaultBoards, { type, payload }) {
+  
+
   switch (type) {
     case ADD_BOARD:
       return [
@@ -55,6 +59,10 @@ export function boardsReducer(state = defaultBoards, { type, payload }) {
     case CHANGE_BOARD:
     case CHANGE_SCROLL:
       return changeItem(state, payload.id, payload);
+
+    case CHANGE_SCALE:
+      return changeItem(state, payload.id, payload.scale);  
+
     default:
       break;
   }

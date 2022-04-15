@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/main.css";
+import "../../styles/editor.css";
 
 export function ToolPanel (props) {
   const { tools, right } = props;
