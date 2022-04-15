@@ -1,7 +1,7 @@
-import { noteAction } from "./noteAction";
+import { Action } from "../Action";
 
 export const SELECT_NOTE = 'selectNote';
 
 export function selectNote(id) {
-    return noteAction(SELECT_NOTE, { noteId: id });
+    return Action(SELECT_NOTE, { noteId: id });
 }

@@ -1,19 +1,26 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Board } from "./Board";
 import { ToolPanel } from "./ToolPanel";
 import { BoardName } from "./BoardName";
 import "../../styles/main.css";
 import { selectTools } from "./tools/selectTools";
+import { useSelector } from "react-redux";
+import { getBoardPosition } from "../../store/selectors/board/getBoardPosition";
 
-export function Editor(props) {
-  const { boardId } = props;
+export function Editor() {
+  const editor = useRef();
+  const { left, top } = useSelector(getBoardPosition);
+
+  useEffect(() => {
+    editor.current.scroll(left, top);
+  }, [left, top]);
 
   return (
-    <div className="editor">
+    <div ref={editor} className="editor">
       <ToolPanel tools={selectTools()} />
       <ToolPanel right tools={selectTools(false)} />
       <Board />
-      <BoardName boardId={boardId} />
+      <BoardName/>
     </div>
   );
 }

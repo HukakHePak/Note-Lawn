@@ -8,7 +8,7 @@ import { removeItem } from "../../tools/immutable/list/removeItem";
 
 import { EditorState } from "draft-js";
 
-const defaultSize = {
+export const defaultSize = {
   width: 300,
   height: 300,
 };
@@ -56,6 +56,8 @@ const defaultState = [
 
 export function notesReducer(state = defaultState, action) {
   const { type, payload } = action;
+
+  //console.log(payload)
 
   switch (type) {
     case CREATE_NOTE:

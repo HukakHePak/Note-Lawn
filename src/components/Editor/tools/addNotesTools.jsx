@@ -9,49 +9,35 @@ import { createDraggableTool } from "./createTool";
 import { createNote } from "../../../store/actions/note/createNote";
 import { NOTE_TYPES } from "../Notes/TypedNotes/CreateNote";
 
-function Positor(action) {
-  return (event) => {
-    if (event.type === "click") return action;
-
-    return {
-      ...action,
-      payload: {
-        ...action.payload,
-        position: { left: event.clientX, top: event.clientY },
-      },
-    };
-  };
-}
-
 const text = createDraggableTool(
   "Добавить текстовую заметку",
   addTextIcon,
-  Positor(createNote(NOTE_TYPES.TEXT))
+  event => createNote(NOTE_TYPES.TEXT, event)
 );
 const list = createDraggableTool(
   "Добавить список",
   addListIcon,
-  Positor(createNote(NOTE_TYPES.LIST))
+  event => createNote(NOTE_TYPES.LIST, event)
 );
 const image = createDraggableTool(
   "Добавить картинку",
   addImageIcon,
-  Positor(createNote(NOTE_TYPES.IMAGE))
+  event => createNote(NOTE_TYPES.IMAGE, event)
 );
 const music = createDraggableTool(
   "Добавить музыку",
   addMusicIcon,
-  Positor(createNote(NOTE_TYPES.MUSIC))
+  event => createNote(NOTE_TYPES.MUSIC, event)
 );
 const video = createDraggableTool(
   "Добавить видео",
   addVideoIcon,
-  Positor(createNote(NOTE_TYPES.VIDEO))
+  event => createNote(NOTE_TYPES.VIDEO, event)
 );
 const paint = createDraggableTool(
   "Добавить рисунок",
   addPaintIcon,
-  Positor(createNote(NOTE_TYPES.PAINT))
+  event => createNote(NOTE_TYPES.PAINT, event)
 );
 
-export const addNotesTools = [text, list, image, music, video, paint];
+export const addNotesTools = [text, list, image, video];
