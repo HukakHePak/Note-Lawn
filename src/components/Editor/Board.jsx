@@ -21,9 +21,11 @@ export function Board() {
   const boardNode = useRef(null);
 
   function moveHandler(event) {
+    //console.log(event)
     if (event.buttons === 1) {
       dispatch(
-        changeScrollPos(board.id, {   // export into reducer, add range
+        changeScrollPos(board.id, {
+          // export into reducer, add range
           top: board.position.top - event.movementY,
           left: board.position.left - event.movementX,
         })
@@ -43,7 +45,7 @@ export function Board() {
     }
 
     dispatch(
-      changeScale(board.id, { scale: board.scale - (event.deltaY / 1000) })
+      changeScale(board.id, { scale: board.scale - event.deltaY / 1000 })
     );
   }
 
@@ -57,11 +59,19 @@ export function Board() {
 
   return (
     <div
-      style={{ left: -left, top: -top, background: board.theme.color, transform: `scale(${board.scale})` }}
+      style={{
+        left: -left,
+        top: -top,
+        background: board.theme.color,
+        transform: `scale(${board.scale})`,
+      }}
       className="board"
       onMouseMove={moveHandler}
       ref={boardNode}
       onWheel={wheelHandler}
+      onMouseDown={(event) => {
+        //console.log(event)
+      }}
     >
       {notes?.map((note) => {
         const { id, position, size, theme } = note;

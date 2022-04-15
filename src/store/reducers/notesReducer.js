@@ -66,7 +66,6 @@ export function notesReducer(state = defaultState, action) {
           size: defaultSize,
           theme: { color: "#98FB98", bg: { img: "", isRepeat: false } },
           position: defaultPosition,
-          boardId: 1,
           ...payload,
         },
       ];

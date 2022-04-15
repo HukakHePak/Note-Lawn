@@ -1,11 +1,15 @@
 import "../../../styles/noteWrap.css";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { getCurrentBoard } from "../../../store/selectors/board/getCurrentBoard";
 
 export function NoteWrap(props) {
   const { selected, position, size, children, onChange, onSelect } = props;
 
   const [{ x, y }, setPos] = useState({ x: position.left, y: position.top });
   const [clickedPosition, setClickedPosition] = useState(null);
+
+  const scale = useSelector(getCurrentBoard).scale;
 
   return (
     <div
@@ -22,8 +26,8 @@ export function NoteWrap(props) {
       }
       onDragEnd={(event) => {
         const pos = {
-          x: x + event.clientX - clickedPosition.startX,
-          y: y + event.clientY - clickedPosition.startY,
+          x: x + (event.clientX - clickedPosition.startX) / scale,
+          y: y + (event.clientY - clickedPosition.startY) / scale,
         };
         setPos(pos);
 
