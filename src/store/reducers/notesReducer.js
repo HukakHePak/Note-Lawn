@@ -61,7 +61,6 @@ export function notesReducer(state = defaultState, action) {
 
   switch (type) {
     case CREATE_NOTE:
-      console.log(state);
       return [
         ...state,
         {

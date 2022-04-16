@@ -33,20 +33,19 @@ export function NoteWrap(props) {
       }}
       onMouseUp={(event) => {
         onChange &&
-          onChange(
-            {
-              size: {
-                width: event.target.clientWidth,
-                height: event.target.clientHeight,
-              },
-            }
-          );
+          onChange({
+            size: {
+              width: event.target.clientWidth,
+              height: event.target.clientHeight,
+            },
+          });
       }}
       onDoubleClick={(event) => {
         onSelect && onSelect(event);
       }}
-
-      onMouseMove={(event) => {event.stopPropagation();}}
+      onMouseMove={(event) => {
+        event.stopPropagation();
+      }}
     >
       {children}
     </div>

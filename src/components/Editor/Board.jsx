@@ -21,13 +21,13 @@ export function Board() {
     <div
       className="board"
       onMouseMove={(event) => {
-        if(event.buttons === 1) {
+        if (event.buttons === 1) {
           dispatch(
-              changeScrollPos(board.id, {
-                top: board.position.top - event.movementY,
-                left: board.position.left - event.movementX,
-              })
-            );
+            changeScrollPos(board.id, {
+              top: board.position.top - event.movementY,
+              left: board.position.left - event.movementX,
+            })
+          );
         }
       }}
     >
