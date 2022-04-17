@@ -38,21 +38,23 @@ h1,h2,h3,h4,h5,h6 {font-size: inherit; font-weight: 400;}
 //========================//
 
 .note__text {
-    padding: 35px;
+    height: 100%;
+    padding: 2em;
+    overflow: hidden;
 }
 
 .text {
     &__title {
-        font-size: 40px;
+        font-size: 4em;
         font-weight: 400;
     }
     &__line {
-        height: 2px;
+        height: 0.2em;
         background: #000000;
-        margin: 15px 0;
+        margin: 2em 0;
     }
     &__subtitle {
-        font-size: 24px;
-        line-height: 1.5;
+        font-size: 2em;
+        line-height: 1.5em;
     }
 }

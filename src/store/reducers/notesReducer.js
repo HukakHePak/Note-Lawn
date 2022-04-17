@@ -6,7 +6,7 @@ import { NOTE_TYPES } from "../../components/Editor/Notes/TypedNotes/CreateNote"
 import { changeItem } from "../../tools/immutable/list/changeItem";
 import { removeItem } from "../../tools/immutable/list/removeItem";
 
-const defaultSize = {
+export const defaultSize = {
   width: 300,
   height: 300,
 };
@@ -14,6 +14,8 @@ const defaultSize = {
 const defaultPosition = {
   top: 500, left: 500
 }
+
+
 
 const defaultState = [
   {
@@ -31,36 +33,13 @@ const defaultState = [
     title: "nice title",
     content: "nice content",
     theme: { color: "#98FB98", bg: { img: "", isRepeat: false } },
-  },
-  {
-    type: NOTE_TYPES.TEXT,
-    id: 2,
-    boardId: 1,
-    position: {
-      top: 600,
-      left: 800,
-    },
-    size: {
-      width: 350,
-      height: 300,
-    },
-    title: "nice title",
-    content: "nice content",
-    theme: { color: "#98FB98", bg: { img: "", isRepeat: false } },
-  },
+  }
 ];
 
 export function notesReducer(state = defaultState, action) {
   const { type, payload } = action;
 
-  console.log([
-    ...state,
-    {
-      id: uniqid(),
-      size: defaultSize,
-      ...payload,
-    },
-  ])
+  //console.log(payload)
 
   switch (type) {
     case CREATE_NOTE:
@@ -71,7 +50,6 @@ export function notesReducer(state = defaultState, action) {
           size: defaultSize,
           theme: { color: "#98FB98", bg: { img: "", isRepeat: false } },
           position: defaultPosition,
-          boardId: 1,
           ...payload,
         },
       ];

@@ -1,4 +1,5 @@
-import { createStore, combineReducers, compose } from "redux";
+import { createStore, combineReducers, compose, applyMiddleware } from "redux";
+import thunk from 'redux-thunk'
 import { appTheme } from "./reducers/appTheme";
 import { notesReducer } from "./reducers/notesReducer";
 import { selectsReducer } from "./reducers/selectsReducer";
@@ -9,7 +10,8 @@ const rootReducer = combineReducers({
   boards: boardsReducer,
   appTheme,
   selects: selectsReducer,
+  editor: 'add editro state for best moves'
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-export const store = createStore(rootReducer, composeEnhancers());
+export const store = createStore(rootReducer, applyMiddleware(thunk));

@@ -1,52 +1,46 @@
 import "../../../styles/noteWrap.css";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getCurrentBoard } from "../../../store/selectors/board/getCurrentBoard";
+import { selectNote } from "../../../store/actions/note/selectNote";
+import { selectEvent } from "../../../store/actions/selectEvent";
+import { clearEvent } from "../../../store/actions/clearEvent";
 
 export function NoteWrap(props) {
-  const { selected, position, size, children, onResize, onSelect, onReplace } =
-    props;
+  const { selected, children, note } = props; // get note
 
-  const [{ x, y }, setPos] = useState({ x: position.left, y: position.top });
-  const [clickedPosition, setClickedPosition] = useState(null);
+  const { id, size, theme } = props.note;
+
+  const { scale, position } = useSelector(getCurrentBoard);
+  const dispatch = useDispatch();
 
   return (
     <div
       className={"note-wrap " + (selected && "note-wrap--selected")}
-      draggable="true"
       style={{
-        left: x,
-        top: y,
-        width: size.width,
-        height: size.height,
+        left: (note.position.left + position.left) * scale,
+        top: (note.position.top + position.top) * scale,
+        width: size.width * scale,
+        height: size.height * scale,
       }}
-      onDragStart={(event) =>
-        setClickedPosition({ startX: event.clientX, startY: event.clientY })
-      }
-      onDragEnd={(event) => {
-        const pos = {
-          x: x + event.clientX - clickedPosition.startX,
-          y: y + event.clientY - clickedPosition.startY,
-        };
-        setPos(pos);
 
-        onReplace && onReplace(pos, event);
-
-        setClickedPosition(null);
+      onMouseDown={(event) => {
+        dispatch(selectEvent({noteId: id}, "replace"));
+        event.stopPropagation();
       }}
-      onMouseUp={(event) => {
-        onResize &&
-          onResize(
-            {
-              width: event.target.clientWidth,
-              height: event.target.clientHeight,
-            },
-            event
-          );
-      }}
-      onDoubleClick={(event) => {
-        onSelect && onSelect(event);
-      }}
+      onDoubleClick={() => dispatch(selectNote(id))}
     >
-      {children}
+      <div style={{fontSize: `calc(100% * ${scale})`}}>{children}</div>  
+      <button
+        className="resize-btn tool-item"
+        style={{
+          transform: `translate(50%) translateY(50%)`,
+        }}
+        onMouseDown={(event) => {
+          dispatch(selectEvent({noteId: id}, "resize"));
+          event.stopPropagation();
+        }}
+      />
     </div>
   );
 }

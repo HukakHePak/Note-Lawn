@@ -1,5 +1,4 @@
 import React from "react";
-import useColor from './../hooks/useColor.js';
 import "../styles/index.css";
 import Home from "./Home/Home";
 import { Editor } from "./Editor/Editor";
@@ -9,12 +8,11 @@ import { getCurrentBoardId } from './../store/selectors/existenceBoards';
 
 function App() {
   const boardId = useSelector(getCurrentBoardId);
-  const styles = useColor(boardId);
 
   return (
-    <div className="app" style={styles}>
+    <div className="app">
       {boardId
-        ? <Editor boardId={boardId} />
+        ? <Editor />
         : <Home />}
     </div>
   );
