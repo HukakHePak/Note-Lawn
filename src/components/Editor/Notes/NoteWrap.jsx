@@ -7,9 +7,9 @@ import { selectEvent } from "../../../store/actions/selectEvent";
 import { clearEvent } from "../../../store/actions/clearEvent";
 
 export function NoteWrap(props) {
-  const { selected, size, children, onChange, onSelect, note } = props; // get note
+  const { selected, children, note } = props; // get note
 
-  const { id } = props.note;
+  const { id, size, theme } = props.note;
 
   const { scale, position } = useSelector(getCurrentBoard);
   const dispatch = useDispatch();
@@ -17,13 +17,11 @@ export function NoteWrap(props) {
   return (
     <div
       className={"note-wrap " + (selected && "note-wrap--selected")}
-      //draggable="true"
       style={{
         left: (note.position.left + position.left) * scale,
         top: (note.position.top + position.top) * scale,
         width: size.width * scale,
         height: size.height * scale,
-        //transform: `translateY(${(-size.width * (1 - scale)) / 2}px) translateX(${(-size.height * (1 - scale)) / 2}px) scale(${scale}) `,
       }}
 
       onMouseDown={(event) => {

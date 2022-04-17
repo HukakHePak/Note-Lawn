@@ -3,13 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getNotes } from "../../store/selectors/note/getNotes";
 import "../../styles/editor.css";
 import { NoteWrap } from "./Notes/NoteWrap";
-import { selectNote } from "../../store/actions/note/selectNote";
 import { CreateNote } from "./Notes/TypedNotes/CreateNote";
 import { getSelectedNoteId } from "../../store/selectors/note/getSelectedNoteId";
 import { editNote } from "../../store/actions/note/editNote";
 import { changeScrollPos } from "../../store/actions/board/changeScrollPos";
 import { getCurrentBoard } from "../../store/selectors/board/getCurrentBoard";
-import { getBoardPosition } from "../../store/selectors/board/getBoardPosition";
 import { changeScale } from "../../store/actions/board/changeScale";
 import { getNote } from "../../store/selectors/note/getNote";
 import { clearEvent } from "../../store/actions/clearEvent";
@@ -19,8 +17,8 @@ export function Board() {
   const board = useSelector(getCurrentBoard);
   const selectedNoteId = useSelector(getSelectedNoteId);
   const dispatch = useDispatch();
-  const { left, top } = useSelector(getBoardPosition);
   const boardNode = useRef(null);
+
   const noteEvent = useSelector((state) => state.selects.event);
 
   const note = useSelector(getNote(noteEvent?.target?.noteId));
@@ -59,7 +57,6 @@ export function Board() {
       }
       return;
     }
-    console.log("move");
 
     dispatch(
       changeScrollPos(board.id, {
@@ -71,8 +68,6 @@ export function Board() {
   }
 
   function wheelHandler(event) {
-    //console.log(board.scale);
-
     if (!event.ctrlKey) {
       dispatch(
         changeScrollPos(board.id, {
@@ -80,19 +75,31 @@ export function Board() {
           left: board.position.left - event.deltaX / board.scale,
         })
       );
+
       return;
     }
 
+    const scale = board.scale - (event.deltaY % 2) * (board.scale / 10);
+
+    if (scale > 15 || scale < 0.01) return;
+
     dispatch(
-      changeScale(board.id, { scale: board.scale - (event.deltaY % 2) * 0.03 })
+      changeScale(board.id, {
+        scale,
+      })
     );
 
-    // dispatch(
-    //   changeScrollPos(board.id, {
-    //     top: board.position.top + event.deltaY,
-    //     left: board.position.left + event.deltaX,
-    //   })
-    // );
+    const { innerWidth, innerHeight } = event.view;
+    const { clientX, clientY } = event;
+    //console.log((innerHeight / 2 / scale - innerHeight / 2 / board.scale))
+    //console.log(board.position.top)
+
+    dispatch(
+      changeScrollPos(board.id, {
+        top: board.position.top + (clientY / scale - clientY / board.scale) //+ event.clientX / 10 * (event.deltaY % 2),
+        , left: board.position.left + (clientX / scale - clientX / board.scale)// + event.clientY / 10 * (event.deltaY % 2),
+      })
+    )
   }
 
   useEffect(() => {
@@ -106,51 +113,24 @@ export function Board() {
   return (
     <div
       style={{
-        // left: -left,
-        // top: -top,
         width: board.width,
         height: board.height,
         background: board.theme.color,
-        //transform: `scale(${board.scale})`,
       }}
       className="board"
       onMouseMove={moveHandler}
       ref={boardNode}
       onWheel={wheelHandler}
-      onMouseDown={(event) => {
-        //console.log(event)
-      }}
       onMouseUp={(event) => {
         dispatch(clearEvent());
-        // onChange &&
-        //   onChange({
-        //     size: {
-        //       width: event.target.clientWidth,
-        //       height: event.target.clientHeight,
-        //     },
-        //   });
         event.stopPropagation();
       }}
     >
       {notes?.map((note) => {
-        const { id, position, size, theme } = note;
+        const { id } = note;
         const selected = id === selectedNoteId;
-
-        //console.log({left: left + position.left, top: top + position.top})
-
         return (
-          <NoteWrap
-            key={id}
-            // position={{
-            //   left: (left + position.left) * board.scale,
-            //   top: (top + position.top) * board.scale,
-            // }}
-            selected={selected}
-            size={size}
-            scale={board.scale}
-            theme={theme}
-            note={note}
-          >
+          <NoteWrap key={id} selected={selected} note={note}>
             {CreateNote(note, selected)}
           </NoteWrap>
         );
