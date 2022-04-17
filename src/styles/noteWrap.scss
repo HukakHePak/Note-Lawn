@@ -1,7 +1,9 @@
+$selectColor: rgba(102, 228, 102, 0.382);
+
 .note-wrap {
     background: #F4E6DC;
-    min-width: 300px;
-    min-height: 300px;
+    // min-width: 300px;
+    // min-height: 300px;
     position: fixed;
 
     > div {
@@ -32,8 +34,7 @@
 }
 
 .note-wrap--selected {
-    outline: 3px solid rgba(0, 0, 0, 0.367);
-    box-shadow: 0 0 15px 2px rgb(255, 255, 255);
+    box-shadow: 0 0 5px 5px $selectColor;
 }
 
 .note-wrap .resize-btn {
@@ -44,6 +45,6 @@
     border-radius: 100%;
 
     &:hover {
-        background: rgba(102, 228, 102, 0.382);
+        background: $selectColor;
     }
 }
