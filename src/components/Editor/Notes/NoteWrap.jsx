@@ -1,68 +1,46 @@
 import "../../../styles/noteWrap.css";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCurrentBoard } from "../../../store/selectors/board/getCurrentBoard";
+import { selectNote } from "../../../store/actions/note/selectNote";
+import { selectEvent } from "../../../store/actions/selectEvent";
+import { clearEvent } from "../../../store/actions/clearEvent";
 
 export function NoteWrap(props) {
-  const { selected, position, size, children, onChange, onSelect } = props;
+  const { selected, size, children, onChange, onSelect, note } = props; // get note
 
-  const [{ x, y }, setPos] = useState({ x: position.left, y: position.top }); // remove this
-  const [clickedPosition, setClickedPosition] = useState(null); // TODO: make hook for drag element
+  const { id } = props.note;
 
-  const scale = useSelector(getCurrentBoard).scale;
+  const { scale, position } = useSelector(getCurrentBoard);
+  const dispatch = useDispatch();
 
   return (
     <div
       className={"note-wrap " + (selected && "note-wrap--selected")}
-      draggable="true"
+      //draggable="true"
       style={{
-        left: position.left,
-        top: position.top,
-        width: size.width,
-        height: size.height,
-        transform: `translateY(${
-          (-size.width * (1 - scale)) / 2
-        }px) translateX(${
-          (-size.height * (1 - scale)) / 2
-        }px) scale(${scale}) `,
+        left: (note.position.left + position.left) * scale,
+        top: (note.position.top + position.top) * scale,
+        width: size.width * scale,
+        height: size.height * scale,
+        //transform: `translateY(${(-size.width * (1 - scale)) / 2}px) translateX(${(-size.height * (1 - scale)) / 2}px) scale(${scale}) `,
       }}
-      onDragStart={(event) =>
-        setClickedPosition({ startX: event.clientX, startY: event.clientY })
-      }
-      onDragEnd={(event) => {
-        const pos = {
-          x: x + (event.clientX - clickedPosition.startX) / scale,
-          y: y + (event.clientY - clickedPosition.startY) / scale,
-        };
-        setPos(pos);
 
-        onChange && onChange({ position: { top: pos.y, left: pos.x } });
-
-        setClickedPosition(null);
-      }}
-      onMouseUp={(event) => {
-        onChange &&
-          onChange({
-            size: {
-              width: event.target.clientWidth,
-              height: event.target.clientHeight,
-            },
-          });
-      }}
-      onDoubleClick={(event) => {
-        onSelect && onSelect(event);
-      }}
-      onMouseMove={(event) => {
+      onMouseDown={(event) => {
+        dispatch(selectEvent({noteId: id}, "replace"));
         event.stopPropagation();
       }}
+      onDoubleClick={() => dispatch(selectNote(id))}
     >
-      {children}
+      <div style={{fontSize: `calc(100% * ${scale})`}}>{children}</div>  
       <button
         className="resize-btn tool-item"
         style={{
-          transform: `translate(50%) translateY(50%) scale(${
-            1 / scale < 3 ? 1 / scale : 3
-          })`,
+          transform: `translate(50%) translateY(50%)`,
+        }}
+        onMouseDown={(event) => {
+          dispatch(selectEvent({noteId: id}, "resize"));
+          event.stopPropagation();
         }}
       />
     </div>

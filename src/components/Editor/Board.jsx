@@ -11,6 +11,8 @@ import { changeScrollPos } from "../../store/actions/board/changeScrollPos";
 import { getCurrentBoard } from "../../store/selectors/board/getCurrentBoard";
 import { getBoardPosition } from "../../store/selectors/board/getBoardPosition";
 import { changeScale } from "../../store/actions/board/changeScale";
+import { getNote } from "../../store/selectors/note/getNote";
+import { clearEvent } from "../../store/actions/clearEvent";
 
 export function Board() {
   const notes = useSelector(getNotes);
@@ -19,22 +21,57 @@ export function Board() {
   const dispatch = useDispatch();
   const { left, top } = useSelector(getBoardPosition);
   const boardNode = useRef(null);
+  const noteEvent = useSelector((state) => state.selects.event);
 
-  function moveHandler(event) {
-    //console.log(top, left)
-    if (event.buttons === 1) {
-      dispatch(
-        changeScrollPos(board.id, {
-          // export into reducer, add range
-          top: board.position.top + event.movementY / board.scale,
-          left: board.position.left + event.movementX / board.scale,
-        })
-      );
+  const note = useSelector(getNote(noteEvent?.target?.noteId));
+
+  function moveHandler({ buttons, movementX, movementY }) {
+    if (buttons !== 1) return;
+
+    if (note) {
+      const { type } = noteEvent;
+
+      switch (type) {
+        case "replace":
+          dispatch(
+            editNote(note.id, {
+              position: {
+                top: note.position.top + movementY / board.scale,
+                left: note.position.left + movementX / board.scale,
+              },
+            })
+          );
+          break;
+
+        case "resize":
+          dispatch(
+            editNote(note.id, {
+              size: {
+                width: note.size.width + movementX / board.scale,
+                height: note.size.height + movementY / board.scale,
+              },
+            })
+          );
+          break;
+
+        default:
+          break;
+      }
+      return;
     }
+    console.log("move");
+
+    dispatch(
+      changeScrollPos(board.id, {
+        // export into reducer, add range
+        top: board.position.top + movementY / board.scale,
+        left: board.position.left + movementX / board.scale,
+      })
+    );
   }
 
   function wheelHandler(event) {
-    console.log(board.scale);
+    //console.log(board.scale);
 
     if (!event.ctrlKey) {
       dispatch(
@@ -83,6 +120,17 @@ export function Board() {
       onMouseDown={(event) => {
         //console.log(event)
       }}
+      onMouseUp={(event) => {
+        dispatch(clearEvent());
+        // onChange &&
+        //   onChange({
+        //     size: {
+        //       width: event.target.clientWidth,
+        //       height: event.target.clientHeight,
+        //     },
+        //   });
+        event.stopPropagation();
+      }}
     >
       {notes?.map((note) => {
         const { id, position, size, theme } = note;
@@ -93,13 +141,15 @@ export function Board() {
         return (
           <NoteWrap
             key={id}
-            position={{left: (left + position.left) * board.scale, top: (top + position.top) * board.scale}}
+            // position={{
+            //   left: (left + position.left) * board.scale,
+            //   top: (top + position.top) * board.scale,
+            // }}
             selected={selected}
             size={size}
             scale={board.scale}
-            onChange={(note) => dispatch(editNote(id, note))}
-            onSelect={() => dispatch(selectNote(id))}
             theme={theme}
+            note={note}
           >
             {CreateNote(note, selected)}
           </NoteWrap>
