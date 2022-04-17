@@ -9,7 +9,10 @@ export function createNote(type, event) {
     const { id, position, scale } = getCurrentBoard(getState());
     const { left, top } = position;
 
-    console.log(event);
+    //console.log(event.clientX, event.clientY);
+    //console.log(left - left * (1 - scale),  top - (10000 * scale));
+    console.log({ left: getPos(left, event.clientX, event.view.innerWidth, scale), top: getPos(top, event.clientY, event.view.innerHeight, scale)})
+    console.log({ left, top })
 
     dispatch(
       Action(CREATE_NOTE, {
@@ -18,15 +21,15 @@ export function createNote(type, event) {
         position:
           event.type === "click"
             ? {
-                left: left + (event.view.innerWidth - defaultSize.width) / 2,
-                top: top + (event.view.innerHeight - defaultSize.height) / 2,
+                left: - left + (event.view.innerWidth - defaultSize.width) / 2 / scale,
+                top: - top + (event.view.innerHeight - defaultSize.height) / 2 / scale,
               }
-            : { left: getPos(left, event.clientX, scale), top: getPos(top, event.clientY, scale)},
+            : { left: getPos(left, event.clientX, event.view.innerWidth, scale), top: getPos(top, event.clientY, event.view.innerHeight, scale)},
       })
     );
   };
 }
 
-export function getPos(pos, moz, scale) { // remake note add
-  return pos + moz * (scale * scale);
+export function getPos(pos, moz, view, scale) {
+  return ( moz / scale - pos );
 }

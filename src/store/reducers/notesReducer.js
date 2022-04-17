@@ -33,23 +33,7 @@ const defaultState = [
     title: "nice title",
     content: "nice content",
     theme: { color: "#98FB98", bg: { img: "", isRepeat: false } },
-  },
-  {
-    type: NOTE_TYPES.TEXT,
-    id: 2,
-    boardId: 1,
-    position: {
-      top: 600,
-      left: 800,
-    },
-    size: {
-      width: 350,
-      height: 300,
-    },
-    title: "nice title",
-    content: "nice content",
-    theme: { color: "#98FB98", bg: { img: "", isRepeat: false } },
-  },
+  }
 ];
 
 export function notesReducer(state = defaultState, action) {

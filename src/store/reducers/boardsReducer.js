@@ -9,8 +9,8 @@ import { CHANGE_SCROLL } from "../actions/board/changeScrollPos.js";
 import { CHANGE_SCALE } from "../actions/board/changeScale.js";
 
 const boardDefaults = {
-  size: { left: 30000, top: 30000 },
-  position: { left: 5000, top: 5000 }, // - window.size oncreate
+  size: { width: 30000, height: 30000 },
+  position: { left: 0, top: 0 }, // - window.size oncreate
   scale: 1
 };
 

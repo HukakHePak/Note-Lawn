@@ -16,10 +16,11 @@ export function NoteWrap(props) {
       className={"note-wrap " + (selected && "note-wrap--selected")}
       draggable="true"
       style={{
-        left: x,
-        top: y,
+        left: position.left,
+        top: position.top,
         width: size.width,
         height: size.height,
+        transform: "scale(" + scale + ")"
       }}
       onDragStart={(event) =>
         setClickedPosition({ startX: event.clientX, startY: event.clientY })
