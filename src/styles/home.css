@@ -133,6 +133,11 @@
   display: none;
 }
 
+.home__pages-date {
+  font-weight: 300;
+  font-size: 20px;
+}
+
 .home__favorites {
   position: relative;
   display: -webkit-box;
