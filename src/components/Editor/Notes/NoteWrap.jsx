@@ -6,8 +6,8 @@ import { getCurrentBoard } from "../../../store/selectors/board/getCurrentBoard"
 export function NoteWrap(props) {
   const { selected, position, size, children, onChange, onSelect } = props;
 
-  const [{ x, y }, setPos] = useState({ x: position.left, y: position.top });
-  const [clickedPosition, setClickedPosition] = useState(null);
+  const [{ x, y }, setPos] = useState({ x: position.left, y: position.top }); // remove this
+  const [clickedPosition, setClickedPosition] = useState(null); // TODO: make hook for drag element
 
   const scale = useSelector(getCurrentBoard).scale;
 
@@ -20,7 +20,11 @@ export function NoteWrap(props) {
         top: position.top,
         width: size.width,
         height: size.height,
-        transform: "scale(" + scale + ")"
+        transform: `translateY(${
+          (-size.width * (1 - scale)) / 2
+        }px) translateX(${
+          (-size.height * (1 - scale)) / 2
+        }px) scale(${scale}) `,
       }}
       onDragStart={(event) =>
         setClickedPosition({ startX: event.clientX, startY: event.clientY })
@@ -38,22 +42,29 @@ export function NoteWrap(props) {
       }}
       onMouseUp={(event) => {
         onChange &&
-          onChange(
-            {
-              size: {
-                width: event.target.clientWidth,
-                height: event.target.clientHeight,
-              },
-            }
-          );
+          onChange({
+            size: {
+              width: event.target.clientWidth,
+              height: event.target.clientHeight,
+            },
+          });
       }}
       onDoubleClick={(event) => {
         onSelect && onSelect(event);
       }}
-
-      onMouseMove={(event) => {event.stopPropagation();}}
+      onMouseMove={(event) => {
+        event.stopPropagation();
+      }}
     >
       {children}
+      <button
+        className="resize-btn tool-item"
+        style={{
+          transform: `translate(50%) translateY(50%) scale(${
+            1 / scale < 3 ? 1 / scale : 3
+          })`,
+        }}
+      />
     </div>
   );
 }

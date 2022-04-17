@@ -34,7 +34,7 @@ export function Board() {
   }
 
   function wheelHandler(event) {
-    //console.log(event);
+    console.log(board.scale);
 
     if (!event.ctrlKey) {
       dispatch(
@@ -47,7 +47,7 @@ export function Board() {
     }
 
     dispatch(
-      changeScale(board.id, { scale: board.scale - (event.deltaY % 2) * 0.2 * board.scale * (board.scale) })
+      changeScale(board.id, { scale: board.scale - (event.deltaY % 2) * 0.03 })
     );
 
     // dispatch(
