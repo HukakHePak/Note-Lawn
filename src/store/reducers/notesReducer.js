@@ -27,12 +27,12 @@ const defaultState = [
       top: 200,
       left: 200,
     },
-    editorState: EditorState.createEmpty(), //
     size: {
       width: 400,
       height: 500,
     },
     title: "nice title",
+    noteEditorState: EditorState.createEmpty(),
     content: "nice content",
     theme: { color: "#98FB98", bg: { img: "", isRepeat: false } },
   },
@@ -49,6 +49,7 @@ const defaultState = [
       height: 300,
     },
     title: "nice title",
+    noteEditorState: EditorState.createEmpty(),
     content: "nice content",
     theme: { color: "#98FB98", bg: { img: "", isRepeat: false } },
   },
@@ -56,8 +57,6 @@ const defaultState = [
 
 export function notesReducer(state = defaultState, action) {
   const { type, payload } = action;
-
-  //console.log(payload)
 
   switch (type) {
     case CREATE_NOTE:
@@ -69,7 +68,7 @@ export function notesReducer(state = defaultState, action) {
           theme: { color: "#98FB98", bg: { img: "", isRepeat: false } },
           position: defaultPosition,
           boardId: 1,
-          editorState: EditorState.createEmpty(),
+          noteEditorState: EditorState.createEmpty(),
           ...payload,
         },
       ];

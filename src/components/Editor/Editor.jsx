@@ -18,9 +18,9 @@ export function Editor() {
   return (
     <div ref={editor} className="editor">
       <ToolPanel tools={selectTools()} />
-      <ToolPanel right tools={selectTools(false)} />
+      <ToolPanel tools={selectTools("NOTE_FUNCTIONAL_TOOLS")} right />
       <Board />
-      <BoardName/>
+      <BoardName />
     </div>
   );
 }
