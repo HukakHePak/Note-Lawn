@@ -21,30 +21,41 @@ export function Board() {
   const boardNode = useRef(null);
 
   function moveHandler(event) {
+    //console.log(top, left)
     if (event.buttons === 1) {
       dispatch(
-        changeScrollPos(board.id, {   // export into reducer, add range
-          top: board.position.top - event.movementY,
-          left: board.position.left - event.movementX,
+        changeScrollPos(board.id, {
+          // export into reducer, add range
+          top: board.position.top + event.movementY / board.scale,
+          left: board.position.left + event.movementX / board.scale,
         })
       );
     }
   }
 
   function wheelHandler(event) {
+    console.log(board.scale);
+
     if (!event.ctrlKey) {
       dispatch(
         changeScrollPos(board.id, {
-          top: board.position.top + event.deltaY,
-          left: board.position.left + event.deltaX,
+          top: board.position.top - event.deltaY / board.scale,
+          left: board.position.left - event.deltaX / board.scale,
         })
       );
       return;
     }
 
     dispatch(
-      changeScale(board.id, { scale: board.scale - (event.deltaY / 1000) })
+      changeScale(board.id, { scale: board.scale - (event.deltaY % 2) * 0.03 })
     );
+
+    // dispatch(
+    //   changeScrollPos(board.id, {
+    //     top: board.position.top + event.deltaY,
+    //     left: board.position.left + event.deltaX,
+    //   })
+    // );
   }
 
   useEffect(() => {
@@ -57,22 +68,35 @@ export function Board() {
 
   return (
     <div
-      style={{ left: -left, top: -top, background: board.theme.color, transform: `scale(${board.scale})` }}
+      style={{
+        // left: -left,
+        // top: -top,
+        width: board.width,
+        height: board.height,
+        background: board.theme.color,
+        //transform: `scale(${board.scale})`,
+      }}
       className="board"
       onMouseMove={moveHandler}
       ref={boardNode}
       onWheel={wheelHandler}
+      onMouseDown={(event) => {
+        //console.log(event)
+      }}
     >
       {notes?.map((note) => {
         const { id, position, size, theme } = note;
         const selected = id === selectedNoteId;
 
+        //console.log({left: left + position.left, top: top + position.top})
+
         return (
           <NoteWrap
             key={id}
-            position={position}
+            position={{left: (left + position.left) * board.scale, top: (top + position.top) * board.scale}}
             selected={selected}
             size={size}
+            scale={board.scale}
             onChange={(note) => dispatch(editNote(id, note))}
             onSelect={() => dispatch(selectNote(id))}
             theme={theme}

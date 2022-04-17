@@ -7,7 +7,7 @@ import { selectTools } from "./tools/selectTools";
 
 export function Editor() {
   return (
-    <div className="editor">
+    <div className="editor" >
       <ToolPanel tools={selectTools()} />
       <ToolPanel right tools={selectTools(false)} />
       <Board />
