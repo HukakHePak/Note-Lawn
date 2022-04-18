@@ -12,6 +12,7 @@ import { changeScale } from "../../store/actions/board/changeScale";
 import { getNote } from "../../store/selectors/note/getNote";
 import { clearEvent } from "../../store/actions/clearEvent";
 import { selectEvent } from "../../store/actions/selectEvent";
+import img from "../../img/repeatBack.png";
 
 export function Board() {
   const notes = useSelector(getNotes);
@@ -125,6 +126,8 @@ export function Board() {
     };
   }, [boardNode]);
 
+  const amg = "https://i.pinimg.com/originals/03/42/44/034244f741ad75bd774965c7f9772879.png";
+
   return (
     <div
       className="board"
@@ -132,9 +135,9 @@ export function Board() {
       style={{
         // width: board.width,
         // height: board.height,
-        background: `url(https://catherineasquithgallery.com/uploads/posts/2021-02/1613227411_48-p-fon-sinii-geometriya-62.jpg)`,
+        background: `url(${amg})`,
         backgroundPosition: `${board.position.left * board.scale / 2}px ${board.position.top * board.scale / 2}px`,
-        backgroundSize: 1000 * board.scale
+        //backgroundSize: 2000 * board.scale
       }}
       //onTouchStart={console.log}
       onMouseMove={moveHandler}
