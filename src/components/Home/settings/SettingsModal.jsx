@@ -3,8 +3,8 @@ import { ColorSetterWrapper } from "../../Global/ColorSetterWrapper";
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentTheme } from '../../../store/actions/appTheme.js'
 import { getAppTheme, getAppBackgound } from './../../../store/selectors/appTheme';
-import BackgroundLInk from "../../Global/BackgroundLInk";
 import { setBackgroundData } from '../../../store/actions/appTheme.js'
+import { ColorBackgroundSetterWrapper } from './../../Global/ColorBackgroundSetterWrapper';
 
 
 function SettingsModal({ showMohal }) {
@@ -28,20 +28,19 @@ function SettingsModal({ showMohal }) {
 
   return (
     <div className="small-modal small-modal_setting">
-      <ColorSetterWrapper
+      <ColorBackgroundSetterWrapper
         text="Main Color "
         defaultColor={colorApp.mainColor}
-        setColor={setMainColor} />
+        setColor={setMainColor} 
+        setBackground={setBackground}
+        setIsRepeat={setIsRepeat}
+        defaultBackground={defaultBackground}
+        defaultIsRepeat={defaultIsRepeat}
+        />
       <ColorSetterWrapper
         text="Second color "
         defaultColor={colorApp.secondColor}
         setColor={setSecondColor} />
-      <BackgroundLInk
-        defaultBackground={defaultBackground}
-        defaultIsRepeat={defaultIsRepeat}
-        setBackground={setBackground}
-        setIsRepeat={setIsRepeat}
-      />
     </div>
   );
 }

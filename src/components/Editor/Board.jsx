@@ -11,6 +11,7 @@ import { getCurrentBoard } from "../../store/selectors/board/getCurrentBoard";
 import { changeScale } from "../../store/actions/board/changeScale";
 import { getNote } from "../../store/selectors/note/getNote";
 import { clearEvent } from "../../store/actions/clearEvent";
+import useColor from './../../hooks/useColor';
 
 export function Board() {
   const notes = useSelector(getNotes);
@@ -18,6 +19,8 @@ export function Board() {
   const selectedNoteId = useSelector(getSelectedNoteId);
   const dispatch = useDispatch();
   const boardNode = useRef(null);
+  const style = useColor(board.id);
+  console.log(style)
 
   const noteEvent = useSelector((state) => state.selects.event);
 
@@ -115,7 +118,7 @@ export function Board() {
       style={{
         width: board.width,
         height: board.height,
-        background: board.theme.color,
+        ...style,
       }}
       className="board"
       onMouseMove={moveHandler}
