@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { ReactComponent as Repeat } from '../../img/repeat.svg'
 
 
 function BackgroundLInk({ defaultBackground, defaultIsRepeat, setBackground, setIsRepeat }) {
@@ -11,7 +12,7 @@ function BackgroundLInk({ defaultBackground, defaultIsRepeat, setBackground, set
   }, [backgroundValue, isRepeatValue, setBackground, setIsRepeat])
 
   return (
-    <div>
+    <div className="background-input">
       <input className="small-modal__input"
         type="text"
         value={backgroundValue}
@@ -19,16 +20,9 @@ function BackgroundLInk({ defaultBackground, defaultIsRepeat, setBackground, set
         placeholder="Link for background"
         style={{ margin: 0, marginBottom: 10 }}
       />
-      <div className="small-modal__item">
-        <label htmlFor="link">Repeat?</label>
-        <input
-          id="link"
-          type="checkbox"
-          checked={isRepeatValue}
-          onChange={() => setIsRepeatValue(!isRepeatValue)}
-          style={{ transform: 'scale(1.5)' }}
-        />
-      </div>
+      <button className="background-input__btn" onClick={() => setIsRepeatValue(!isRepeatValue)}>
+        <Repeat fill={isRepeatValue ? '#645134' : '#D8B499'} />
+      </button>
     </div>
   )
 }
