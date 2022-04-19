@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { removeBoard } from "../../store/actions/board/removeBoard";
 import { selectBoard } from "../../store/actions/board/selectBoard";
+import removeBoardIcon from "../../img/removeBoardIcon.svg";
 
 function BoardList({ list, background }) {
   return (
@@ -32,7 +33,7 @@ function BoardItem({ board, background }) {
       <h3 className="home__pages-title">{name}</h3>
       <span className="home__pages-date">{date}</span>
       <button className="home__pages-remove" onClick={removeBoardToStore}>
-        Remove
+        <img src={removeBoardIcon} />
       </button>
     </div>
   );
