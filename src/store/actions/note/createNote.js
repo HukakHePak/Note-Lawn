@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import { defaultSize } from "../../reducers/notesReducer";
 import { getBoardPosition } from "../../selectors/board/getBoardPosition";
 import { getNotes } from "../../selectors/note/getNotes";
@@ -24,7 +23,6 @@ export function createNote(type, event) {
             : { left: left + event.clientX, top: top + event.clientY },
       })
     );
-
     dispatch(selectNote(lastAddedNote.id));
   };
 }

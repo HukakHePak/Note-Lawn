@@ -5,17 +5,21 @@ import FavoriteNoteList from "./FavoriteNoteList";
 import SearchBar from "./SearchBar";
 import BoardList from "./BoardList";
 import { AddBoardBar } from "./AddBoardBar";
-import { getBoadrds, getFavoriteNotes } from "../../store/selectors/existenceBoards";
-import { getAppTheme } from './../../store/selectors/appTheme';
+import {
+  getBoadrds,
+  getCurrentBoardId,
+  getFavoriteNotes,
+} from "../../store/selectors/existenceBoards";
+import { getAppTheme } from "./../../store/selectors/appTheme";
 import Settings from "./settings/Settings";
-
+import useColor from "../../hooks/useColor";
 
 function Home() {
   const [search, setSearch] = useState("");
   const boards = useSelector(getBoadrds);
-  const [boardsList, setBoardsList] = useState(boards);
-  const secondColor = useSelector(getAppTheme).secondColor
-
+  const [boardsList, setBoardsList] = useState(boards); // вынести фильтр в редюсер
+  const theme = useSelector(getAppTheme);
+  const style = useColor(useSelector(getCurrentBoardId));
 
   useEffect(() => {
     setBoardsList(
@@ -26,15 +30,17 @@ function Home() {
   }, [search, boards]);
 
   return (
-    <div className="home home__wrapper">
-      <div className="home__main">
-        <div className="home__main-top">
-          <AddBoardBar background={secondColor}/>
-          <SearchBar setSearch={setSearch} background={secondColor}/>
+    <div className="home" style={style}>
+      <div className="home__wrapper">
+        <div className="home__top">
+          <div className="home__top-search">
+            <AddBoardBar />
+            <SearchBar setSearch={setSearch} background={theme.secondColor} />
+          </div>
+          <Settings />
         </div>
-        <BoardList list={boardsList} background={secondColor}/>
+        <BoardList list={boardsList} background={theme.secondColor} />
       </div>
-      <Settings />
     </div>
   );
 }

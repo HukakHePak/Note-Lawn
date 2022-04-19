@@ -11,8 +11,7 @@ export function createTool(title, icon, action, children, draggable) {
       icon={icon}
       draggable={draggable}
     >
-      {" "}
-      {children}{" "}
+      {children}
     </ToolItem>
   );
 }
@@ -21,6 +20,6 @@ export function createDraggableTool(title, icon, action) {
   return createTool(title, icon, action, undefined, true);
 }
 
-export function createOptionTool(title, option, action) {
+export function createOptionTool(title, action, option) {
   return createTool(title, undefined, action, option);
 }

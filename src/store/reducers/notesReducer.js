@@ -80,8 +80,6 @@ export function notesReducer(state = defaultState, action) {
       return changeItem(state, payload.id, payload);
 
     default:
-      break;
+      return state;
   }
-
-  return state;
 }

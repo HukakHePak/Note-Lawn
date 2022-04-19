@@ -1,22 +1,17 @@
 $mainColor: #FCF5F0
 $additionalColor: #F5DECE
-$toolsSize: 3vw
-$toolsBack: $toolsSize - 1vw
-$toolsGap: 0.6vw
-
-::-webkit-scrollbar
-    display: none
+$toolsSize: 40px
+$toolsBack: $toolsSize - 15px
+$toolsGap: 8px
 
 .editor
     height: 100%
     width: 100%
-    position: relative
-    overflow: scroll
-    overflow-x: scroll
+    overflow: hidden
 
 .board
     height: 10000px
-    min-width: 10000px
+    width: 10000px
     position: relative
 
     &-name
@@ -105,11 +100,6 @@ $toolsGap: 0.6vw
         cursor: pointer
         position: absolute
         z-index: 10
-
-        // &--image
-        //     width: 200px
-        //     left: 600px
-        //     top: 300px
 
         &__img
             width: 100%

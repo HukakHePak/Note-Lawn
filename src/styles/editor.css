@@ -1,18 +1,12 @@
-::-webkit-scrollbar {
-  display: none;
-}
-
 .editor {
   height: 100%;
   width: 100%;
-  position: relative;
-  overflow: scroll;
-  overflow-x: scroll;
+  overflow: hidden;
 }
 
 .board {
   height: 10000px;
-  min-width: 10000px;
+  width: 10000px;
   position: relative;
 }
 
@@ -25,8 +19,8 @@
 }
 
 .board-name__btn {
-  font-size: 1.5vw;
-  line-height: 3vw;
+  font-size: 20px;
+  line-height: 40px;
   cursor: pointer;
 }
 
@@ -48,30 +42,30 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 0.6vw;
-  margin-left: 0.6vw;
+  gap: 8px;
+  margin-left: 8px;
   z-index: 1000;
 }
 
 .tool-panel--right {
-  right: 0.6vw;
+  right: 8px;
 }
 
 .tool-item {
   background-color: #F5DECE;
   background-repeat: no-repeat;
-  background-size: 2vw 2vw;
+  background-size: 25px 25px;
   background-position: center center;
-  width: 3vw;
-  height: 3vw;
+  width: 40px;
+  height: 40px;
   border: none;
 }
 
 .tool-item .circle {
   margin: auto;
-  width: 2vw;
-  height: 2vw;
-  outline: 0.2vw solid black;
+  width: 25px;
+  height: 25px;
+  outline: 2.66667px solid black;
   border: none;
   border-radius: 100%;
 }

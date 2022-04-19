@@ -1,12 +1,8 @@
-import saveIcon from "../../../img/note-icon/note-functional-tools/saveIcon.svg";
 import deleteIcon from "../../../img/note-icon/note-functional-tools/deleteIcon.svg";
-import favoriteIcon from "../../../img/note-icon/note-functional-tools/favoriteIcon.svg";
+import { createTool } from "./createTool";
 
-import { createDraggableTool } from "./createTool";
-import { NOTE_TYPES } from "../Notes/TypedNotes/CreateNote";
+export const NOTE_FUNCTIONAL_TOOLS = "NOTE_FUNCTIONAL_TOOLS";
 
-const saveTool = createDraggableTool("Добавить текстовую заметку", saveIcon);
-const deleteTool = createDraggableTool("Добавить список", deleteIcon);
-const favoriteTool = createDraggableTool("Добавить картинку", favoriteIcon);
+const deleteTool = createTool("Удалить заметку", deleteIcon);
 
-export const noteFunctionalTools = [saveTool, deleteTool, favoriteTool];
+export const noteFunctionalTools = [deleteTool];
