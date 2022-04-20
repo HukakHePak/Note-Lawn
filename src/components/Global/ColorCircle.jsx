@@ -14,7 +14,9 @@ export function ColorCircle(props) {
   const [isRepeatValue, setIsRepeatValue] = useState(defaults.isRepeat);
   const [hiddenPalette, setHiddenPalette] = useState(!active);
 
-  useEffect(() => { setHiddenPalette(!active)}, [active, setHiddenPalette]); // replace into hook for modals
+  useEffect(() => {
+    setHiddenPalette(!active);
+  }, [active, setHiddenPalette]); // replace into hook for modals
 
   useEffect(() => {
     const theme = {
@@ -32,7 +34,7 @@ export function ColorCircle(props) {
   });
 
   return (
-    <div style={{ position: "relative" /* replace into style.css */ }}>    
+    <div className="color-circle">
       <div
         className="circle"
         onClick={() => {
@@ -40,16 +42,15 @@ export function ColorCircle(props) {
           onClick && onClick(hiddenPalette);
         }}
         style={{
-          backgroundImage: `url(${backgroundValue})`,   // replace into stylize func
-          backgroundSize: "50px 50px",
+          backgroundImage: `url(${backgroundValue})`, // replace into stylize func
           backgroundColor: paletteColor.hex,
         }}
       ></div>
       {!hiddenPalette && (
         <div className="palette palette_bg">
           <ColorPicker
-            width={456}
-            height={128}
+            width={400}
+            height={200}
             color={paletteColor}
             onChange={setPaletteColor}
             hideHSV
@@ -58,7 +59,9 @@ export function ColorCircle(props) {
             dark
           />
           {hasLink && (
-            <div className="background-input"> {/* replace into re-use component */}
+            <div className="background-input">
+              {" "}
+              {/* replace into re-use component */}
               <input
                 className="small-modal__input"
                 type="text"
@@ -67,10 +70,10 @@ export function ColorCircle(props) {
                 placeholder="Link for background"
               />
               <button
-                className="background-input__btn"
+                className={"background-input__btn " + (isRepeatValue && "background-input__btn--active ")}
                 onClick={() => setIsRepeatValue(!isRepeatValue)}
               >
-                <Repeat fill={isRepeatValue ? "#645134" : "#D8B499"} />
+                <Repeat />
               </button>
             </div>
           )}

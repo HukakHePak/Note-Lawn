@@ -136,8 +136,7 @@ export function Board() {
       style={{
         backgroundImage: `url(${board.theme.link})`,
         backgroundColor: board.theme.color,
-        backgroundPosition: `${board.position.left * board.scale / 2}px ${board.position.top * board.scale / 2}px`,
-        backgroundRepeat: board.theme.isRepeat
+        backgroundPosition: (board.theme.isRepeat ? (`${board.position.left * board.scale / 2}px ${board.position.top * board.scale / 2}px`) : '0 0'),
       }}
       
       //onTouchStart={console.log}
