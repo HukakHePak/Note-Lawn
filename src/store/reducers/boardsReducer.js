@@ -20,21 +20,35 @@ const defaultBoards = [
     name: "Board 1",
     date: "08/03/2022 09:55",
     theme: { color: "#FCF5F0", bg: { img: "", isRepeat: false } },
-    ...boardDefaults
+    ...boardDefaults,
   },
   {
     id: 2,
     name: "Board 2",
     date: "08/03/2022 09:55",
     theme: { color: "#FCF5F0", bg: { img: "", isRepeat: false } },
-    ...boardDefaults
+    ...boardDefaults,
   },
   {
     id: 3,
     name: "Board 3",
     date: "08/03/2022 09:55",
     theme: { color: "#7FFFD4", bg: { img: "", isRepeat: false } },
-    ...boardDefaults
+    ...boardDefaults,
+  },
+  {
+    id: 4,
+    name: "Board 4",
+    date: "08/03/2022 09:55",
+    theme: { color: "#7FFFD4", bg: { img: "", isRepeat: false } },
+    ...boardDefaults,
+  },
+  {
+    id: 5,
+    name: "Board 5",
+    date: "08/03/2022 09:55",
+    theme: { color: "#7FFFD4", bg: { img: "", isRepeat: false } },
+    ...boardDefaults,
   },
 ];
 
