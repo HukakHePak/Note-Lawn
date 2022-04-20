@@ -6,42 +6,38 @@ import textUnderlineIcon from "../../../img/note-icon/text-note-tools/textUnderl
 import textColorIcon from "../../../img/note-icon/text-note-tools/textColorIcon.svg";
 
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RichUtils } from "draft-js";
 
 import { createTool, createOptionTool } from "./createTool";
 import { getNotes } from "../../../store/selectors/note/getNotes";
 import { getSelectedNote } from "../../../store/selectors/note/getSelectedNote";
 import { getSelectedNoteId } from "../../../store/selectors/note/getSelectedNoteId";
-import { Action } from "../../../store/actions/Action";
 import { editNote } from "../../../store/actions/note/editNote";
 
-let selectedNoteId;
-
-
 function L() {
+  const dispatch = useDispatch();
   const notes = useSelector((state) => getNotes(state));
-  let selectedNoteId = useSelector((state) => getSelectedNoteId(state));
-  const selectedNote = getSelectedNote(notes, selectedNoteId);
+  const selectedNoteId = useSelector((state) => getSelectedNoteId(state));
+  const [selectedNote] = getSelectedNote(notes, selectedNoteId);
 
   const [noteEditorState, setNoteEditorState] = useState(
     selectedNote?.noteEditorState
   );
 
-  function onBoldClick() {
+  function onBoldClick(event) {
+    event.preventDefault();
     setNoteEditorState(RichUtils.toggleInlineStyle(noteEditorState, "BOLD"));
+    dispatch(editNote(selectedNoteId, { noteEditorState: noteEditorState }));
   }
 
-  return <span onMouseDown={onBoldClick}>12</span>;
+  return <div onMouseDown={(event) => onBoldClick(event)}>B</div>;
 }
 
 const fontFamily = createTool("Шрифт", fontFamilyIcon);
 const fontSize = createTool("Размер шрифта", fontSizeIcon);
-const fontBold = createOptionTool(
-  "Полужирный",
-  editNote(selectedNoteId),
-  <L />
-); //fontBoldIcon
+const fontBold = createOptionTool("Полужирный", null, <L />);
+// fontBoldIcon
 const fontItalic = createTool("Курсив", fontItalicIcon);
 const textUnderline = createTool("Подчеркнутый", textUnderlineIcon);
 const textColor = createTool("Цвет фона текста", textColorIcon);

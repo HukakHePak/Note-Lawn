@@ -1,10 +1,6 @@
 .note-wrap {
   background: #F4E6DC;
-  min-width: 300px;
-  min-height: 300px;
-  overflow: hidden;
-  position: absolute;
-  resize: both;
+  position: fixed;
 }
 
 .note-wrap > div {
@@ -37,8 +33,19 @@
 }
 
 .note-wrap--selected {
-  outline: 3px solid rgba(0, 0, 0, 0.367);
-  -webkit-box-shadow: 0 0 15px 2px white;
-          box-shadow: 0 0 15px 2px white;
+  -webkit-box-shadow: 0 0 5px 5px rgba(102, 228, 102, 0.382);
+          box-shadow: 0 0 5px 5px rgba(102, 228, 102, 0.382);
+}
+
+.note-wrap .resize-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: transparent;
+  border-radius: 100%;
+}
+
+.note-wrap .resize-btn:hover {
+  background: rgba(102, 228, 102, 0.382);
 }
 /*# sourceMappingURL=noteWrap.css.map */

@@ -5,8 +5,8 @@
 }
 
 .board {
-  height: 10000px;
-  width: 10000px;
+  height: 100%;
+  width: 100%;
   position: relative;
 }
 
@@ -157,4 +157,4 @@
   height: calc(100% - 40px);
   position: absolute;
 }
-/*# sourceMappingURL=main.css.map */
+/*# sourceMappingURL=editor.css.map */

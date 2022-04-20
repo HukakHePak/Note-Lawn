@@ -1,19 +1,28 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Editor } from "draft-js";
+import { useDispatch, useSelector } from "react-redux";
+import { Editor, EditorState } from "draft-js";
 
 import "../../../../../node_modules/draft-js/dist/Draft.css";
 import "../../../../styles/textNote.css";
 import { editNote } from "../../../../store/actions/note/editNote";
+import { getNotes } from "../../../../store/selectors/note/getNotes";
+import { getSelectedNote } from "../../../../store/selectors/note/getSelectedNote";
+import { getSelectedNoteId } from "../../../../store/selectors/note/getSelectedNoteId";
 
 export function NoteText(props) {
   const dispatch = useDispatch();
-  const { id, title, noteEditorState } = props.note;
-  const [editorState, setEditorState] = useState(noteEditorState);
+  const { id, title } = props.note;
+
+  const notes = useSelector((state) => getNotes(state));
+  const [textNote] = getSelectedNote(notes, id);
+
+  const [noteEditorState, setNoteEditorState] = useState(
+    textNote?.noteEditorState
+  );
 
   function onChange(editorState) {
-    setEditorState(editorState);
-    dispatch(editNote(id, { noteEditorState: editorState }));
+    setNoteEditorState(editorState);
+    dispatch(editNote(id, { noteEditorState: noteEditorState }));
   }
 
   return (
@@ -21,9 +30,10 @@ export function NoteText(props) {
       <TextNoteTitle title={title} />
       <div className="text__line"></div>
       <Editor
-        editorState={editorState}
+        editorState={noteEditorState}
         onChange={onChange}
         placeholder="Your text..."
+        className="DraftEditor-root"
       />
     </div>
   );
