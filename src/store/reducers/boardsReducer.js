@@ -32,6 +32,18 @@ const defaultBoards = [
     id: 3,
     name: "Board 3",
     date: "08/03/2022 09:55",
+    ...boardDefaults,
+  },
+  {
+    id: 4,
+    name: "Board 4",
+    date: "08/03/2022 09:55",
+    ...boardDefaults,
+  },
+  {
+    id: 5,
+    name: "Board 5",
+    date: "08/03/2022 09:55",
     ...boardDefaults
   },
 ];

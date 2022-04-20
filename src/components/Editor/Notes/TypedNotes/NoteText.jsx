@@ -9,7 +9,7 @@ export function NoteText(props) {
       <div className="text__line"></div>
       <div
         className="text__subtitle"
-        //contentEditable="true" // для редактирования текста в диве
+        // contentEditable="true" // для редактирования текста в диве
       >
         {content}
       </div>
