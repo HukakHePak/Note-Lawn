@@ -2,8 +2,8 @@ import { ToolItem } from "../ToolItem";
 
 let key = 1;
 
-export function createTool(title, icon, action, children, draggable) {
-    return <ToolItem key={key++} action={action} title={title} icon={icon} draggable={draggable}> {children} </ToolItem>;
+export function createTool(title, icon, action, option, draggable) {
+    return <ToolItem key={key++} action={action} title={title} icon={icon} draggable={draggable}  option={option} ></ToolItem>;
 };
 
 export function createDraggableTool(title, icon, action) {
