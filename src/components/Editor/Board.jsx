@@ -12,7 +12,7 @@ import { changeScale } from "../../store/actions/board/changeScale";
 import { getNote } from "../../store/selectors/note/getNote";
 import { clearEvent } from "../../store/actions/clearEvent";
 import { selectEvent } from "../../store/actions/selectEvent";
-import img from "../../img/repeatBack.png";
+import { closeModals } from "../../store/actions/closeModals"
 
 export function Board() {
   const notes = useSelector(getNotes);
@@ -20,6 +20,7 @@ export function Board() {
   const selectedNoteId = useSelector(getSelectedNoteId);
   const dispatch = useDispatch();
   const boardNode = useRef(null);
+  //const style = useColor(board.id);
 
   const noteEvent = useSelector((state) => state.selects.event);
 
@@ -115,6 +116,7 @@ export function Board() {
 
   function mouseUpHandler(event) {
     dispatch(clearEvent());
+    dispatch(closeModals());
     event.stopPropagation();
   }
 
@@ -126,19 +128,18 @@ export function Board() {
     };
   }, [boardNode]);
 
-  const amg = "https://i.pinimg.com/originals/03/42/44/034244f741ad75bd774965c7f9772879.png";
 
   return (
     <div
       className="board"
       ref={boardNode}
       style={{
-        // width: board.width,
-        // height: board.height,
-        background: `url(${amg})`,
+        backgroundImage: `url(${board.theme.link})`,
+        backgroundColor: board.theme.color,
         backgroundPosition: `${board.position.left * board.scale / 2}px ${board.position.top * board.scale / 2}px`,
-        //backgroundSize: 2000 * board.scale
+        backgroundRepeat: board.theme.isRepeat
       }}
+      
       //onTouchStart={console.log}
       onMouseMove={moveHandler}
       //onTouchMove={moveHandler}

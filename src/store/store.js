@@ -10,8 +10,8 @@ const rootReducer = combineReducers({
   boards: boardsReducer,
   appTheme,
   selects: selectsReducer,
-  editor: 'add editro state for best moves'
+  editor: 'add editor state for best moves'
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-export const store = createStore(rootReducer, applyMiddleware(thunk));
+export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
