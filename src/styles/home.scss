@@ -77,7 +77,7 @@
     }
   }
 
-  &__pages {    // remake on grid, remake remove btn
+  &__pages {    // TODO: remake on grid, add transition for remove-icon
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -96,10 +96,12 @@
       flex-direction: column;
       justify-content: flex-end;
       padding: 10px;
+      position: relative;
 
       &:hover {
         .home__pages-remove {
           display: block;
+          // transition: 2s;
         }
       }
     }
@@ -110,6 +112,15 @@
 
     &-remove {
       display: none;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      // transition: 2s;
+    }
+
+    &-date {
+      font-weight: 300;
+      font-size: 20px;
     }
   }
 

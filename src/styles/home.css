@@ -119,6 +119,7 @@
       -ms-flex-pack: end;
           justify-content: flex-end;
   padding: 10px;
+  position: relative;
 }
 
 .home__pages-item:hover .home__pages-remove {
@@ -131,6 +132,14 @@
 
 .home__pages-remove {
   display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.home__pages-date {
+  font-weight: 300;
+  font-size: 20px;
 }
 
 .home__favorites {
