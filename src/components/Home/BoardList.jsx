@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { selectBoard } from "../../store/actions/board/selectBoard";
-import removeBoardIcon from "../../img/removeBoardIcon.svg";
+import fontColorContrast from "font-color-contrast";
+import { ReactComponent as TrashSvg } from "../../img/trash.svg";
 
-function BoardList({ list, background, handleRemoveConfirm }) {
+export function BoardList({ list, theme, handleRemoveConfirm }) {
   return (
     <div className="home__pages">
       {list.map((board, index) => (
         <BoardItem
           key={index}
           board={board}
-          background={background}
+          theme={theme}
           handleRemoveConfirm={handleRemoveConfirm}
         />
       ))}
@@ -18,30 +19,38 @@ function BoardList({ list, background, handleRemoveConfirm }) {
   );
 }
 
-function BoardItem({ board, background, handleRemoveConfirm }) {
+function BoardItem({ board, theme, handleRemoveConfirm }) {
   const { date, name, id } = board;
+  const color = fontColorContrast(theme.secondColor);
 
   const dispatch = useDispatch();
 
   function onRemoveConfirm(e) {
     e.stopPropagation();
     handleRemoveConfirm(id);
-    console.log(id)
   }
 
   return (
     <div
       className="home__pages-item"
+      //style={{ background: "black" }}
       onClick={() => dispatch(selectBoard(id))}
-      //style={{ background }}
     >
-      <h3 className="home__pages-title">{name}</h3>
-      <span className="home__pages-date">{date}</span>
-      <button className="home__pages-remove" onClick={onRemoveConfirm}>
-        <img src={removeBoardIcon} />
-      </button>
+      <div
+        className="home__pages-panel"
+        style={{ color, background: theme.secondColor }}
+      >
+        <div className="home__pages-info">
+          <h3 className="home__pages-title">{name}</h3>
+          <span className="home__pages-date">{date}</span>
+        </div>
+
+        <TrashSvg
+          className="home__pages-remove"
+          fill={color}
+          onClick={onRemoveConfirm}
+        />
+      </div>
     </div>
   );
 }
-
-export default BoardList;

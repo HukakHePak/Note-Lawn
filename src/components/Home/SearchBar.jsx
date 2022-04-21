@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import SearchBtn from "../../img/search.svg";
+import { ReactComponent as SearchBtn } from "../../img/search.svg";
+import fontColorContrast from "font-color-contrast";
 
-function SearchBar({setSearch, background}) {
+function SearchBar({ setSearch, theme }) {
   const [value, setValue] = useState("");
+  const color = fontColorContrast(theme.secondColor);
 
   const handleChange = (e) => {
     setValue(e.target.value);
-    setSearch(e.target.value)
+    setSearch(e.target.value);
   };
 
   return (
@@ -17,12 +19,9 @@ function SearchBar({setSearch, background}) {
         value={value}
         onChange={handleChange}
         placeholder="Search..."
-        style={{background}}
+        style={{ background: theme.secondColor, color }}
       />
-
-      <button className="home__search-btn" type="button">
-        <img src={SearchBtn} alt="" />
-      </button>
+      <SearchBtn className="home__search-ico" fill={color} />
     </form>
   );
 }

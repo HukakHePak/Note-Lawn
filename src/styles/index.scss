@@ -2,7 +2,12 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  
+
+}
+
+path {
+  fill: inherit;
+  stroke: inherit;
 }
 
 body {
@@ -14,6 +19,7 @@ input,
 button {
   border: none;
   background-color: transparent;
+  color: inherit;
 }
 
 input {
