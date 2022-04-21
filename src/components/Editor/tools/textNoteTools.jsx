@@ -4,34 +4,7 @@ import fontItalicIcon from "../../../img/note-icon/text-note-tools/fontItalicIco
 import textUnderlineIcon from "../../../img/note-icon/text-note-tools/textUnderlineIcon.svg";
 import textColorIcon from "../../../img/note-icon/text-note-tools/textColorIcon.svg";
 
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RichUtils } from "draft-js";
-
-import { getNote } from "../../../store/selectors/note/getNote";
-import { editNote } from "../../../store/actions/note/editNote";
 import { createTool, createNoteTextTool } from "./createTool";
-import { getSelectedNoteId } from "../../../store/selectors/note/getSelectedNoteId";
-
-export function TextNoteTool() {
-  const dispatch = useDispatch();
-  const selectedNoteId = useSelector((state) => getSelectedNoteId(state));
-  const selectedNote = useSelector(getNote(selectedNoteId));
-
-  const [editorState, setEditorState] = useState(selectedNote?.noteEditorState);
-
-  useEffect(() => {
-    setEditorState(selectedNote?.noteEditorState);
-  }, [selectedNote?.noteEditorState]);
-
-  function onBoldClick(event) {
-    event.preventDefault();
-    setEditorState(RichUtils.toggleInlineStyle(editorState, "BOLD"));
-    dispatch(editNote(selectedNoteId, { noteEditorState: editorState }));
-  }
-
-  return <div onMouseDown={onBoldClick}>B</div>;
-}
 
 const fontSize = createTool("Размер шрифта", fontSizeIcon);
 const fontBold = createNoteTextTool("Полужирный", fontBoldIcon, "BOLD");
