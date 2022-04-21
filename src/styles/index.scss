@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  
 }
 
 body {
@@ -71,7 +72,7 @@ button {
       fill: rgb(105, 105, 105);
     }
   }
-   
+
   &__btn--active {
     & svg {
       fill: white;
@@ -95,6 +96,9 @@ button {
 
 .small-modal {
   position: absolute;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
   top: 35px;
   width: 359px;
   min-height: 156px;
@@ -105,16 +109,22 @@ button {
   line-height: 29px;
   z-index: 10;
 
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
   &__input {
     font-size: 24px;
     line-height: 34px;
     width: 100%;
-    border-bottom: 2px solid #ffffff;
+    border-bottom: 2px solid rgb(105, 105, 105);
 
     &::placeholder {
       font-size: 24px;
       line-height: 29px;
-      color: #000;
+      color: rgb(105, 105, 105);
     }
   }
 
