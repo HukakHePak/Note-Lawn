@@ -68,7 +68,7 @@ export function ColorCircle(props) {
                 value={backgroundValue}
                 onChange={(e) => setBackgroundValue(e.target.value)}
                 placeholder="Link for background"
-              />
+              />  
               <button
                 className={"background-input__btn " + (isRepeatValue && "background-input__btn--active ")}
                 onClick={() => setIsRepeatValue(!isRepeatValue)}

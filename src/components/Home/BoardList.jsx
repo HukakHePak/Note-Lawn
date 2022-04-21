@@ -33,7 +33,7 @@ function BoardItem({ board, background, handleRemoveConfirm }) {
     <div
       className="home__pages-item"
       onClick={() => dispatch(selectBoard(id))}
-      style={{ background }}
+      //style={{ background }}
     >
       <h3 className="home__pages-title">{name}</h3>
       <span className="home__pages-date">{date}</span>
