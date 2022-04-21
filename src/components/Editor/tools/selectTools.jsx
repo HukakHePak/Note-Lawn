@@ -23,6 +23,7 @@ export function selectTools(type) {
 
     case false:
       return functionalTools;
+
     case true:
       break; // return note func tools
 

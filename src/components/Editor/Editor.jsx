@@ -18,4 +18,3 @@ export function Editor() {
     </div>
   );
 }
-// NOTE_FUNCTIONAL_TOOLS

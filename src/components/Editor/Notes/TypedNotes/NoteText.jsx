@@ -1,41 +1,40 @@
+import { Editor } from "draft-js";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Editor, EditorState } from "draft-js";
 
 import "../../../../../node_modules/draft-js/dist/Draft.css";
-import "../../../../styles/textNote.css";
 import { editNote } from "../../../../store/actions/note/editNote";
 import { getNotes } from "../../../../store/selectors/note/getNotes";
-import { getSelectedNote } from "../../../../store/selectors/note/getSelectedNote";
+import { getNote } from "../../../../store/selectors/note/getNote";
 import { getSelectedNoteId } from "../../../../store/selectors/note/getSelectedNoteId";
+import "../../../../styles/textNote.css";
 
 export function NoteText(props) {
   const dispatch = useDispatch();
   const { id, title } = props.note;
 
-  const notes = useSelector((state) => getNotes(state));
-  const [textNote] = getSelectedNote(notes, id);
+  const selectedNoteId = useSelector((state) => getSelectedNoteId(state));
+  const selectedNote = useSelector(getNote(id));
 
-  const [noteEditorState, setNoteEditorState] = useState(
-    textNote?.noteEditorState
-  );
+  const [editorState, setEditorState] = useState(selectedNote?.noteEditorState);
 
-  function onChange(editorState) {
-    setNoteEditorState(editorState);
-    dispatch(editNote(id, { noteEditorState: noteEditorState }));
+  function bold() {
+    dispatch(editNote(id, { noteEditorState: 123 }));
   }
 
   return (
-    <div className="note__text text">
-      <TextNoteTitle title={title} />
-      <div className="text__line"></div>
-      <Editor
-        editorState={noteEditorState}
-        onChange={onChange}
-        placeholder="Your text..."
-        className="DraftEditor-root"
-      />
-    </div>
+    <>
+      <div className="note__text text">
+        <TextNoteTitle title={title} />
+        <div className="text__line"></div>
+        {/* <Editor
+          editorState={editorState}
+          onChange={onChange}
+          placeholder="Your text..."
+        /> */}
+      </div>
+      <button onClick={bold}>B</button>
+    </>
   );
 }
 
