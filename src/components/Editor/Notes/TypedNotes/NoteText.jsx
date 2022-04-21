@@ -1,50 +1,40 @@
-import { Editor } from "draft-js";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import { Editor } from "draft-js";
 import "../../../../../node_modules/draft-js/dist/Draft.css";
-import { editNote } from "../../../../store/actions/note/editNote";
-import { getNotes } from "../../../../store/selectors/note/getNotes";
-import { getNote } from "../../../../store/selectors/note/getNote";
-import { getSelectedNoteId } from "../../../../store/selectors/note/getSelectedNoteId";
+
 import "../../../../styles/textNote.css";
+
+import { editNote } from "../../../../store/actions/note/editNote";
+import { getSelectedNoteId } from "../../../../store/selectors/note/getSelectedNoteId";
 
 export function NoteText(props) {
   const dispatch = useDispatch();
-  const { id, title } = props.note;
+  const { id, noteEditorState } = props.note;
 
   const selectedNoteId = useSelector((state) => getSelectedNoteId(state));
-  const selectedNote = useSelector(getNote(id));
+  const isReadOnly = id === selectedNoteId;
 
-  const [editorState, setEditorState] = useState(selectedNote?.noteEditorState);
+  const [editorState, setEditorState] = useState(noteEditorState);
 
-  function bold() {
-    dispatch(editNote(id, { noteEditorState: 123 }));
+  useEffect(() => {
+    setEditorState(noteEditorState);
+  }, [noteEditorState]);
+
+  function onChange(editorState) {
+    setEditorState(editorState);
+    dispatch(editNote(selectedNoteId, { noteEditorState: editorState }));
   }
 
   return (
-    <>
-      <div className="note__text text">
-        <TextNoteTitle title={title} />
-        <div className="text__line"></div>
-        {/* <Editor
-          editorState={editorState}
-          onChange={onChange}
-          placeholder="Your text..."
-        /> */}
-      </div>
-      <button onClick={bold}>B</button>
-    </>
-  );
-}
-
-function TextNoteTitle(props) {
-  const { title } = props;
-
-  return (
-    <div className="text__title">
-      {/* <div className="text__title" contentEditable="true"></div> */}
-      {title}
+    <div className="note__text text">
+      <Editor
+        editorState={editorState}
+        onChange={onChange}
+        readOnly={!isReadOnly}
+        placeholder="Your text..."
+      />
     </div>
   );
 }

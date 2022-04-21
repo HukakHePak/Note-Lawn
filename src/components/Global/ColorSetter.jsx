@@ -6,6 +6,8 @@ import "react-color-palette/lib/css/styles.css";
 function ColorSetter({ setColor, defaultColor }) {
   const [paletteColor, setPaletteColor] = useColor("hex", defaultColor || '#fff');
   const [hiddenPalette, setHiddenPalette] = useState(true)
+
+  console.log(defaultColor)
   
   useEffect(() => {
     setColor(paletteColor.hex)

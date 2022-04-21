@@ -40,4 +40,4 @@ const paint = createDraggableTool(
   event => createNote(NOTE_TYPES.PAINT, event)
 );
 
-export const addNotesTools = [text, list, image, video];
+export const addNotesTools = [text, image, video];

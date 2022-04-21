@@ -9,7 +9,7 @@ export function BoardName({ boardId }) {
   const styleClasses = ["board-name__modal"];
   const dispatch = useDispatch();
   const board = useSelector((state) => getBoard(state, boardId));
-  const { img: defaultBackground, isRepeat: defaultIdRepeat } = board.theme.bg;
+  const { img: defaultBackground, isRepeat: defaultIdRepeat } = board.theme.link;
 
   return (
     <div className="board-name">

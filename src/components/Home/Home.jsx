@@ -14,7 +14,9 @@ import { getAppTheme } from "./../../store/selectors/appTheme";
 import Settings from "./settings/Settings";
 import useColor from "../../hooks/useColor";
 
-function Home() {
+function Home(props) {
+  const { handleRemoveConfirm } = props;
+
   const [search, setSearch] = useState("");
   const boards = useSelector(getBoadrds);
   const [boardsList, setBoardsList] = useState(boards); // вынести фильтр в редюсер
@@ -39,7 +41,11 @@ function Home() {
           </div>
           <Settings />
         </div>
-        <BoardList list={boardsList} background={theme.secondColor} />
+        <BoardList
+          list={boardsList}
+          background={theme.secondColor}
+          handleRemoveConfirm={handleRemoveConfirm}
+        />
       </div>
     </div>
   );

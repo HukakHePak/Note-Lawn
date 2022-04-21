@@ -7,11 +7,12 @@ import { ADD_BOARD } from "../actions/board/addBoard.js";
 import { CHANGE_BOARD } from "../actions/board/changeBoard.js";
 import { CHANGE_SCROLL } from "../actions/board/changeScrollPos.js";
 import { CHANGE_SCALE } from "../actions/board/changeScale.js";
+import { EDIT_BOARD } from "../actions/board/editBoard.js";
 
 const boardDefaults = {
-  size: { width: 30000, height: 30000 },
   position: { left: 0, top: 0 }, // - window.size oncreate
-  scale: 1
+  scale: 1,
+  theme: { color: "#FCF5F0", link: "https://i.pinimg.com/originals/03/42/44/034244f741ad75bd774965c7f9772879.png", isRepeat: true }
 };
 
 const defaultBoards = [
@@ -19,27 +20,36 @@ const defaultBoards = [
     id: 1,
     name: "Board 1",
     date: "08/03/2022 09:55",
-    theme: { color: "#FCF5F0", bg: { img: "", isRepeat: false } },
     ...boardDefaults
   },
   {
     id: 2,
     name: "Board 2",
     date: "08/03/2022 09:55",
-    theme: { color: "#FCF5F0", bg: { img: "", isRepeat: false } },
     ...boardDefaults
   },
   {
     id: 3,
     name: "Board 3",
     date: "08/03/2022 09:55",
-    theme: { color: "#7FFFD4", bg: { img: "", isRepeat: false } },
+    ...boardDefaults,
+  },
+  {
+    id: 4,
+    name: "Board 4",
+    date: "08/03/2022 09:55",
+    ...boardDefaults,
+  },
+  {
+    id: 5,
+    name: "Board 5",
+    date: "08/03/2022 09:55",
     ...boardDefaults
   },
 ];
 
 export function boardsReducer(state = defaultBoards, { type, payload }) {
-  
+  // console.log(state);
 
   switch (type) {
     case ADD_BOARD:
@@ -58,6 +68,7 @@ export function boardsReducer(state = defaultBoards, { type, payload }) {
 
     case CHANGE_BOARD:
     case CHANGE_SCROLL:
+    case EDIT_BOARD:
       return changeItem(state, payload.id, payload);
 
     case CHANGE_SCALE:

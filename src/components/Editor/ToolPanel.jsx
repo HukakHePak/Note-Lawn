@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/editor.css";
 
-export function ToolPanel (props) {
+export function ToolPanel(props) {
   const { tools, right } = props;
 
   return (

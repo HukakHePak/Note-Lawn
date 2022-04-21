@@ -11,7 +11,8 @@ import { getCurrentBoard } from "../../store/selectors/board/getCurrentBoard";
 import { changeScale } from "../../store/actions/board/changeScale";
 import { getNote } from "../../store/selectors/note/getNote";
 import { clearEvent } from "../../store/actions/clearEvent";
-import useColor from './../../hooks/useColor';
+import { selectEvent } from "../../store/actions/selectEvent";
+import { closeModals } from "../../store/actions/closeModals"
 
 export function Board() {
   const notes = useSelector(getNotes);
@@ -19,25 +20,29 @@ export function Board() {
   const selectedNoteId = useSelector(getSelectedNoteId);
   const dispatch = useDispatch();
   const boardNode = useRef(null);
-  const style = useColor(board.id);
+  //const style = useColor(board.id);
 
   const noteEvent = useSelector((state) => state.selects.event);
 
-  const note = useSelector(getNote(noteEvent?.target?.noteId));
+  const note = useSelector(getNote(noteEvent?.noteId));
 
-  function moveHandler({ buttons, movementX, movementY }) {
-    if (buttons !== 1) return;
+  function moveHandler(event) {
+    const { buttons, movementX, movementY } = event;
+
+    
+
+    if (buttons !== 1 && event.type !== "onTouchMove") return;
 
     if (note) {
-      const { type } = noteEvent;
+      const { type, position } = noteEvent;
 
       switch (type) {
         case "replace":
           dispatch(
             editNote(note.id, {
               position: {
-                top: note.position.top + movementY / board.scale,
-                left: note.position.left + movementX / board.scale,
+                top: note.position.top - (position.top - event.clientY) / board.scale,
+                left: note.position.left - (position.left - event.clientX) / board.scale,
               },
             })
           );
@@ -47,16 +52,20 @@ export function Board() {
           dispatch(
             editNote(note.id, {
               size: {
-                width: note.size.width + movementX / board.scale,
-                height: note.size.height + movementY / board.scale,
+                width: note.size.width - (position.left - event.clientX) / board.scale,
+                height: note.size.height - (position.top - event.clientY) / board.scale,
               },
             })
           );
+          
           break;
 
         default:
           break;
       }
+
+      
+      dispatch(selectEvent({ ...noteEvent, position: { left: event.clientX, top: event.clientY }}));
       return;
     }
 
@@ -98,10 +107,16 @@ export function Board() {
 
     dispatch(
       changeScrollPos(board.id, {
-        top: board.position.top + (clientY / scale - clientY / board.scale) //+ event.clientX / 10 * (event.deltaY % 2),
-        , left: board.position.left + (clientX / scale - clientX / board.scale)// + event.clientY / 10 * (event.deltaY % 2),
+        top: board.position.top + (clientY / scale - clientY / board.scale), //+ event.clientX / 10 * (event.deltaY % 2),
+        left: board.position.left + (clientX / scale - clientX / board.scale), // + event.clientY / 10 * (event.deltaY % 2),
       })
-    )
+    );
+  }
+
+  function mouseUpHandler(event) {
+    dispatch(clearEvent());
+    dispatch(closeModals());
+    event.stopPropagation();
   }
 
   useEffect(() => {
@@ -112,25 +127,29 @@ export function Board() {
     };
   }, [boardNode]);
 
+
   return (
     <div
-      style={{
-        width: board.width,
-        height: board.height,
-        ...style,
-      }}
       className="board"
-      onMouseMove={moveHandler}
       ref={boardNode}
-      onWheel={wheelHandler}
-      onMouseUp={(event) => {
-        dispatch(clearEvent());
-        event.stopPropagation();
+      style={{
+        backgroundImage: `url(${board.theme.link})`,
+        backgroundColor: board.theme.color,
+        backgroundPosition: (board.theme.isRepeat ? (`${board.position.left * board.scale / 2}px ${board.position.top * board.scale / 2}px`) : '0 0'),
       }}
+      
+      //onTouchStart={console.log}
+      onMouseMove={moveHandler}
+      //onTouchMove={moveHandler}
+      onWheel={wheelHandler}
+      onMouseUp={mouseUpHandler}
+      onTouchEnd={mouseUpHandler}
+      //onTouchCancel={console.log}
     >
       {notes?.map((note) => {
         const { id } = note;
         const selected = id === selectedNoteId;
+
         return (
           <NoteWrap key={id} selected={selected} note={note}>
             {CreateNote(note, selected)}
