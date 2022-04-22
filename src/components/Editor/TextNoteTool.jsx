@@ -1,8 +1,11 @@
-import { RichUtils } from "draft-js";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editNote } from "../../store/actions/note/editNote";
+
+import { RichUtils } from "draft-js";
+import "../../../node_modules/draft-js/dist/Draft.css";
+
 import { getNote } from "../../store/selectors/note/getNote";
+import { editNote } from "../../store/actions/note/editNote";
 import { getSelectedNoteId } from "../../store/selectors/note/getSelectedNoteId";
 
 export function TextNoteTool(props) {
@@ -22,8 +25,6 @@ export function TextNoteTool(props) {
     event.preventDefault();
     setEditorState(RichUtils.toggleInlineStyle(editorState, inlineStyle));
 
-    console.log(inlineStyle);
-
     dispatch(editNote(selectedNoteId, { noteEditorState: editorState }));
   }
 
@@ -32,7 +33,7 @@ export function TextNoteTool(props) {
       className="tool-item"
       title={title}
       style={{ backgroundImage: `url(${icon})` }}
-      onMouseDown={onStyleClick}
+      onMouseDown={(event) => onStyleClick(event)}
     >
       {option}
     </div>
