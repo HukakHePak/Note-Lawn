@@ -3,15 +3,15 @@ import SettingsModal from "./SettingsModal";
 
 
 function Settings() {
-  const [showMohal, setShowMohal] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   return (
     <div className="setting">
       <button
         className="setting-btn"
-        onClick={() => setShowMohal(!showMohal)}
+        onClick={() => setShowModal(!showModal)}
       ></button>
-      <SettingsModal showMohal={showMohal} />
+      <SettingsModal showModal={showModal} />
     </div>
   );
 }

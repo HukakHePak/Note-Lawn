@@ -1,7 +1,7 @@
 export function getCreatedDate() {
   const date = new Date()
   const formatTime = getTime(date.getHours(), date.getMinutes())
-  const formatDate = getDate(date.getDate(), date.getMonth(), date.getFullYear())
+  const formatDate = getDate(date.getDate(), date.getMonth() + 1, date.getFullYear())
   return `${formatDate} ${formatTime}`
 }
 

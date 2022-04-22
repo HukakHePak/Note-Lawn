@@ -18,7 +18,7 @@ export function Editor() {
       <ToolPanel tools={selectTools()} />
       <ToolPanel tools={selectTools(NOTE_TYPES.TEXT)} right />
       <Board />
-      <BoardName />
+      <BoardName boardId={board.id}/>
     </div>
   );
 }
