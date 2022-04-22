@@ -30,6 +30,11 @@ button {
   cursor: pointer;
 }
 
+::placeholder {
+  color: inherit;
+  opacity: 0.6;
+}
+
 #root {
   height: 100%;
 }

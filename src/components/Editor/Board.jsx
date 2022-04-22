@@ -14,6 +14,7 @@ import { clearEvent } from "../../store/actions/clearEvent";
 import { selectEvent } from "../../store/actions/selectEvent";
 import { closeModals } from "../../store/actions/closeModals"
 import { selectNote } from "../../store/actions/note/selectNote";
+import { themeToStyle } from "../../tools/themeToStyle";
 
 export function Board() {
   const notes = useSelector(getNotes);
@@ -135,8 +136,7 @@ export function Board() {
       className="board"
       ref={boardNode}
       style={{
-        backgroundImage: `url(${board.theme.link})`,
-        backgroundColor: board.theme.color,
+        ...themeToStyle(board.theme),
         backgroundPosition: (board.theme.isRepeat ? (`${board.position.left * board.scale / 2}px ${board.position.top * board.scale / 2}px`) : '0 0'),
       }}
       

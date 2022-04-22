@@ -34,7 +34,7 @@ const defaultState = [
     title: "nice title",
     noteEditorState: EditorState.createEmpty(),
     content: "nice content",
-    theme: { color: "#98FB98", bg: { img: "", isRepeat: false } },
+    theme: { color: "#98FB98", link: '', isRepeat: false },
   },
   {
     type: NOTE_TYPES.TEXT,

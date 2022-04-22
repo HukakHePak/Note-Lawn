@@ -9,13 +9,14 @@ export function ToolItem(props) {
 
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
+  const {mainColor} = getAppTheme(state);
 
   return (
     <div
       className="tool-item"
       title={title}
-      onClick={(event) => action && dispatch(action(event))}
-      style={{ fill: fontColorContrast(getAppTheme(state).mainColor) }} // make background from mainTheme
+      onClick={(event) => action && dispatch(action(event, state))}
+      style={{ fill: fontColorContrast(mainColor), background: mainColor }} // make background from mainTheme
       draggable={draggable}
       onDragEnd={(event) => action && dispatch(action(event))}
     >

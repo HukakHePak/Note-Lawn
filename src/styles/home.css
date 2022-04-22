@@ -75,26 +75,6 @@
   padding: 10px 25px;
 }
 
-.home__search-input::-webkit-input-placeholder {
-  color: inherit;
-  opacity: 0.6;
-}
-
-.home__search-input:-ms-input-placeholder {
-  color: inherit;
-  opacity: 0.6;
-}
-
-.home__search-input::-ms-input-placeholder {
-  color: inherit;
-  opacity: 0.6;
-}
-
-.home__search-input::placeholder {
-  color: inherit;
-  opacity: 0.6;
-}
-
 .home__search-ico {
   position: absolute;
   right: 0;

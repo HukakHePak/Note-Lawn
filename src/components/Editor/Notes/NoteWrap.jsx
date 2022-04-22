@@ -4,17 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCurrentBoard } from "../../../store/selectors/board/getCurrentBoard";
 import { selectNote } from "../../../store/actions/note/selectNote";
 import { selectEvent } from "../../../store/actions/selectEvent";
+import { themeToStyle } from "../../../tools/themeToStyle";
 
 export function NoteWrap(props) {
   const { selected, children, note } = props;
-  const { id, size } = props.note;
+  const { id, size, theme } = props.note;
 
   const { scale, position } = useSelector(getCurrentBoard);
   const dispatch = useDispatch();
 
   function mouseDownHandler(event) {
     if(selected) return;
-    
+
     dispatch(
       selectEvent({
         noteId: id,
@@ -63,6 +64,7 @@ export function NoteWrap(props) {
         top: (note.position.top + position.top) * scale,
         width: size.width * scale,
         height: size.height * scale,
+        ...themeToStyle(theme)
       }}
       onMouseDown={mouseDownHandler}
       onMouseUp={(event) => selected && event.stopPropagation()}

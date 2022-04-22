@@ -1,4 +1,5 @@
 import { defaultSize } from "../../reducers/notesReducer";
+import { getAppTheme } from "../../selectors/appTheme";
 import { getCurrentBoard } from "../../selectors/board/getCurrentBoard";
 import { Action } from "../Action";
 
@@ -7,12 +8,14 @@ export const CREATE_NOTE = "createNote";
 export function createNote(type, event) {
   return (dispatch, getState) => {
     const { id, position, scale } = getCurrentBoard(getState());
+    const secondColor = getAppTheme(getState());
     const { left, top } = position;
 
     dispatch(
       Action(CREATE_NOTE, {
         type,
         boardId: id,
+        theme: { color: secondColor},
         position:
           event.type === "click"
             ? {

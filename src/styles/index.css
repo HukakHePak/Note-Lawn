@@ -30,6 +30,26 @@ button {
   cursor: pointer;
 }
 
+::-webkit-input-placeholder {
+  color: inherit;
+  opacity: 0.6;
+}
+
+:-ms-input-placeholder {
+  color: inherit;
+  opacity: 0.6;
+}
+
+::-ms-input-placeholder {
+  color: inherit;
+  opacity: 0.6;
+}
+
+::placeholder {
+  color: inherit;
+  opacity: 0.6;
+}
+
 #root {
   height: 100%;
 }
