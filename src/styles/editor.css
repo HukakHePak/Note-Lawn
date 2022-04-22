@@ -13,22 +13,14 @@
 
 .board-name {
   position: fixed;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  left: 20px;
   top: 20px;
 }
 
 .board-name__btn {
-  font-size: 20px;
-  line-height: 40px;
+  font-size: 24px;
+  line-height: 32px;
   cursor: pointer;
-}
-
-.board-name__modal {
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
 }
 
 .tool-panel {
@@ -111,6 +103,13 @@
 }
 
 .note-item__img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.note-item--image {
   width: 100%;
   height: 100%;
 }

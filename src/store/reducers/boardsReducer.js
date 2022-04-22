@@ -12,38 +12,14 @@ import { EDIT_BOARD } from "../actions/board/editBoard.js";
 const boardDefaults = {
   position: { left: 0, top: 0 }, // - window.size oncreate
   scale: 1,
-  theme: { color: "#FCF5F0", link: "https://i.pinimg.com/originals/03/42/44/034244f741ad75bd774965c7f9772879.png", isRepeat: true }
 };
 
 const defaultBoards = [
   {
     id: 1,
-    name: "Board 1",
+    name: "Thanks to the team",
     date: "08/03/2022 09:55",
-    ...boardDefaults
-  },
-  {
-    id: 2,
-    name: "Board 2",
-    date: "08/03/2022 09:55",
-    ...boardDefaults
-  },
-  {
-    id: 3,
-    name: "Board 3",
-    date: "08/03/2022 09:55",
-    ...boardDefaults,
-  },
-  {
-    id: 4,
-    name: "Board 4",
-    date: "08/03/2022 09:55",
-    ...boardDefaults,
-  },
-  {
-    id: 5,
-    name: "Board 5",
-    date: "08/03/2022 09:55",
+    theme: { color: "#FCF5F0", link: "https://i.pinimg.com/originals/03/42/44/034244f741ad75bd774965c7f9772879.png", isRepeat: true },
     ...boardDefaults
   },
 ];

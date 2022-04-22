@@ -8,14 +8,14 @@ export const CREATE_NOTE = "createNote";
 export function createNote(type, event) {
   return (dispatch, getState) => {
     const { id, position, scale } = getCurrentBoard(getState());
-    const secondColor = getAppTheme(getState());
+    const {secondColor} = getAppTheme(getState());
     const { left, top } = position;
 
     dispatch(
       Action(CREATE_NOTE, {
         type,
         boardId: id,
-        theme: { color: secondColor},
+        theme: { color: secondColor },
         position:
           event.type === "click"
             ? {

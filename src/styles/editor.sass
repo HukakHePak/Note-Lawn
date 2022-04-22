@@ -17,17 +17,14 @@ $toolsGap: 8px
 
     &-name
         position: fixed
-        left: 50%
-        transform: translateX(-50%)
+        left: 20px
         top: 20px
 
         &__btn
-            font-size: $toolsSize / 2
-            line-height: $toolsSize
+            font-size: 24px
+            line-height: 32px
             cursor: pointer
-        &__modal
-            left: 50%
-            transform: translateX(-50%)
+
 .tool-panel
     position: fixed
     top: 50%
@@ -88,6 +85,11 @@ $toolsGap: 8px
         z-index: 10
 
         &__img
+            width: 100%
+            height: 100%
+            object-fit: cover
+
+        &--image
             width: 100%
             height: 100%
 

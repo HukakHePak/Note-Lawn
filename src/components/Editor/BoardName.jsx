@@ -3,6 +3,7 @@ import { SmallModal } from "../Global/SmallModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getBoard } from "../../store/selectors/existenceBoards";
 import { changeBoard } from "../../store/actions/board/changeBoard";
+import fontColorContrast from "font-color-contrast";
 
 export function BoardName({ boardId }) {
   const [hiddenModal, setHiddenModal] = useState(false);
@@ -16,6 +17,7 @@ export function BoardName({ boardId }) {
       <button
         className="board-name__btn"
         onClick={() => setHiddenModal(!hiddenModal)}
+        style={{color: fontColorContrast(board.theme.color)}}
       >
         {board.name}
       </button>

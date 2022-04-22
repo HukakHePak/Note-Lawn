@@ -6,16 +6,11 @@ import { NOTE_TYPES } from "../../components/Editor/Notes/TypedNotes/CreateNote"
 import { changeItem } from "../../tools/immutable/list/changeItem";
 import { removeItem } from "../../tools/immutable/list/removeItem";
 
-import { EditorState } from "draft-js";
+import { EditorState, ContentState } from "draft-js";
 
 export const defaultSize = {
   width: 300,
   height: 300,
-};
-
-const defaultPosition = {
-  top: 500,
-  left: 500,
 };
 
 const defaultState = [
@@ -24,34 +19,53 @@ const defaultState = [
     id: 1,
     boardId: 1,
     position: {
-      top: 200,
+      top: 300,
       left: 200,
     },
     size: {
-      width: 400,
-      height: 500,
+      width: 300,
+      height: 300,
     },
-    title: "nice title",
-    noteEditorState: EditorState.createEmpty(),
-    content: "nice content",
-    theme: { color: "#98FB98", link: '', isRepeat: false },
+    noteEditorState: EditorState.createWithContent(
+      ContentState.createFromText(
+        "I want to thank the guys for their help in writing the project. It was nice to have a good time!"
+      )
+    ),
+    theme: { color: "#FCF5F0", link: "", isRepeat: false },
   },
   {
     type: NOTE_TYPES.TEXT,
     id: 2,
     boardId: 1,
     position: {
-      top: 600,
-      left: 800,
+      top: 100,
+      left: 600,
+    },
+    size: {
+      width: 250,
+      height: 220,
+    },
+    noteEditorState: EditorState.createWithContent(
+      ContentState.createFromText(
+        "\n  Malivartti\n\n  Ruslan5787\n\n  karaell"
+      )
+    ),
+    theme: { color: "#FCF5F0", link: "", isRepeat: false },
+  },
+  {
+    type: NOTE_TYPES.IMAGE,
+    id: 3,
+    boardId: 1,
+    position: {
+      top: 400,
+      left: 600,
     },
     size: {
       width: 350,
       height: 300,
     },
-    title: "nice title",
-    noteEditorState: EditorState.createEmpty(),
-    content: "nice content",
-    theme: { color: "#98FB98", bg: { img: "", isRepeat: false } },
+    link: "https://data.whicdn.com/images/322212937/original.gif",
+    theme: { color: "#FCF5F0", link: "", isRepeat: false },
   },
 ];
 
@@ -65,10 +79,9 @@ export function notesReducer(state = defaultState, action) {
         {
           id: uniqid(),
           size: defaultSize,
-          theme: { color: "#98FB98", bg: { img: "", isRepeat: false } },
-          position: defaultPosition,
-          boardId: 1,
+          position: { left: 0, top: 0 },
           noteEditorState: EditorState.createEmpty(),
+          theme: { color: "#FCF5F0", link: "", isRepeat: false },
           ...payload,
         },
       ];

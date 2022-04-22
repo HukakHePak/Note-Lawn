@@ -6,7 +6,7 @@ $selectColor: rgba(102, 228, 102, 0.382);
     // min-height: 300px;
     position: fixed;
 
-    > div {
+    >div {
         width: 100%;
         height: 100%;
         position: relative;
@@ -43,8 +43,10 @@ $selectColor: rgba(102, 228, 102, 0.382);
     right: 0;
     background: transparent;
     border-radius: 100%;
+    z-index: 20;
 
     &:hover {
-        background: $selectColor;
+        background: white;
+        mix-blend-mode: difference;
     }
 }
