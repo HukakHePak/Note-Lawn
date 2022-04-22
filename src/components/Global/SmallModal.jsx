@@ -1,45 +1,35 @@
 import React, { useState } from "react";
-import { ColorBackgroundSetterWrapper } from './ColorBackgroundSetterWrapper';
+import { ColorCircle } from './ColorCircle';
 
 
-export function SmallModal({ hiddenModal, action, styleClasses, placeholderText, buttonText }) {
-  const [boardColor, setBoardColor] = useState("");
-  const [value, setValue] = useState("");
-  const [background, setBackground] = useState(null)
-  const [isRepeat, setIsRepeat] = useState(false)
+
+export function SmallModal({ hiddenModal, action, filler, defaults = { name: '', color: '', link: '', isRepeat: false } }) {
+  const [value, setValue] = useState(defaults.name);
+  const [theme, setTheme] = useState({})
 
 
   let styleClassString = "small-modal";
-  for (const styleClass in styleClasses) {
-    styleClassString += " " + styleClasses[styleClass];
-  }
 
   function addBoardToStore(e) {
     e.preventDefault()
-    action(value, boardColor, background, isRepeat)
-    hiddenModal()
+    if (value) {
+      action(value, theme.color, theme.link, theme.isRepeat)
+      hiddenModal()
+    }
   }
 
   return (
-    <div className={styleClassString}>
+    <div className={`${styleClassString} ${filler.styleClass}`}>
       <form className="small-modal__form" onSubmit={e => e.preventDefault()}>
         <input
           className="small-modal__input"
-          placeholder={placeholderText}
+          placeholder={filler.inputPlaceholder}
           value={value}
           onChange={e => setValue(e.target.value)}
         />
         <div className="small-modal__wrapper">
-          <button className="small-modal__btn" onClick={addBoardToStore}>{buttonText}</button>
-          <ColorBackgroundSetterWrapper
-            text="Color"
-            setColor={setBoardColor}
-            defaultColor={boardColor}
-            setBackground={setBackground}
-            setIsRepeat={setIsRepeat}
-            defaultBackground={background}
-            defaultIsRepeat={isRepeat}
-          />
+          <button className="small-modal__btn" onClick={addBoardToStore}>{filler.buttonText}</button>
+          <ColorCircle defaults={defaults} hasLink={true} onChange={setTheme} active={false} />
         </div>
       </form>
     </div>

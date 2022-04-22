@@ -31,7 +31,7 @@ export function ColorCircle(props) {
         return;
       }
     }
-  });
+  }, [paletteColor.hex, backgroundValue, isRepeatValue]);
 
   return (
     <div className="color-circle">

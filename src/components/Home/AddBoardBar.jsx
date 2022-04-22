@@ -4,9 +4,14 @@ import { SmallModal } from "../Global/SmallModal"
 import { useDispatch } from 'react-redux';
 import { addBoard } from "../../store/actions/board/addBoard";
 
+const filler = {
+  styleClass: 'new-board-modal',
+  inputPlaceholder: 'Name...',
+  buttonText: 'Create'
+}
+
 export function AddBoardBar({background}) {
   const [hiddenModal, setHiddenModal] = useState(false);
-  const styleClasses = ['new-board-modal']
   const dispatch = useDispatch()
 
   return (
@@ -21,9 +26,7 @@ export function AddBoardBar({background}) {
       {hiddenModal && <SmallModal
         hiddenModal={() => setHiddenModal(false)}
         action={(...args) => dispatch(addBoard(...args))}
-        styleClasses={styleClasses}
-        placeholderText="Name..."
-        buttonText="Create"
+        filler={filler}
       />}
     </div>
   );

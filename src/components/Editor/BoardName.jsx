@@ -2,14 +2,24 @@ import React, { useState } from "react";
 import { SmallModal } from "../Global/SmallModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getBoard } from "../../store/selectors/existenceBoards";
-import { changeBoard } from "../../store/actions/board/changeBoard";
+import { editBoard } from "../../store/actions/board/editBoard";
+
+const filler = {
+  styleClass: 'board-name__modal',
+  inputPlaceholder: 'New board name',
+  buttonText: 'Change'
+}
 
 export function BoardName({ boardId }) {
-  const [hiddenModal, setHiddenModal] = useState(false);
-  const styleClasses = ["board-name__modal"];
-  const dispatch = useDispatch();
   const board = useSelector((state) => getBoard(state, boardId));
-  const { img: defaultBackground, isRepeat: defaultIdRepeat } = board.theme.link;
+  const [hiddenModal, setHiddenModal] = useState(false);
+  const defaults = {
+    name: board.name,
+    color: board.theme.color,
+    link: board.theme.link,
+    isRepeat: board.theme.isRepeat,
+  }
+  const dispatch = useDispatch();
 
   return (
     <div className="board-name">
@@ -22,13 +32,9 @@ export function BoardName({ boardId }) {
       {hiddenModal && (
         <SmallModal
           hiddenModal={() => setHiddenModal(false)}
-          action={(...args) => dispatch(changeBoard(boardId, ...args))}
-          defaultColor={board.theme.color}
-          defaultBackground={defaultBackground}
-          defaultIdRepeat={defaultIdRepeat}
-          styleClasses={styleClasses}
-          placeholderText="New board name"
-          buttonText="Change"
+          action={(...args) => dispatch(editBoard(boardId, ...args))}
+          filler={filler}
+          defaults={defaults}
         />
       )}
     </div>

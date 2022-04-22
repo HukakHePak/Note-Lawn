@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import "../../styles/home.css";
-import FavoriteNoteList from "./FavoriteNoteList";
 import SearchBar from "./SearchBar";
 import BoardList from "./BoardList";
-import { AddBoardBar } from "./AddBoardBar";
-import {
-  getBoadrds,
-  getCurrentBoardId,
-  getFavoriteNotes,
-} from "../../store/selectors/existenceBoards";
-import { getAppTheme } from "./../../store/selectors/appTheme";
 import Settings from "./settings/Settings";
-import useColor from "../../hooks/useColor";
+import { AddBoardBar } from "./AddBoardBar";
+import { getBoadrds, } from "../../store/selectors/existenceBoards";
+import { getAppTheme } from "./../../store/selectors/appTheme";
+
 
 function Home(props) {
   const { handleRemoveConfirm } = props;
@@ -21,7 +16,7 @@ function Home(props) {
   const boards = useSelector(getBoadrds);
   const [boardsList, setBoardsList] = useState(boards); // вынести фильтр в редюсер
   const theme = useSelector(getAppTheme);
-  const style = useColor(useSelector(getCurrentBoardId));
+  const style = (theme.link ? `url(${theme.link}) ${theme.isRepeat ? 'repeat' : 'center / cover no-repeat'}, ` : '') + theme.main
 
   useEffect(() => {
     setBoardsList(
@@ -32,22 +27,26 @@ function Home(props) {
   }, [search, boards]);
 
   return (
-    <div className="home" style={style}>
+    <div className="home" style={
+      {
+        background: style
+      }
+    }>
       <div className="home__wrapper">
         <div className="home__top">
           <div className="home__top-search">
             <AddBoardBar />
-            <SearchBar setSearch={setSearch} background={theme.secondColor} />
+            <SearchBar setSearch={setSearch} background={theme.second} />
           </div>
           <Settings />
         </div>
         <BoardList
           list={boardsList}
-          background={theme.secondColor}
+          background={theme.second}
           handleRemoveConfirm={handleRemoveConfirm}
         />
       </div>
-    </div>
+    </div >
   );
 }
 
