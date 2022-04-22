@@ -1,7 +1,7 @@
 $mainColor: #FCF5F0
 $additionalColor: #F5DECE
 $toolsSize: 40px
-$toolsBack: $toolsSize - 15px
+$toolsBack: $toolsSize - 10px
 $toolsGap: 8px
 
 .editor
@@ -11,7 +11,7 @@ $toolsGap: 8px
 
 .board
     height: 100%
-    width: 100% 
+    width: 100%
     position: relative
     overflow: hidden
 
@@ -43,26 +43,19 @@ $toolsGap: 8px
 
 .tool-item
     background-color: $additionalColor
-    background-repeat: no-repeat
-    background-size: $toolsBack $toolsBack
-    background-position: center center
     width: $toolsSize
     height: $toolsSize
+    display: flex
     border: none
     cursor: pointer
 
-    & .circle
+    & > *
         margin: auto
         width: $toolsBack
         height: $toolsBack
-        outline: $toolsGap / 3 solid black
-        border: none
-        border-radius: 100%
 
-    & > div
-        width: 100%
-        height: 100%
-        display: flex
+    & > svg
+        fill: inherit
 
 .loading-link-modal
     width: 100%

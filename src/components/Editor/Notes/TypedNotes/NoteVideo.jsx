@@ -3,7 +3,7 @@ import YouTube from "react-youtube";
 import { NoteMedia } from "../NoteMedia";
 
 export function NoteVideo(props) {
-  const { src, isSelected } = props.note;
+  const { link, isSelected } = props.note;
 
   // const videoId = src.slice(-11);
   
@@ -22,7 +22,7 @@ export function NoteVideo(props) {
   }
 
   return (
-    <NoteMedia isSelected={isSelected}>
+    <NoteMedia isSelected={isSelected} note={props.note}>
       <div className="note-item note-item--video">
         <YouTube
           videoId={'8LgNa7yRW3M'}

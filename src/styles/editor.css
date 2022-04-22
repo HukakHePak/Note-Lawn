@@ -54,30 +54,23 @@
 
 .tool-item {
   background-color: #F5DECE;
-  background-repeat: no-repeat;
-  background-size: 25px 25px;
-  background-position: center center;
   width: 40px;
   height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   border: none;
   cursor: pointer;
 }
 
-.tool-item .circle {
+.tool-item > * {
   margin: auto;
-  width: 25px;
-  height: 25px;
-  outline: 2.66667px solid black;
-  border: none;
-  border-radius: 100%;
+  width: 30px;
+  height: 30px;
 }
 
-.tool-item > div {
-  width: 100%;
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.tool-item > svg {
+  fill: inherit;
 }
 
 .loading-link-modal {

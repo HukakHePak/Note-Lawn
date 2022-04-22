@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ColorPicker, useColor } from "react-color-palette";
 import "react-color-palette/lib/css/styles.css";
 import { ReactComponent as Repeat } from "../../img/repeat.svg";
+import fontColorContrast from "font-color-contrast";
 
 export function ColorCircle(props) {
   const { defaults, hasLink, onChange, active, onClick } = props;
@@ -44,6 +45,7 @@ export function ColorCircle(props) {
         style={{
           backgroundImage: `url(${backgroundValue})`, // replace into stylize func
           backgroundColor: paletteColor.hex,
+          borderColor: fontColorContrast(paletteColor.hex)
         }}
       ></div>
       {!hiddenPalette && (

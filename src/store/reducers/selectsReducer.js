@@ -8,7 +8,7 @@ import { SELECT_NOTE_EVENT } from "../actions/selectEvent";
 const defaultState = { boardId: null, noteId: null, event: null, modals: {} };
 
 export function selectsReducer(state = defaultState, { type, payload }) {
-  //console.log(payload);
+  console.log(payload);
   switch (type) {
     case SELECT_BOARD:
     case SELECT_NOTE:

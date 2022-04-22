@@ -13,7 +13,15 @@ export function NoteWrap(props) {
   const dispatch = useDispatch();
 
   function mouseDownHandler(event) {
-    dispatch(selectEvent({ noteId: id, type: "replace", position: { left: event.clientX, top: event.clientY }}));
+    if(selected) return;
+    
+    dispatch(
+      selectEvent({
+        noteId: id,
+        type: "replace",
+        position: { left: event.clientX, top: event.clientY },
+      })
+    );
     event.stopPropagation();
   }
 
@@ -22,29 +30,28 @@ export function NoteWrap(props) {
   }
 
   function buttonClickHandler(event) {
-    dispatch(selectEvent({ noteId: id , type: "resize", position: { left: event.clientX, top: event.clientY }}));
+    if(selected) return;
+
+    dispatch(
+      selectEvent({
+        noteId: id,
+        type: "resize",
+        position: { left: event.clientX, top: event.clientY },
+      })
+    );
     event.stopPropagation();
   }
 
-  // function doubleTouchHandler() {
-  //   let time = null;
-
-  //   return () => {
-  //     if(time) {
-  //       if(Date.now() - time < 700) {
-  //         doubleClickHandler();
-  //       }
-  //       time = null;
-  //       return;
-  //     }
-  //     time = Date.now();
-  //   }
-  // }
-
   function touchHandler(event) {
-    console.log('touch')
+    console.log("touch");
     const touch = event.touches[0];
-    dispatch(selectEvent({ noteId: id, type: "replace", position: { left: touch.clientX, top: touch.clientY }}));
+    dispatch(
+      selectEvent({
+        noteId: id,
+        type: "replace",
+        position: { left: touch.clientX, top: touch.clientY },
+      })
+    );
     event.stopPropagation();
   }
 
@@ -58,17 +65,20 @@ export function NoteWrap(props) {
         height: size.height * scale,
       }}
       onMouseDown={mouseDownHandler}
-      onTouchStart={touchHandler}
+      onMouseUp={(event) => selected && event.stopPropagation()}
+      //onTouchStart={touchHandler}
       onDoubleClick={doubleClickHandler}
     >
-      <div style={{ fontSize: `calc(100% * ${scale})`, overflow: 'hidden' }}>{children}</div>
+      <div style={{ fontSize: `calc(100% * ${scale})`, overflow: "hidden" }}>
+        {children}
+      </div>
       <button
         className="resize-btn tool-item"
         style={{
           transform: `translate(50%) translateY(50%)`,
         }}
         onMouseDown={buttonClickHandler}
-        onTouchStart={touchHandler}
+        //onTouchStart={touchHandler}
       />
     </div>
   );

@@ -13,6 +13,7 @@ import { getNote } from "../../store/selectors/note/getNote";
 import { clearEvent } from "../../store/actions/clearEvent";
 import { selectEvent } from "../../store/actions/selectEvent";
 import { closeModals } from "../../store/actions/closeModals"
+import { selectNote } from "../../store/actions/note/selectNote";
 
 export function Board() {
   const notes = useSelector(getNotes);
@@ -116,6 +117,7 @@ export function Board() {
   function mouseUpHandler(event) {
     dispatch(clearEvent());
     dispatch(closeModals());
+    dispatch(selectNote(null));
     event.stopPropagation();
   }
 
