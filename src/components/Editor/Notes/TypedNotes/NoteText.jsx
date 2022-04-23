@@ -8,23 +8,20 @@ import "../../../../styles/textNote.css";
 
 import { editNote } from "../../../../store/actions/note/editNote";
 import { getSelectedNoteId } from "../../../../store/selectors/note/getSelectedNoteId";
+import EditorState from "draft-js/lib/EditorState";
+import { convertToRaw } from "draft-js";
+import { convertFromRaw } from "draft-js";
 
 export function NoteText(props) {
   const dispatch = useDispatch();
-  const { id, noteEditorState } = props.note;
+  const { id, rawState } = props.note;
 
-  const selectedNoteId = useSelector((state) => getSelectedNoteId(state));
-  const isReadOnly = id === selectedNoteId;
-
-  const [editorState, setEditorState] = useState(noteEditorState);
-
-  useEffect(() => {
-    setEditorState(noteEditorState);
-  }, [noteEditorState]);
+  const [editorState, setEditorState] = useState(EditorState.createWithContent(convertFromRaw(rawState)));
 
   function onChange(editorState) {
     setEditorState(editorState);
-    dispatch(editNote(selectedNoteId, { noteEditorState: editorState }));
+
+    dispatch(editNote(id, { rawState: convertToRaw(editorState.getCurrentContent()) }));
   }
 
   return (
@@ -32,7 +29,7 @@ export function NoteText(props) {
       <Editor
         editorState={editorState}
         onChange={onChange}
-        readOnly={!isReadOnly}
+        readOnly={!props.editable}
         placeholder="Your text..."
       />
     </div>

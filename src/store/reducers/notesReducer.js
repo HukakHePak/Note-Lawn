@@ -6,12 +6,20 @@ import { NOTE_TYPES } from "../../components/Editor/Notes/TypedNotes/CreateNote"
 import { changeItem } from "../../tools/immutable/list/changeItem";
 import { removeItem } from "../../tools/immutable/list/removeItem";
 
-import { EditorState, ContentState } from "draft-js";
+import { ContentState } from "draft-js";
+import { storage } from "../storage";
+import { convertToRaw } from "draft-js";
 
 export const defaultSize = {
   width: 300,
   height: 300,
 };
+
+const defaultTheme = { color: "#FCF5F0", link: "", isRepeat: false };
+
+function createText(text) {
+  return convertToRaw(ContentState.createFromText(text));
+}
 
 const defaultState = [
   {
@@ -26,12 +34,10 @@ const defaultState = [
       width: 300,
       height: 300,
     },
-    noteEditorState: EditorState.createWithContent(
-      ContentState.createFromText(
-        "I want to thank the guys for their help in writing the project. It was nice to have a good time!"
-      )
+    rawState: createText(
+      "I want to thank the guys for their help in writing the project. It was nice to have a good time!"
     ),
-    theme: { color: "#FCF5F0", link: "", isRepeat: false },
+    theme: defaultTheme,
   },
   {
     type: NOTE_TYPES.TEXT,
@@ -45,12 +51,8 @@ const defaultState = [
       width: 250,
       height: 220,
     },
-    noteEditorState: EditorState.createWithContent(
-      ContentState.createFromText(
-        "\n  Malivartti\n\n  Ruslan5787\n\n  karaell"
-      )
-    ),
-    theme: { color: "#FCF5F0", link: "", isRepeat: false },
+    rawState: createText("\n  Malivartti\n\n  Ruslan5787\n\n  karaell"),
+    theme: defaultTheme,
   },
   {
     type: NOTE_TYPES.IMAGE,
@@ -65,11 +67,14 @@ const defaultState = [
       height: 300,
     },
     link: "https://data.whicdn.com/images/322212937/original.gif",
-    theme: { color: "#FCF5F0", link: "", isRepeat: false },
+    theme: defaultTheme,
   },
 ];
 
-export function notesReducer(state = defaultState, action) {
+//storage.remove('notes');
+console.log(storage.get("notes"));
+
+export function notesReducer(state = storage.get("notes") || defaultState, action) {
   const { type, payload } = action;
 
   switch (type) {
@@ -80,8 +85,8 @@ export function notesReducer(state = defaultState, action) {
           id: uniqid(),
           size: defaultSize,
           position: { left: 0, top: 0 },
-          noteEditorState: EditorState.createEmpty(),
-          theme: { color: "#FCF5F0", link: "", isRepeat: false },
+          rawState: convertToRaw(ContentState.createFromText('')),
+          theme: defaultTheme,
           ...payload,
         },
       ];
@@ -95,4 +100,11 @@ export function notesReducer(state = defaultState, action) {
     default:
       return state;
   }
+}
+
+export function notes(state, payload) {
+  const _state = notesReducer(state, payload);
+
+  storage.set("notes", _state);
+  return _state;
 }

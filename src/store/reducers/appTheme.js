@@ -1,4 +1,5 @@
 import { SET_BACKGROUND, SET_CURRENT_THEME } from "../actions/appTheme"
+import { storage } from "../storage"
 
 
 const defaultState = {
@@ -6,7 +7,7 @@ const defaultState = {
   background: {img: '', isRepeat: false}
 }
 
-export const appTheme = (state = defaultState, action) => {
+export const appThemeReducer = (state = storage.get('theme') || defaultState, action) => {
   switch (action.type) {
     case SET_CURRENT_THEME:
       return { ...state, appTheme: { mainColor: action.mainColor, secondColor: action.secondColor } }
@@ -15,4 +16,12 @@ export const appTheme = (state = defaultState, action) => {
     default:
       return state
   }
+}
+
+
+export function appTheme(state, payload) {
+  const _state = appThemeReducer(state, payload);
+
+  storage.set('theme', _state);
+  return _state;
 }
