@@ -14,7 +14,7 @@ export function NoteWrap(props) {
   const dispatch = useDispatch();
 
   function mouseDownHandler(event) {
-    if(selected) return;
+    if (selected) return;
 
     dispatch(
       selectEvent({
@@ -31,26 +31,13 @@ export function NoteWrap(props) {
   }
 
   function buttonClickHandler(event) {
-    if(selected) return;
+    if (selected) return;
 
     dispatch(
       selectEvent({
         noteId: id,
         type: "resize",
         position: { left: event.clientX, top: event.clientY },
-      })
-    );
-    event.stopPropagation();
-  }
-
-  function touchHandler(event) {
-    console.log("touch");
-    const touch = event.touches[0];
-    dispatch(
-      selectEvent({
-        noteId: id,
-        type: "replace",
-        position: { left: touch.clientX, top: touch.clientY },
       })
     );
     event.stopPropagation();
@@ -64,23 +51,19 @@ export function NoteWrap(props) {
         top: (note.position.top + position.top) * scale,
         width: size.width * scale,
         height: size.height * scale,
-        ...themeToStyle(theme)
+        ...themeToStyle(theme),
+        outlineColor: theme.color,
       }}
       onMouseDown={mouseDownHandler}
       onMouseUp={(event) => selected && event.stopPropagation()}
-      //onTouchStart={touchHandler}
       onDoubleClick={doubleClickHandler}
     >
       <div style={{ fontSize: `calc(100% * ${scale})`, overflow: "hidden" }}>
         {children}
       </div>
       <button
-        className="resize-btn tool-item"
-        style={{
-          transform: `translate(50%) translateY(50%)`,
-        }}
+        className="resize-btn"
         onMouseDown={buttonClickHandler}
-        //onTouchStart={touchHandler}
       />
     </div>
   );

@@ -71,9 +71,6 @@ const defaultState = [
   },
 ];
 
-//storage.remove('notes');
-console.log(storage.get("notes"));
-
 export function notesReducer(state = storage.get("notes") || defaultState, action) {
   const { type, payload } = action;
 

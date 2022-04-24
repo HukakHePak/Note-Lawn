@@ -1,48 +1,39 @@
-import React, { useState, useEffect } from "react";
-import { ColorSetterWrapper } from "../../Global/ColorSetterWrapper";
+import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentTheme } from '../../../store/actions/appTheme.js'
-import { getAppTheme, getAppBackgound } from './../../../store/selectors/appTheme';
-import { setBackgroundData } from '../../../store/actions/appTheme.js'
-import { ColorBackgroundSetterWrapper } from './../../Global/ColorBackgroundSetterWrapper';
+import { getAppColors, getAppBackground } from './../../../store/selectors/appTheme';
+import { setBackgroundData, setMainColor, setSecondColor } from '../../../store/actions/appTheme.js'
+import { ColorCircle } from './../../Global/ColorCircle';
+import fontColorContrast from "font-color-contrast";
 
 
-function SettingsModal({ showMohal }) {
-  const [mainColor, setMainColor] = useState("");
-  const [secondColor, setSecondColor] = useState("");
-  const [background, setBackground] = useState(null)
-  const [isRepeat, setIsRepeat] = useState(false)
-  const colorApp = useSelector(getAppTheme)
-  const {img: defaultBackground, isRepeat: defaultIsRepeat} = useSelector(getAppBackgound)
-  const dispatch = useDispatch()
+function SettingsModal() {
+  const color = useSelector(getAppColors);
+  const { link, isRepeat } = useSelector(getAppBackground);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (mainColor || secondColor) dispatch(setCurrentTheme(mainColor, secondColor))
-  }, [dispatch, mainColor, secondColor])
+  const defaults = { color: color.main, link, isRepeat };
 
-  useEffect(() => {
-    if (background !== null) dispatch(setBackgroundData(background, isRepeat))
-  }, [dispatch, background, isRepeat])
+  function setMain(values) {
+    dispatch(setBackgroundData(values.link, values.isRepeat));
+    dispatch(setMainColor(values.color));
+  };
 
-  if (!showMohal) return null
+  function setSecond(values) {
+    dispatch(setSecondColor(values.color));
+  };
 
   return (
-    <div className="small-modal small-modal_setting">
-      <ColorBackgroundSetterWrapper
-        text="Main Color "
-        defaultColor={colorApp.mainColor}
-        setColor={setMainColor} 
-        setBackground={setBackground}
-        setIsRepeat={setIsRepeat}
-        defaultBackground={defaultBackground}
-        defaultIsRepeat={defaultIsRepeat}
-        />
-      <ColorSetterWrapper
-        text="Second color "
-        defaultColor={colorApp.secondColor}
-        setColor={setSecondColor} />
+    <div className="small-modal small-modal_setting" style={{background: color.second, color: fontColorContrast(color.second) }}>
+      <div className="small-modal__item">
+        <span className="small-modal__text">Main color</span>
+        <ColorCircle defaults={defaults} onChange={setMain} active={false} />
+      </div>
+      <div className="small-modal__item">
+        <span className="small-modal__text">Second color</span>
+        <ColorCircle defaults={{ color: color.second }} onChange={setSecond} active={false} />
+      </div>
     </div>
   );
-}
+};
 
 export default SettingsModal;

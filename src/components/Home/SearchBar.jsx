@@ -4,7 +4,7 @@ import fontColorContrast from "font-color-contrast";
 
 function SearchBar({ setSearch, theme }) {
   const [value, setValue] = useState("");
-  const color = fontColorContrast(theme.secondColor);
+  const color = fontColorContrast(theme.second);
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -19,7 +19,7 @@ function SearchBar({ setSearch, theme }) {
         value={value}
         onChange={handleChange}
         placeholder="Search..."
-        style={{ background: theme.secondColor, color }}
+        style={{ background: theme.second, color }}
       />
       <SearchBtn className="home__search-ico" fill={color} />
     </form>

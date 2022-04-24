@@ -16,6 +16,7 @@ export function NoteText(props) {
   const dispatch = useDispatch();
   const { id, rawState } = props.note;
 
+  
   const [editorState, setEditorState] = useState(EditorState.createWithContent(convertFromRaw(rawState)));
 
   function onChange(editorState) {

@@ -1,45 +1,45 @@
+import fontColorContrast from "font-color-contrast";
 import React, { useState } from "react";
-import { ColorBackgroundSetterWrapper } from './ColorBackgroundSetterWrapper';
+import { useSelector } from "react-redux";
+import { getAppTheme } from "../../store/selectors/appTheme";
+import { ColorCircle } from "./ColorCircle";
 
-
-export function SmallModal({ hiddenModal, action, styleClasses, placeholderText, buttonText }) {
-  const [boardColor, setBoardColor] = useState("");
+export function SmallModal(props) {
   const [value, setValue] = useState("");
-  const [background, setBackground] = useState(null)
-  const [isRepeat, setIsRepeat] = useState(false)
+  const [theme, setTheme] = useState({});
 
+  const { hiddenModal, action, filler, hasColor } = props;
 
-  let styleClassString = "small-modal";
-  for (const styleClass in styleClasses) {
-    styleClassString += " " + styleClasses[styleClass];
-  }
+  const { main, second } = useSelector(getAppTheme);
+
+  const color = fontColorContrast(second); // remove this func into theme and make func for themeToStyle
 
   function addBoardToStore(e) {
-    e.preventDefault()
-    action(value, boardColor, background, isRepeat)
-    hiddenModal()
+    e.preventDefault();
+    if (value) {
+      action(value, second, "", false);
+      hiddenModal();
+    }
   }
 
   return (
-    <div className={styleClassString}>
-      <form className="small-modal__form" onSubmit={e => e.preventDefault()}>
+    <div className="small-modal" style={{ background: second }}>
+      <form className="small-modal__form" onSubmit={(e) => e.preventDefault()}>
         <input
+          style={{ color, borderBottom: "2px solid " + main }}
           className="small-modal__input"
-          placeholder={placeholderText}
+          placeholder={filler.inputPlaceholder}
           value={value}
-          onChange={e => setValue(e.target.value)}
+          onChange={(e) => setValue(e.target.value)}
         />
         <div className="small-modal__wrapper">
-          <button className="small-modal__btn" onClick={addBoardToStore}>{buttonText}</button>
-          <ColorBackgroundSetterWrapper
-            text="Color"
-            setColor={setBoardColor}
-            defaultColor={boardColor}
-            setBackground={setBackground}
-            setIsRepeat={setIsRepeat}
-            defaultBackground={background}
-            defaultIsRepeat={isRepeat}
-          />
+          <button
+            className="small-modal__btn"
+            style={{ background: main, color: fontColorContrast(main) }}
+            onClick={addBoardToStore}
+          >
+            {filler.buttonText}
+          </button>
         </div>
       </form>
     </div>

@@ -23,7 +23,7 @@
   &__top-search {
     display: flex;
     gap: 70px;
-    width: 700px;
+    width: 900px;
   }
 
   &__main-btn {
@@ -66,7 +66,6 @@
   }
 
   &__pages {
-    // TODO: remake on grid, add transition for remove-icon
     position: relative;
     display: flex;
     flex-wrap: wrap;

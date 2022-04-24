@@ -33,21 +33,26 @@
 }
 
 .note-wrap--selected {
-  -webkit-box-shadow: 0 0 5px 5px rgba(102, 228, 102, 0.382);
-          box-shadow: 0 0 5px 5px rgba(102, 228, 102, 0.382);
+  outline: 8px black dashed;
+  outline-offset: 10px;
 }
 
 .note-wrap .resize-btn {
   position: absolute;
+  width: 50px;
+  height: 50px;
   bottom: 0;
   right: 0;
   background: transparent;
   border-radius: 100%;
   z-index: 20;
+  -webkit-transform: translate(50%) translateY(50%);
+          transform: translate(50%) translateY(50%);
+  mix-blend-mode: difference;
 }
 
 .note-wrap .resize-btn:hover {
-  background: white;
-  mix-blend-mode: difference;
+  outline: 8px dashed;
+  outline-color: inherit;
 }
 /*# sourceMappingURL=noteWrap.css.map */

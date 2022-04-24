@@ -6,19 +6,16 @@ import { BoardList } from "./BoardList";
 import { AddBoardBar } from "./AddBoardBar";
 import {
   getBoadrds,
-  getCurrentBoardId,
 } from "../../store/selectors/existenceBoards";
 import { getAppTheme } from "./../../store/selectors/appTheme";
 import Settings from "./settings/Settings";
-import useColor from "../../hooks/useColor";
 import { OpenModalConfirmRemoveBoard } from "./OpenModalConfirmRemoveBoard";
 
 function Home() {
   const [search, setSearch] = useState("");
   const boards = useSelector(getBoadrds);
-  const [boardsList, setBoardsList] = useState(boards); // вынести фильтр в редюсер
+  const [boardsList, setBoardsList] = useState(boards);
   const theme = useSelector(getAppTheme);
-  const style = useColor(useSelector(getCurrentBoardId));
   const [modalActive, setModalActive] = useState(false);
   const [idRemoveBoard, setIdRemoveBoard] = useState();
 
@@ -36,7 +33,12 @@ function Home() {
   }, [search, boards]);
 
   return (
-    <div className="home" style={style}>
+    <div
+      className="home"
+      style={{
+        background: theme.main,
+      }}
+    >
       <div className="home__wrapper">
         <div className="home__top">
           <div className="home__top-search">
@@ -55,6 +57,8 @@ function Home() {
         active={modalActive}
         setActive={setModalActive}
         id={idRemoveBoard}
+        background={theme.second}
+        handleRemoveConfirm={handleRemoveConfirm}
       />
     </div>
   );

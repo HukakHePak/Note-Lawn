@@ -17,7 +17,7 @@ export function Editor() {
       <ToolPanel tools={selectTools(note?.type)} />
       <ToolPanel tools={selectTools(!!note?.id)} right />
       <Board />
-      <BoardName />
+      <BoardName boardId={board.id}/>
     </div>
   );
 }

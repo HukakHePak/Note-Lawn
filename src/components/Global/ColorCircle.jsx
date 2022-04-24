@@ -32,7 +32,7 @@ export function ColorCircle(props) {
         return;
       }
     }
-  });
+  }, [paletteColor.hex, backgroundValue, isRepeatValue]);
 
   return (
     <div className="color-circle">
@@ -45,7 +45,6 @@ export function ColorCircle(props) {
         style={{
           backgroundImage: `url(${backgroundValue})`, // replace into stylize func
           backgroundColor: paletteColor.hex,
-          borderColor: fontColorContrast(paletteColor.hex)
         }}
       ></div>
       {!hiddenPalette && (

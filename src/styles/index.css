@@ -70,6 +70,7 @@ button {
   position: relative;
   width: 40px;
   height: 40px;
+  border-color: inherit;
 }
 
 .palette {
@@ -84,7 +85,6 @@ button {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding-bottom: 30px;
 }
 
 .palette_bg {
@@ -94,7 +94,7 @@ button {
 }
 
 .background-input {
-  padding: 0 20px;
+  padding: 0px 20px 20px 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -123,7 +123,8 @@ button {
 .circle {
   width: 100%;
   height: 100%;
-  border: 2px solid #000;
+  border: 2px solid;
+  border-color: inherit;
   border-radius: 50%;
   background: #d8b499;
   background-size: 50px 50px;
@@ -173,25 +174,25 @@ button {
 .small-modal__input::-webkit-input-placeholder {
   font-size: 24px;
   line-height: 29px;
-  color: dimgray;
+  opacity: 0.6;
 }
 
 .small-modal__input:-ms-input-placeholder {
   font-size: 24px;
   line-height: 29px;
-  color: dimgray;
+  opacity: 0.6;
 }
 
 .small-modal__input::-ms-input-placeholder {
   font-size: 24px;
   line-height: 29px;
-  color: dimgray;
+  opacity: 0.6;
 }
 
 .small-modal__input::placeholder {
   font-size: 24px;
   line-height: 29px;
-  color: dimgray;
+  opacity: 0.6;
 }
 
 .small-modal__item {

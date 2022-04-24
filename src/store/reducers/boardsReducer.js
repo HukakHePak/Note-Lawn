@@ -26,6 +26,7 @@ const defaultBoards = [
 ];
 
 export function boardsReducer(state = storage.get('boards') || defaultBoards, { type, payload }) {
+  console.log(type, payload);
   switch (type) {
     case ADD_BOARD:
       return [
@@ -58,7 +59,6 @@ export function boardsReducer(state = storage.get('boards') || defaultBoards, { 
 
 export function boards(state, payload) {
   const _state = boardsReducer(state, payload);
-
   storage.set('boards', _state);
   return _state;
 }
