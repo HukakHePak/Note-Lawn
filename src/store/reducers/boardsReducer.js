@@ -8,49 +8,32 @@ import { CHANGE_BOARD } from "../actions/board/changeBoard.js";
 import { CHANGE_SCROLL } from "../actions/board/changeScrollPos.js";
 import { CHANGE_SCALE } from "../actions/board/changeScale.js";
 import { EDIT_BOARD } from "../actions/board/editBoard.js";
+import { storage } from "../storage.js";
+import data from "../../data.json";
 
 const boardDefaults = {
   position: { left: 0, top: 0 }, // - window.size oncreate
   scale: 1,
-  theme: { color: "#FCF5F0", link: "https://i.pinimg.com/originals/03/42/44/034244f741ad75bd774965c7f9772879.png", isRepeat: true }
 };
 
 const defaultBoards = [
   {
     id: 1,
-    name: "Board 1",
-    date: "08/03/2022 09:55",
-    ...boardDefaults
-  },
-  {
-    id: 2,
-    name: "Board 2",
-    date: "08/03/2022 09:55",
-    ...boardDefaults
-  },
-  {
-    id: 3,
-    name: "Board 3",
-    date: "08/03/2022 09:55",
+    name: "Thanks to the team",
+    date: "23/04/2022 09:55",
+    theme: {
+      color: "#FCF5F0",
+      link: "https://i.pinimg.com/originals/03/42/44/034244f741ad75bd774965c7f9772879.png",
+      isRepeat: true,
+    },
     ...boardDefaults,
-  },
-  {
-    id: 4,
-    name: "Board 4",
-    date: "08/03/2022 09:55",
-    ...boardDefaults,
-  },
-  {
-    id: 5,
-    name: "Board 5",
-    date: "08/03/2022 09:55",
-    ...boardDefaults
   },
 ];
 
-export function boardsReducer(state = defaultBoards, { type, payload }) {
-  // console.log(state);
-
+export function boardsReducer(
+  state = storage.get("boards") || data.boards,
+  { type, payload }
+) {
   switch (type) {
     case ADD_BOARD:
       return [
@@ -72,11 +55,17 @@ export function boardsReducer(state = defaultBoards, { type, payload }) {
       return changeItem(state, payload.id, payload);
 
     case CHANGE_SCALE:
-      return changeItem(state, payload.id, payload.scale);  
+      return changeItem(state, payload.id, payload.scale);
 
     default:
       break;
   }
 
   return state;
+}
+
+export function boards(state, payload) {
+  const _state = boardsReducer(state, payload);
+  storage.set("boards", _state);
+  return _state;
 }

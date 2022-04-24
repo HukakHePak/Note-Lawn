@@ -1,33 +1,45 @@
 import React, { useState } from "react";
-import addBoardBtn from "../../img/addBoardBtn.svg";
-import { SmallModal } from "../Global/SmallModal"
-import { useDispatch } from 'react-redux';
+import { ReactComponent as AddBoardSvg } from "../../img/addBoardBtn.svg";
+import { SmallModal } from "../Global/SmallModal";
+import { useDispatch, useSelector } from "react-redux";
 import { addBoard } from "../../store/actions/board/addBoard";
+import fontColorContrast from "font-color-contrast";
+import { getModals } from "../../store/selectors/selects/getModals";
+import { openModal } from "../../store/actions/openModal";
+import { closeModals } from "../../store/actions/closeModals";
+import { stopPropagation } from "../../tools/stopPropagation";
 
 const filler = {
-  styleClass: 'new-board-modal',
-  inputPlaceholder: 'Name...',
-  buttonText: 'Create'
-}
+  styleClass: "new-board-modal",
+  inputPlaceholder: "Name...",
+  buttonText: "Create",
+};
 
-export function AddBoardBar({background}) {
-  const [hiddenModal, setHiddenModal] = useState(false);
-  const dispatch = useDispatch()
+export function AddBoardBar({ theme }) {
+  const active = useSelector(getModals).addBoard;
+  const dispatch = useDispatch();
+  const color = fontColorContrast(theme.main);
 
   return (
-    <div className="home__main-btn--wrapper" style={{background}}>
-      <button
-        className="home__main-btn"
-        onClick={() => setHiddenModal(!hiddenModal)}
-      >
-        Boards
-        <img src={addBoardBtn} alt="Add Board" />
-      </button>
-      {hiddenModal && <SmallModal
-        hiddenModal={() => setHiddenModal(false)}
-        action={(...args) => dispatch(addBoard(...args))}
-        filler={filler}
-      />}
+    <div className="home__main-btn" style={{ color }} onClick={stopPropagation}>
+      Boards
+      <AddBoardSvg
+        fill={color}
+        onClick={(event) => {
+          dispatch(openModal({ addBoard: !active }));
+          //event.stopPropagation();
+        }}
+      />
+      {active && (
+        <SmallModal
+          action={(...args) => dispatch(addBoard(...args))}
+          onSubmit={(form) => {
+            dispatch(addBoard(form.name));
+            dispatch(closeModals());
+          }}
+          filler={filler}
+        />
+      )}
     </div>
   );
 }

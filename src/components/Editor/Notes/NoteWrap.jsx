@@ -1,19 +1,28 @@
 import "../../../styles/noteWrap.css";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCurrentBoard } from "../../../store/selectors/board/getCurrentBoard";
 import { selectNote } from "../../../store/actions/note/selectNote";
 import { selectEvent } from "../../../store/actions/selectEvent";
+import { themeToStyle } from "../../../tools/themeToStyle";
 
 export function NoteWrap(props) {
-  const { selected, children, note } = props;
-  const { id, size } = props.note;
+  const { selected, children, note, board } = props;
+  const { id, size, theme } = note;
 
-  const { scale, position } = useSelector(getCurrentBoard);
+  const { scale, position } = board;
+  
   const dispatch = useDispatch();
 
   function mouseDownHandler(event) {
-    dispatch(selectEvent({ noteId: id, type: "replace", position: { left: event.clientX, top: event.clientY }}));
+    if (selected) return;
+
+    dispatch(
+      selectEvent({
+        noteId: id,
+        type: "replace",
+        position: { left: event.clientX, top: event.clientY },
+      })
+    );
     event.stopPropagation();
   }
 
@@ -22,29 +31,13 @@ export function NoteWrap(props) {
   }
 
   function buttonClickHandler(event) {
-    dispatch(selectEvent({ noteId: id , type: "resize", position: { left: event.clientX, top: event.clientY }}));
-    event.stopPropagation();
-  }
-
-  // function doubleTouchHandler() {
-  //   let time = null;
-
-  //   return () => {
-  //     if(time) {
-  //       if(Date.now() - time < 700) {
-  //         doubleClickHandler();
-  //       }
-  //       time = null;
-  //       return;
-  //     }
-  //     time = Date.now();
-  //   }
-  // }
-
-  function touchHandler(event) {
-    console.log('touch')
-    const touch = event.touches[0];
-    dispatch(selectEvent({ noteId: id, type: "replace", position: { left: touch.clientX, top: touch.clientY }}));
+    dispatch(
+      selectEvent({
+        noteId: id,
+        type: "resize",
+        position: { left: event.clientX, top: event.clientY },
+      })
+    );
     event.stopPropagation();
   }
 
@@ -56,19 +49,20 @@ export function NoteWrap(props) {
         top: (note.position.top + position.top) * scale,
         width: size.width * scale,
         height: size.height * scale,
+        ...themeToStyle(theme),
+        outlineColor: theme.color,
+        borderColor: theme.color,
       }}
       onMouseDown={mouseDownHandler}
-      onTouchStart={touchHandler}
+      onMouseUp={(event) => selected && event.stopPropagation()}
       onDoubleClick={doubleClickHandler}
     >
-      <div style={{ fontSize: `calc(100% * ${scale})`, overflow: 'hidden' }}>{children}</div>
+      <div style={{ fontSize: `calc(100% * ${scale})`, overflow: "hidden" }}>
+        {children}
+      </div>
       <button
-        className="resize-btn tool-item"
-        style={{
-          transform: `translate(50%) translateY(50%)`,
-        }}
+        className="resize-btn"
         onMouseDown={buttonClickHandler}
-        onTouchStart={touchHandler}
       />
     </div>
   );

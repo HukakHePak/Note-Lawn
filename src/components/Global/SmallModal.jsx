@@ -1,35 +1,40 @@
+import fontColorContrast from "font-color-contrast";
 import React, { useState } from "react";
-import { ColorCircle } from './ColorCircle';
+import { useSelector } from "react-redux";
+import { getAppTheme } from "../../store/selectors/appTheme";
 
+export function SmallModal(props) {
+  const [value, setValue] = useState("");
+  const { onSubmit, filler } = props;
 
+  const { main, second } = useSelector(getAppTheme);
+  const color = fontColorContrast(second); // remove this func into theme and make func for themeToStyle
 
-export function SmallModal({ hiddenModal, action, filler, defaults = { name: '', color: '', link: '', isRepeat: false } }) {
-  const [value, setValue] = useState(defaults.name);
-  const [theme, setTheme] = useState({})
-
-
-  let styleClassString = "small-modal";
-
-  function addBoardToStore(e) {
-    e.preventDefault()
+  function clickHandler(e) { // callback - app to the parent and make onChange/onCreate
+    e.preventDefault();
     if (value) {
-      action(value, theme.color, theme.link, theme.isRepeat)
-      hiddenModal()
+      onSubmit({ name: value })
     }
   }
 
   return (
-    <div className={`${styleClassString} ${filler.styleClass}`}>
-      <form className="small-modal__form" onSubmit={e => e.preventDefault()}>
+    <div className="small-modal" style={{ background: second }}>
+      <form className="small-modal__form" onSubmit={(e) => e.preventDefault()}>
         <input
+          style={{ color, borderBottom: "2px solid " + main }}
           className="small-modal__input"
           placeholder={filler.inputPlaceholder}
           value={value}
-          onChange={e => setValue(e.target.value)}
+          onChange={(e) => setValue(e.target.value)}
         />
         <div className="small-modal__wrapper">
-          <button className="small-modal__btn" onClick={addBoardToStore}>{filler.buttonText}</button>
-          <ColorCircle defaults={defaults} hasLink={true} onChange={setTheme} active={false} />
+          <button
+            className="small-modal__btn"
+            style={{ background: main, color: fontColorContrast(main) }}
+            onClick={clickHandler}
+          >
+            {filler.buttonText}
+          </button>
         </div>
       </form>
     </div>

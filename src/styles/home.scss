@@ -1,7 +1,12 @@
 .home {
   height: 100%;
-  padding: 100px 55px;
+  padding: 55px;
+  padding-bottom: 0;
   overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 25px;
+  }
 
   &__wrapper {
     max-width: 1500px;
@@ -17,35 +22,27 @@
     display: flex;
     justify-content: space-between;
     gap: 40px;
+    padding: 0 15px;
   }
 
   &__top-search {
-      display: flex;
-      gap: 50px;
-      width: 700px;
+    display: flex;
+    gap: 70px;
+    width: 900px;
   }
 
   &__main-btn {
     position: relative;
-    background: transparent;
-    border: none;
-    cursor: pointer;
     font-size: 30px;
     font-weight: 700;
-    padding: 4px 50px 5px 3px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 
-
-    &--wrapper {
-      position: relative;
-      margin-right: 10px;
-    }
-
-    img {
-      position: absolute;
+    & svg {
+      cursor: pointer;
       width: 35px;
-      right: 5px;
     }
-    
   }
 
 
@@ -63,31 +60,26 @@
       padding: 10px 25px;
     }
 
-    &-btn {
-      background: transparent;
-      border: none;
+    &-ico {
       position: absolute;
-      top: 10px;
-      right: 10px;
-
-      img {
-        width: 25px;
-        height: 25px;
-      }
+      right: 0;
+      top: 10%;
+      transform: translate(-50%);
+      width: 25px;
+      opacity: 0.6;
     }
   }
 
-  &__pages {    // TODO: remake on grid, add transition for remove-icon
+  &__pages {
     position: relative;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    cursor: pointer;    
+    cursor: pointer;
+    padding-bottom: 55px;
 
     &-item {
-      
-      width: 30%;
-      height: 250px;
+      height: 300px;
       min-width: 450px;
       color: inherit;
       text-decoration: none;
@@ -95,32 +87,55 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 10px;
       position: relative;
 
       &:hover {
         .home__pages-remove {
-          display: block;
-          // transition: 2s;
+          opacity: 1;
         }
       }
     }
 
+    &-panel {
+      width: 100%;
+      height: fit-content;
+      padding: 10px;
+      padding-right: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      align-self: flex-end;
+
+      & svg {
+        width: 22px;
+      }
+    }
+
+    &-info {
+      display: flex;
+      gap: 4px;
+      flex-direction: column;
+    }
+
     &-title {
-      font-size: 32px;
+      font-size: 28px;
     }
 
     &-remove {
-      display: none;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      // transition: 2s;
+      opacity: 0;
+      transition: 0.1s;
     }
 
     &-date {
       font-weight: 300;
-      font-size: 20px;
+      font-size: 18px;
+    }
+
+    &-overlay {
+      position: absolute;
+      display: flex;
+      height: 100%;
+      width: 100%;
     }
   }
 
@@ -152,14 +167,9 @@
   align-self: end;
 
   &-btn {
-    width: 40px;
-    height: 44px;
-    transform: scale(0.8);
+    width: 34px;
     display: inline-block;
     border: none;
-    background-color: transparent;
-    background-image: url("../img/setting.svg");
-
     cursor: pointer;
   }
 }

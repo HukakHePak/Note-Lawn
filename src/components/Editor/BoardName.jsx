@@ -1,40 +1,51 @@
-import React, { useState } from "react";
+import React from "react";
 import { SmallModal } from "../Global/SmallModal";
 import { useDispatch, useSelector } from "react-redux";
-import { getBoard } from "../../store/selectors/existenceBoards";
+import fontColorContrast from "font-color-contrast";
 import { editBoard } from "../../store/actions/board/editBoard";
+import { getModals } from "../../store/selectors/selects/getModals";
+import { closeModals } from "../../store/actions/closeModals";
+import { openModal } from "../../store/actions/openModal";
+import { getAppTheme } from "../../store/selectors/appTheme";
 
 const filler = {
-  styleClass: 'board-name__modal',
-  inputPlaceholder: 'New board name',
-  buttonText: 'Change'
-}
+  styleClass: "board-name__modal",
+  inputPlaceholder: "New board name",
+  buttonText: "Change",
+};
 
-export function BoardName({ boardId }) {
-  const board = useSelector((state) => getBoard(state, boardId));
-  const [hiddenModal, setHiddenModal] = useState(false);
-  const defaults = {
-    name: board.name,
-    color: board.theme.color,
-    link: board.theme.link,
-    isRepeat: board.theme.isRepeat,
-  }
+export function BoardName(props) {
+  const { id, name } = props.board;
+  const theme = useSelector(getAppTheme);
+
+  const active = useSelector(getModals)[id];
   const dispatch = useDispatch();
 
   return (
-    <div className="board-name">
+    <div
+      className="board-name"
+      onClick={(event) => {
+        event.stopPropagation();
+      }}
+    >
       <button
         className="board-name__btn"
-        onClick={() => setHiddenModal(!hiddenModal)}
+        onClick={(event) => {
+          dispatch(openModal({[id]: !active}));
+          event.stopPropagation();
+        }}
+        style={{ color: fontColorContrast(theme.main) }}
       >
-        {board.name}
+        {name}
       </button>
-      {hiddenModal && (
+      {active && (
         <SmallModal
-          hiddenModal={() => setHiddenModal(false)}
-          action={(...args) => dispatch(editBoard(boardId, ...args))}
+          onSubmit={(value) => {
+            dispatch(editBoard(id, value));
+            dispatch(closeModals());
+          }}
           filler={filler}
-          defaults={defaults}
+          defaults={{ name }}
         />
       )}
     </div>

@@ -1,22 +1,41 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../../styles/home.css";
 import SearchBar from "./SearchBar";
-import BoardList from "./BoardList";
-import Settings from "./settings/Settings";
+import { BoardList } from "./BoardList";
 import { AddBoardBar } from "./AddBoardBar";
-import { getBoadrds, } from "../../store/selectors/existenceBoards";
+import { getBoards } from "../../store/selectors/existenceBoards";
 import { getAppTheme } from "./../../store/selectors/appTheme";
+import Settings from "./settings/Settings";
+import { OpenModalConfirmRemoveBoard } from "./OpenModalConfirmRemoveBoard";
+import { closeModals } from "../../store/actions/closeModals";
+import Style from "style-it";
 
-
-function Home(props) {
-  const { handleRemoveConfirm } = props;
-
+function Home() {
   const [search, setSearch] = useState("");
-  const boards = useSelector(getBoadrds);
-  const [boardsList, setBoardsList] = useState(boards); // вынести фильтр в редюсер
+  const boards = useSelector(getBoards);
+  const [boardsList, setBoardsList] = useState(boards);
   const theme = useSelector(getAppTheme);
-  const style = (theme.link ? `url(${theme.link}) ${theme.isRepeat ? 'repeat' : 'center / cover no-repeat'}, ` : '') + theme.main
+  const [modalActive, setModalActive] = useState(false);
+  const [idRemoveBoard, setIdRemoveBoard] = useState();
+  const dispatch = useDispatch();
+
+  function handleRemoveConfirm(id) {
+    setModalActive(true);
+    setIdRemoveBoard(id);
+  }
+
+  function keyDownHandler(event) {
+    switch (event.code.toLocaleLowerCase()) {
+      case "home":
+      case "escape":
+        dispatch(closeModals());
+        break;
+
+      default:
+        break;
+    }
+  }
 
   useEffect(() => {
     setBoardsList(
@@ -27,26 +46,46 @@ function Home(props) {
   }, [search, boards]);
 
   return (
-    <div className="home" style={
-      {
-        background: style
-      }
-    }>
-      <div className="home__wrapper">
-        <div className="home__top">
-          <div className="home__top-search">
-            <AddBoardBar />
-            <SearchBar setSearch={setSearch} background={theme.second} />
+    <Style>
+      {`
+        .home::-webkit-scrollbar-thumb {
+          background: ${theme.second};
+          border: 5px solid ${theme.main};
+        }
+        .home {
+          background: ${theme.main};
+        }
+        
+        `}
+      <div
+        className="home"
+        onClick={() => dispatch(closeModals())}
+        onKeyDown={keyDownHandler}
+        tabIndex="0"
+      >
+        <div className="home__wrapper">
+          <div className="home__top">
+            <div className="home__top-search">
+              <AddBoardBar theme={theme} />
+              <SearchBar setSearch={setSearch} theme={theme} />
+            </div>
+            <Settings theme={theme} />
           </div>
-          <Settings />
+          <BoardList
+            list={boardsList}
+            theme={theme}
+            handleRemoveConfirm={handleRemoveConfirm}
+          />
         </div>
-        <BoardList
-          list={boardsList}
+        <OpenModalConfirmRemoveBoard
+          active={modalActive}
+          setActive={setModalActive}
+          id={idRemoveBoard}
           background={theme.second}
           handleRemoveConfirm={handleRemoveConfirm}
         />
       </div>
-    </div >
+    </Style>
   );
 }
 

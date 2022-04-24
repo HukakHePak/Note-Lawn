@@ -5,18 +5,20 @@ import { EDIT_NOTE } from "../actions/note/editNote";
 import { NOTE_TYPES } from "../../components/Editor/Notes/TypedNotes/CreateNote";
 import { changeItem } from "../../tools/immutable/list/changeItem";
 import { removeItem } from "../../tools/immutable/list/removeItem";
-
-import { EditorState } from "draft-js";
+import { ContentState, convertToRaw } from "draft-js";
+import { storage } from "../storage";
+import data from '../../data.json';
 
 export const defaultSize = {
   width: 300,
   height: 300,
 };
 
-const defaultPosition = {
-  top: 500,
-  left: 500,
-};
+const defaultTheme = { color: "#F4E6DC", link: "", isRepeat: false };
+
+function createText(text) {
+  return convertToRaw(ContentState.createFromText(text));
+}
 
 const defaultState = [
   {
@@ -24,38 +26,59 @@ const defaultState = [
     id: 1,
     boardId: 1,
     position: {
-      top: 200,
+      top: 300,
       left: 200,
     },
     size: {
-      width: 400,
-      height: 500,
+      width: 300,
+      height: 300,
     },
-    title: "nice title",
-    noteEditorState: EditorState.createEmpty(),
-    content: "nice content",
-    theme: { color: "#98FB98", bg: { img: "", isRepeat: false } },
+    rawState: createText(
+      "I want to thank the guys for their help in writing the project. It was nice to have a good time!"
+    ),
+    theme: defaultTheme,
   },
   {
     type: NOTE_TYPES.TEXT,
     id: 2,
     boardId: 1,
     position: {
-      top: 600,
-      left: 800,
+      top: 100,
+      left: 600,
+    },
+    size: {
+      width: 250,
+      height: 220,
+    },
+    rawState: createText("\n  Malivartti\n\n  Ruslan5787\n\n  karaell"),
+    theme: defaultTheme,
+  },
+  {
+    type: NOTE_TYPES.IMAGE,
+    id: 3,
+    boardId: 1,
+    position: {
+      top: 400,
+      left: 600,
     },
     size: {
       width: 350,
       height: 300,
     },
-    title: "nice title",
-    noteEditorState: EditorState.createEmpty(),
-    content: "nice content",
-    theme: { color: "#98FB98", bg: { img: "", isRepeat: false } },
+    link: "https://data.whicdn.com/images/322212937/original.gif",
+    theme: defaultTheme,
   },
 ];
 
-export function notesReducer(state = defaultState, action) {
+
+//console.log(JSON.stringify({ notes: storage.get("notes"), boards: storage.get("boards")}));
+
+
+
+export function notesReducer(
+  state = storage.get("notes") || data.notes,
+  action
+) {
   const { type, payload } = action;
 
   switch (type) {
@@ -65,10 +88,9 @@ export function notesReducer(state = defaultState, action) {
         {
           id: uniqid(),
           size: defaultSize,
-          theme: { color: "#98FB98", bg: { img: "", isRepeat: false } },
-          position: defaultPosition,
-          boardId: 1,
-          noteEditorState: EditorState.createEmpty(),
+          position: { left: 0, top: 0 },
+          rawState: convertToRaw(ContentState.createFromText("")),
+          theme: defaultTheme,
           ...payload,
         },
       ];
@@ -82,4 +104,11 @@ export function notesReducer(state = defaultState, action) {
     default:
       return state;
   }
+}
+
+export function notes(state, payload) {
+  const _state = notesReducer(state, payload);
+
+  storage.set("notes", _state);
+  return _state;
 }

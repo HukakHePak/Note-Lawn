@@ -1,21 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import SettingsModal from "./SettingsModal";
+import { ReactComponent as SettingsSvg } from "../../../img/setting.svg";
+import fontColorContrast from "font-color-contrast";
+import { useDispatch, useSelector } from "react-redux";
+import { getModals } from "../../../store/selectors/selects/getModals";
+import { openModal } from "../../../store/actions/openModal";
+import { stopPropagation } from "../../../tools/stopPropagation";
 
-
-function Settings() {
-  const [showModal, setShowModal] = useState(false)
+function Settings({ theme }) {
+  const active = useSelector(getModals).settings;
+  const color = fontColorContrast(theme.main);
+  const dispatch = useDispatch();
 
   return (
-    <div className="setting">
-      <button
+    <div
+      className="setting"
+      onClick={stopPropagation}
+    >
+      <SettingsSvg
         className="setting-btn"
-        onClick={() => setShowModal(!showModal)}
-      ></button>
-      <SettingsModal showModal={showModal} />
+        fill={color}
+        onClick={() => {
+          dispatch(openModal({ settings: !active }));
+        }}
+      />
+      {active && <SettingsModal />}
     </div>
   );
 }
 
 export default Settings;
-
-

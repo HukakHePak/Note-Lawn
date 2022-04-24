@@ -1,13 +1,13 @@
 import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import thunk from 'redux-thunk'
 import { appTheme } from "./reducers/appTheme";
-import { notesReducer } from "./reducers/notesReducer";
+import { notes } from "./reducers/notesReducer";
 import { selectsReducer } from "./reducers/selectsReducer";
-import { boardsReducer } from "./reducers/boardsReducer";
+import { boards } from "./reducers/boardsReducer";
 
 const rootReducer = combineReducers({
-  notes: notesReducer,
-  boards: boardsReducer,
+  notes,
+  boards,
   appTheme,
   selects: selectsReducer,
   editor: 'add editor state for best moves'

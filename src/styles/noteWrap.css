@@ -1,6 +1,7 @@
 .note-wrap {
   background: #F4E6DC;
-  position: fixed;
+  position: absolute;
+  isolation: isolate;
 }
 
 .note-wrap > div {
@@ -33,19 +34,30 @@
 }
 
 .note-wrap--selected {
-  -webkit-box-shadow: 0 0 5px 5px rgba(102, 228, 102, 0.382);
-          box-shadow: 0 0 5px 5px rgba(102, 228, 102, 0.382);
+  outline: 8px black dashed;
+  outline-offset: 10px;
 }
 
 .note-wrap .resize-btn {
   position: absolute;
+  width: 60px;
+  height: 60px;
   bottom: 0;
   right: 0;
   background: transparent;
   border-radius: 100%;
+  z-index: 2;
+  -webkit-transform: translate(50%) translateY(50%);
+          transform: translate(50%) translateY(50%);
+  mix-blend-mode: difference;
 }
 
 .note-wrap .resize-btn:hover {
-  background: rgba(102, 228, 102, 0.382);
+  border: 8px dashed;
+  border-color: inherit;
+}
+
+.home .resize-btn:hover {
+  outline: none;
 }
 /*# sourceMappingURL=noteWrap.css.map */
