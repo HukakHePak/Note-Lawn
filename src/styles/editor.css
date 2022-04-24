@@ -4,6 +4,12 @@
   overflow: hidden;
 }
 
+.editor .board-name {
+  position: fixed;
+  left: 20px;
+  top: 20px;
+}
+
 .board {
   height: 100%;
   width: 100%;
@@ -12,9 +18,7 @@
 }
 
 .board-name {
-  position: fixed;
-  left: 20px;
-  top: 20px;
+  position: relative;
 }
 
 .board-name__btn {

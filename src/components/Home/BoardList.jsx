@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { selectBoard } from "../../store/actions/board/selectBoard";
 import fontColorContrast from "font-color-contrast";
 import { ReactComponent as TrashSvg } from "../../img/trash.svg";
+import { BoardName } from "../Editor/BoardName";
 
 export function BoardList({ list, theme, handleRemoveConfirm }) {
   console.log(list)
@@ -41,7 +42,8 @@ function BoardItem({ board, theme, handleRemoveConfirm }) {
         style={{ color, background: theme.second }}
       >
         <div className="home__pages-info">
-          <h3 className="home__pages-title">{name}</h3>
+          {/* <h3 className="home__pages-title">{name}</h3> */}
+          <BoardName board={board} />
           <span className="home__pages-date">{date}</span>
         </div>
 

@@ -9,21 +9,24 @@ $toolsGap: 8px
     width: 100%
     overflow: hidden
 
+    & .board-name
+        position: fixed
+        left: 20px
+        top: 20px
+
 .board
     height: 100%
     width: 100%
     position: relative
     overflow: hidden
-
+    
     &-name
-        position: fixed
-        left: 20px
-        top: 20px
+        position: relative
 
-        &__btn
-            font-size: 24px
-            line-height: 32px
-            cursor: pointer
+    &-name__btn
+        font-size: 24px
+        line-height: 32px
+        cursor: pointer
 
 .tool-panel
     position: fixed

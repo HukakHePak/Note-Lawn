@@ -6,15 +6,14 @@ import { ColorCircle } from "./ColorCircle";
 
 export function SmallModal(props) {
   const [value, setValue] = useState("");
-  const [theme, setTheme] = useState({});
 
-  const { hiddenModal, action, filler, hasColor } = props;
+  const { hiddenModal, action, filler } = props;
 
   const { main, second } = useSelector(getAppTheme);
 
   const color = fontColorContrast(second); // remove this func into theme and make func for themeToStyle
 
-  function addBoardToStore(e) {
+  function addBoardToStore(e) { // callback - app to the parent and make onChange/onCreate
     e.preventDefault();
     if (value) {
       action(value, second, "", false);
