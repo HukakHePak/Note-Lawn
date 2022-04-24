@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../../styles/home.css";
 import SearchBar from "./SearchBar";
 import { BoardList } from "./BoardList";
 import { AddBoardBar } from "./AddBoardBar";
-import { getBoadrds } from "../../store/selectors/existenceBoards";
+import { getBoards } from "../../store/selectors/existenceBoards";
 import { getAppTheme } from "./../../store/selectors/appTheme";
 import Settings from "./settings/Settings";
 import { OpenModalConfirmRemoveBoard } from "./OpenModalConfirmRemoveBoard";
@@ -13,7 +13,7 @@ import Style from "style-it";
 
 function Home() {
   const [search, setSearch] = useState("");
-  const boards = useSelector(getBoadrds);
+  const boards = useSelector(getBoards);
   const [boardsList, setBoardsList] = useState(boards);
   const theme = useSelector(getAppTheme);
   const [modalActive, setModalActive] = useState(false);

@@ -1,13 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getNotes } from "../../store/selectors/note/getNotes";
 import "../../styles/editor.css";
 import { NoteWrap } from "./Notes/NoteWrap";
 import { CreateNote } from "./Notes/TypedNotes/CreateNote";
 import { getSelectedNoteId } from "../../store/selectors/note/getSelectedNoteId";
 import { editNote } from "../../store/actions/note/editNote";
 import { changeScrollPos } from "../../store/actions/board/changeScrollPos";
-import { getCurrentBoard } from "../../store/selectors/board/getCurrentBoard";
 import { changeScale } from "../../store/actions/board/changeScale";
 import { getNote } from "../../store/selectors/note/getNote";
 import { clearEvent } from "../../store/actions/clearEvent";
@@ -16,14 +14,13 @@ import { closeModals } from "../../store/actions/closeModals";
 import { selectNote } from "../../store/actions/note/selectNote";
 import { themeToStyle } from "../../tools/themeToStyle";
 import { findNote } from "../../store/actions/note/findNote";
+import { getNotesOf } from "../../store/selectors/note/getNotesOf";
 
-export function Board() {
-  const notes = useSelector(getNotes);
-  const board = useSelector(getCurrentBoard);
+export function Board({ board }) {
+  const notes = useSelector(getNotesOf(board.id));
   const selectedNoteId = useSelector(getSelectedNoteId);
   const dispatch = useDispatch();
-  const boardNode = useRef(null);
-  //const style = useColor(board.id);
+  const node = useRef(null);
 
   const noteEvent = useSelector((state) => state.selects.event);
 
@@ -32,7 +29,7 @@ export function Board() {
   function moveHandler(event) {
     const { buttons, movementX, movementY } = event;
 
-    if (buttons !== 1 && event.type !== "onTouchMove") return;
+    if (buttons !== 1) return;
 
     if (note) {
       const { type, position } = noteEvent;
@@ -82,6 +79,8 @@ export function Board() {
       return;
     }
 
+    if(event.target !== node.current) return;
+
     dispatch(
       changeScrollPos(board.id, {
         // export into reducer, add range
@@ -113,15 +112,12 @@ export function Board() {
       })
     );
 
-    const { innerWidth, innerHeight } = event.view;
     const { clientX, clientY } = event;
-    //console.log((innerHeight / 2 / scale - innerHeight / 2 / board.scale))
-    //console.log(board.position.top)
 
     dispatch(
       changeScrollPos(board.id, {
-        top: board.position.top + (clientY / scale - clientY / board.scale), //+ event.clientX / 10 * (event.deltaY % 2),
-        left: board.position.left + (clientX / scale - clientX / board.scale), // + event.clientY / 10 * (event.deltaY % 2),
+        top: board.position.top + (clientY / scale - clientY / board.scale),
+        left: board.position.left + (clientX / scale - clientX / board.scale),
       })
     );
   }
@@ -134,17 +130,17 @@ export function Board() {
   }
 
   useEffect(() => {
-    if (!boardNode) return;
+    if (!node) return;
 
-    boardNode.current.onwheel = (event) => {
+    node.current.onwheel = (event) => {
       event.preventDefault();
     };
-  }, [boardNode]);
+  }, [node]);
 
   return (
     <div
       className="board"
-      ref={boardNode}
+      ref={node}
       style={{
         ...themeToStyle(board.theme),
         backgroundPosition: board.theme.isRepeat
@@ -160,20 +156,17 @@ export function Board() {
         dispatch(findNote(event));
         event.preventDefault();
       }}
-      //onTouchStart={console.log}
       onMouseMove={moveHandler}
-      //onTouchMove={moveHandler}
       onWheel={wheelHandler}
       onMouseUp={mouseUpHandler}
       onTouchEnd={mouseUpHandler}
-      //onTouchCancel={console.log}
     >
       {notes?.map((note) => {
         const { id } = note;
         const selected = id === selectedNoteId;
 
         return (
-          <NoteWrap key={id} selected={selected} note={note}>
+          <NoteWrap key={id} selected={selected} note={note} board={board}>
             {CreateNote(note, selected)}
           </NoteWrap>
         );

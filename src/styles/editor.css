@@ -103,7 +103,6 @@
 .note-item {
   cursor: pointer;
   position: absolute;
-  z-index: 10;
 }
 
 .note-item__img {
@@ -129,5 +128,9 @@
   width: calc(100% - 20px);
   height: calc(100% - 40px);
   position: absolute;
+}
+
+.app .DraftEditor-editorContainer {
+  z-index: 0;
 }
 /*# sourceMappingURL=editor.css.map */

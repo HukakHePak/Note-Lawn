@@ -2,9 +2,7 @@ $selectColor: rgba(102, 228, 102, 0.382);
 
 .note-wrap {
     background: #F4E6DC;
-    // min-width: 300px;
-    // min-height: 300px;
-    position: fixed;
+    position: absolute;
 
     >div {
         width: 100%;
@@ -54,4 +52,8 @@ $selectColor: rgba(102, 228, 102, 0.382);
         outline: 8px dashed;
         outline-color: inherit;
     }
+}
+
+.home .resize-btn:hover {
+    outline: none;
 }

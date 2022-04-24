@@ -1,6 +1,6 @@
 .note-wrap {
   background: #F4E6DC;
-  position: fixed;
+  position: absolute;
 }
 
 .note-wrap > div {
@@ -54,5 +54,9 @@
 .note-wrap .resize-btn:hover {
   outline: 8px dashed;
   outline-color: inherit;
+}
+
+.home .resize-btn:hover {
+  outline: none;
 }
 /*# sourceMappingURL=noteWrap.css.map */

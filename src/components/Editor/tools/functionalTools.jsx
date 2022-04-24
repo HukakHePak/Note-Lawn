@@ -10,6 +10,8 @@ const home = createTool(["Домой", <HomeSvg />, () => selectBoard(null)]);
 
 const color = createOptionTool(["Выбрать цвет фона", (dispatch, state) => {
   const { id, theme } = getCurrentBoard(state);
+  
+  
   const { color, link, isRepeat } = theme;
 
   return (

@@ -4,6 +4,7 @@ import { selectBoard } from "../../store/actions/board/selectBoard";
 import fontColorContrast from "font-color-contrast";
 import { ReactComponent as TrashSvg } from "../../img/trash.svg";
 import { BoardName } from "../Editor/BoardName";
+import { Board } from "../Editor/Board";
 
 export function BoardList({ list, theme, handleRemoveConfirm }) {
   return (
@@ -32,16 +33,15 @@ function BoardItem({ board, theme, handleRemoveConfirm }) {
   }
 
   return (
-    <div
-      className="home__pages-item"
-      onClick={() => dispatch(selectBoard(id))}
-    >
-      <div
+    <div className="home__pages-item" onClick={() => dispatch(selectBoard(id))}>
+      <Board board={board} off /> {/* off controls  */}
+      <div className="home__pages-overlay">
+        
+        <div
         className="home__pages-panel"
         style={{ color, background: theme.second }}
       >
         <div className="home__pages-info">
-          {/* <h3 className="home__pages-title">{name}</h3> */}
           <BoardName board={board} />
           <span className="home__pages-date">{date}</span>
         </div>
@@ -52,6 +52,8 @@ function BoardItem({ board, theme, handleRemoveConfirm }) {
           onClick={onRemoveConfirm}
         />
       </div>
+      </div>
+      
     </div>
   );
 }

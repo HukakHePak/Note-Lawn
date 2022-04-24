@@ -16,7 +16,7 @@ export function Editor() {
     <div className="editor">
       <ToolPanel tools={selectTools(note?.type)} />
       <ToolPanel tools={selectTools(!!note?.id)} right />
-      <Board />
+      <Board board={board}/>
       <BoardName board={board}/>
     </div>
   );

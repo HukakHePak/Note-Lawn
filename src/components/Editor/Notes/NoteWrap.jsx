@@ -1,16 +1,16 @@
 import "../../../styles/noteWrap.css";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCurrentBoard } from "../../../store/selectors/board/getCurrentBoard";
 import { selectNote } from "../../../store/actions/note/selectNote";
 import { selectEvent } from "../../../store/actions/selectEvent";
 import { themeToStyle } from "../../../tools/themeToStyle";
 
 export function NoteWrap(props) {
-  const { selected, children, note } = props;
-  const { id, size, theme } = props.note;
+  const { selected, children, note, board } = props;
+  const { id, size, theme } = note;
 
-  const { scale, position } = useSelector(getCurrentBoard);
+  const { scale, position } = board;
+  
   const dispatch = useDispatch();
 
   function mouseDownHandler(event) {
@@ -31,8 +31,6 @@ export function NoteWrap(props) {
   }
 
   function buttonClickHandler(event) {
-    if (selected) return;
-
     dispatch(
       selectEvent({
         noteId: id,

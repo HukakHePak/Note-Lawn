@@ -1,6 +1,8 @@
 export const getCurrentBoardId = (state) => state.selects.boardId;
-export const getBoadrds = (state) => state.boards;
-export const getBoard = (state) => {
-  const id = getCurrentBoardId(state);
-  return state.boards.find((board) => board.id === id);
-};
+export const getBoards = (state) => state.boards;
+
+export function getBoard(id) {
+  return (state) => {
+    return getBoards(state).find((board) => board.id === id);
+  };
+}
