@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ColorPicker, useColor } from "react-color-palette";
 import "react-color-palette/lib/css/styles.css";
 import { ReactComponent as Repeat } from "../../img/repeat.svg";
+import { stopPropagation } from "../../tools/stopPropagation";
 
 export function ColorCircle(props) {
   const { defaults, hasLink, onChange, active, onClick } = props;
@@ -48,7 +49,7 @@ export function ColorCircle(props) {
         }}
       ></div>
       {!hiddenPalette && (
-        <div className="palette palette_bg">
+        <div className="palette palette_bg" onClick={stopPropagation}>
           <ColorPicker
             width={400}
             height={200}

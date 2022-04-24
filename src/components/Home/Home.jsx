@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../../styles/home.css";
 import SearchBar from "./SearchBar";
@@ -9,6 +9,7 @@ import { getAppTheme } from "./../../store/selectors/appTheme";
 import Settings from "./settings/Settings";
 import { OpenModalConfirmRemoveBoard } from "./OpenModalConfirmRemoveBoard";
 import { closeModals } from "../../store/actions/closeModals";
+import Style from "style-it";
 
 function Home() {
   const [search, setSearch] = useState("");
@@ -17,7 +18,6 @@ function Home() {
   const theme = useSelector(getAppTheme);
   const [modalActive, setModalActive] = useState(false);
   const [idRemoveBoard, setIdRemoveBoard] = useState();
-
   const dispatch = useDispatch();
 
   function handleRemoveConfirm(id) {
@@ -34,35 +34,44 @@ function Home() {
   }, [search, boards]);
 
   return (
-    <div
-      className="home"
-      style={{
-        background: theme.main,
-      }}
-      onClick={() => dispatch(closeModals())}
-    >
-      <div className="home__wrapper">
-        <div className="home__top">
-          <div className="home__top-search">
-            <AddBoardBar theme={theme} />
-            <SearchBar setSearch={setSearch} theme={theme} />
+    <Style>
+      {`
+        .home::-webkit-scrollbar-thumb {
+          background: ${theme.second};
+          border: 5px solid ${theme.main};
+        }
+        .home {
+          background: ${theme.main};
+        }
+        
+        `}
+      <div
+        className="home"
+        onClick={() => dispatch(closeModals())}
+      >
+        <div className="home__wrapper">
+          <div className="home__top">
+            <div className="home__top-search">
+              <AddBoardBar theme={theme} />
+              <SearchBar setSearch={setSearch} theme={theme} />
+            </div>
+            <Settings theme={theme} />
           </div>
-          <Settings theme={theme} />
+          <BoardList
+            list={boardsList}
+            theme={theme}
+            handleRemoveConfirm={handleRemoveConfirm}
+          />
         </div>
-        <BoardList
-          list={boardsList}
-          theme={theme}
+        <OpenModalConfirmRemoveBoard
+          active={modalActive}
+          setActive={setModalActive}
+          id={idRemoveBoard}
+          background={theme.second}
           handleRemoveConfirm={handleRemoveConfirm}
         />
       </div>
-      <OpenModalConfirmRemoveBoard
-        active={modalActive}
-        setActive={setModalActive}
-        id={idRemoveBoard}
-        background={theme.second}
-        handleRemoveConfirm={handleRemoveConfirm}
-      />
-    </div>
+    </Style>
   );
 }
 

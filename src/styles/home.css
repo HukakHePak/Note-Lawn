@@ -1,7 +1,12 @@
 .home {
   height: 100%;
-  padding: 100px 55px;
+  padding: 55px;
+  padding-bottom: 0;
   overflow-y: scroll;
+}
+
+.home::-webkit-scrollbar {
+  width: 25px;
 }
 
 .home__wrapper {
@@ -94,6 +99,7 @@
       flex-wrap: wrap;
   gap: 20px;
   cursor: pointer;
+  padding-bottom: 55px;
 }
 
 .home__pages-item {
