@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../../styles/home.css";
 import SearchBar from "./SearchBar";
 import { BoardList } from "./BoardList";
 import { AddBoardBar } from "./AddBoardBar";
-import {
-  getBoadrds,
-} from "../../store/selectors/existenceBoards";
+import { getBoadrds } from "../../store/selectors/existenceBoards";
 import { getAppTheme } from "./../../store/selectors/appTheme";
 import Settings from "./settings/Settings";
 import { OpenModalConfirmRemoveBoard } from "./OpenModalConfirmRemoveBoard";
+import { closeModals } from "../../store/actions/closeModals";
 
 function Home() {
   const [search, setSearch] = useState("");
@@ -18,6 +17,8 @@ function Home() {
   const theme = useSelector(getAppTheme);
   const [modalActive, setModalActive] = useState(false);
   const [idRemoveBoard, setIdRemoveBoard] = useState();
+
+  const dispatch = useDispatch();
 
   function handleRemoveConfirm(id) {
     setModalActive(true);
@@ -38,6 +39,7 @@ function Home() {
       style={{
         background: theme.main,
       }}
+      onClick={() => dispatch(closeModals())}
     >
       <div className="home__wrapper">
         <div className="home__top">

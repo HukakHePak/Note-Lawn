@@ -37,9 +37,10 @@ export function ColorCircle(props) {
     <div className="color-circle">
       <div
         className="circle"
-        onClick={() => {
+        onClick={(event) => {
           setHiddenPalette(!hiddenPalette);
           onClick && onClick(hiddenPalette);
+          event.stopPropagation();
         }}
         style={{
           backgroundImage: `url(${backgroundValue})`, // replace into stylize func

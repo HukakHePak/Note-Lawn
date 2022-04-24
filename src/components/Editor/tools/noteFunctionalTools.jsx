@@ -7,7 +7,7 @@ import { getSelectedNote } from "../../../store/selectors/note/getSelectedNote";
 import { editNote } from "../../../store/actions/note/editNote";
 import { openModal } from "../../../store/actions/openModal";
 import { removeNote } from "../../../store/actions/note/removeNote";
-import { getSelectedNoteId } from "../../../store/selectors/note/getSelectedNoteId";
+import { getModals } from "../../../store/selectors/selects/getModals";
 
 export const NOTE_FUNCTIONAL_TOOLS = "NOTE_FUNCTIONAL_TOOLS";
 
@@ -25,7 +25,7 @@ const color = createOptionTool(["Выбрать цвет фона", (dispatch, s
       onChange={(theme) => {
         dispatch(editNote(id, { theme }));
       }}
-      active={!!state.selects.modals.boardColor}
+      active={!!getModals(state).boardColor}
       onClick={(visible) => {
         dispatch(openModal({ boardColor: visible }));
       }}

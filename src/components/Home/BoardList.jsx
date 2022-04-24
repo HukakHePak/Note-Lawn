@@ -6,7 +6,6 @@ import { ReactComponent as TrashSvg } from "../../img/trash.svg";
 import { BoardName } from "../Editor/BoardName";
 
 export function BoardList({ list, theme, handleRemoveConfirm }) {
-  console.log(list)
   return (
     <div className="home__pages">
       {list.map((board) => (
@@ -22,7 +21,7 @@ export function BoardList({ list, theme, handleRemoveConfirm }) {
 }
 
 function BoardItem({ board, theme, handleRemoveConfirm }) {
-  const { date, name, id } = board;
+  const { date, id } = board;
   const color = fontColorContrast(theme.second);
 
   const dispatch = useDispatch();

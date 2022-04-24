@@ -2,22 +2,18 @@ import fontColorContrast from "font-color-contrast";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { getAppTheme } from "../../store/selectors/appTheme";
-import { ColorCircle } from "./ColorCircle";
 
 export function SmallModal(props) {
   const [value, setValue] = useState("");
-
-  const { hiddenModal, action, filler } = props;
+  const { onSubmit, filler } = props;
 
   const { main, second } = useSelector(getAppTheme);
-
   const color = fontColorContrast(second); // remove this func into theme and make func for themeToStyle
 
-  function addBoardToStore(e) { // callback - app to the parent and make onChange/onCreate
+  function clickHandler(e) { // callback - app to the parent and make onChange/onCreate
     e.preventDefault();
     if (value) {
-      action(value, second, "", false);
-      hiddenModal();
+      onSubmit({ name: value })
     }
   }
 
@@ -35,7 +31,7 @@ export function SmallModal(props) {
           <button
             className="small-modal__btn"
             style={{ background: main, color: fontColorContrast(main) }}
-            onClick={addBoardToStore}
+            onClick={clickHandler}
           >
             {filler.buttonText}
           </button>

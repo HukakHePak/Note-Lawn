@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { SmallModal } from "../Global/SmallModal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import fontColorContrast from "font-color-contrast";
 import { editBoard } from "../../store/actions/board/editBoard";
+import { getModals } from "../../store/selectors/selects/getModals";
+import { closeModals } from "../../store/actions/closeModals";
+import { openModal } from "../../store/actions/openModal";
+import { getAppTheme } from "../../store/selectors/appTheme";
 
 const filler = {
   styleClass: "board-name__modal",
@@ -11,9 +15,10 @@ const filler = {
 };
 
 export function BoardName(props) {
-  const { id, name, theme } = props.board;
+  const { id, name } = props.board;
+  const theme = useSelector(getAppTheme);
 
-  const [hiddenModal, setHiddenModal] = useState(false);
+  const active = useSelector(getModals)[id];
   const dispatch = useDispatch();
 
   return (
@@ -26,19 +31,21 @@ export function BoardName(props) {
       <button
         className="board-name__btn"
         onClick={(event) => {
-          setHiddenModal(!hiddenModal);
+          dispatch(openModal({[id]: !active}));
           event.stopPropagation();
         }}
-        style={{ color: fontColorContrast(theme.color) }}
+        style={{ color: fontColorContrast(theme.main) }}
       >
         {name}
       </button>
-      {hiddenModal && (
+      {active && (
         <SmallModal
-          hiddenModal={() => setHiddenModal(false)}
-          action={(value) => dispatch(editBoard(id, { name: value }))}
+          onSubmit={(value) => {
+            dispatch(editBoard(id, value));
+            dispatch(closeModals());
+          }}
           filler={filler}
-          defaults={{ ...theme, name }}
+          defaults={{ name }}
         />
       )}
     </div>
