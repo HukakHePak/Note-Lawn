@@ -5,8 +5,14 @@ import textUnderlineIcon from "../../../img/note-icon/text-note-tools/textUnderl
 import textColorIcon from "../../../img/note-icon/text-note-tools/textColorIcon.svg";
 
 import { createTool, createNoteTextTool } from "./createTool";
+import { FontSizeModal } from "../FontSizeModal";
 
-const fontSize = createTool("Размер шрифта", fontSizeIcon);
+const fontSize = createNoteTextTool(
+  "Размер шрифта",
+  fontSizeIcon,
+  null,
+  <FontSizeModal />
+);
 const fontBold = createNoteTextTool("Полужирный", fontBoldIcon, "BOLD");
 const fontItalic = createNoteTextTool("Курсив", fontItalicIcon, "ITALIC");
 const textUnderline = createNoteTextTool(

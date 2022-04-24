@@ -15,8 +15,8 @@ export function Editor() {
 
   return (
     <div className="editor">
-      <ToolPanel tools={selectTools()} />
-      <ToolPanel tools={selectTools(NOTE_TYPES.TEXT)} right />
+      <ToolPanel tools={selectTools(NOTE_TYPES.TEXT)} />
+      <ToolPanel tools={selectTools(false)} right />
       <Board />
       <BoardName />
     </div>
