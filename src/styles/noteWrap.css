@@ -1,6 +1,7 @@
 .note-wrap {
   background: #F4E6DC;
   position: absolute;
+  isolation: isolate;
 }
 
 .note-wrap > div {
@@ -39,21 +40,21 @@
 
 .note-wrap .resize-btn {
   position: absolute;
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   bottom: 0;
   right: 0;
   background: transparent;
   border-radius: 100%;
-  z-index: 20;
+  z-index: 2;
   -webkit-transform: translate(50%) translateY(50%);
           transform: translate(50%) translateY(50%);
   mix-blend-mode: difference;
 }
 
 .note-wrap .resize-btn:hover {
-  outline: 8px dashed;
-  outline-color: inherit;
+  border: 8px dashed;
+  border-color: inherit;
 }
 
 .home .resize-btn:hover {

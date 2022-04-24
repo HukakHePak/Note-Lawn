@@ -15,6 +15,7 @@ import { selectNote } from "../../store/actions/note/selectNote";
 import { themeToStyle } from "../../tools/themeToStyle";
 import { findNote } from "../../store/actions/note/findNote";
 import { getNotesOf } from "../../store/selectors/note/getNotesOf";
+import { selectBoard } from "../../store/actions/board/selectBoard";
 
 export function Board({ board }) {
   const notes = useSelector(getNotesOf(board.id));
@@ -148,13 +149,6 @@ export function Board({ board }) {
               (board.position.top * board.scale) / 2
             }px`
           : "0 0",
-      }}
-      tabIndex="0"
-      onKeyDown={(event) => {
-        if (event.code !== "Tab") return;
-
-        dispatch(findNote(event));
-        event.preventDefault();
       }}
       onMouseMove={moveHandler}
       onWheel={wheelHandler}

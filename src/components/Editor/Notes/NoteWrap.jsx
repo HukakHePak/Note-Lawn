@@ -51,6 +51,7 @@ export function NoteWrap(props) {
         height: size.height * scale,
         ...themeToStyle(theme),
         outlineColor: theme.color,
+        borderColor: theme.color,
       }}
       onMouseDown={mouseDownHandler}
       onMouseUp={(event) => selected && event.stopPropagation()}

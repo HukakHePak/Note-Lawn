@@ -2,6 +2,7 @@ import { getCurrentBoard } from "../../selectors/board/getCurrentBoard";
 import { getNotes } from "../../selectors/note/getNotes";
 import { Action } from "../Action";
 import { changeScrollPos } from "../board/changeScrollPos";
+import { editBoard } from "../board/editBoard";
 import { selectNote } from "./selectNote";
 
 export const FIND_NOTE = "findNote";
@@ -26,14 +27,17 @@ export function findNote(event) {
     dispatch(Action(FIND_NOTE, { lastNoteIndex: lastIndex }));
     dispatch(selectNote(id));
     dispatch(
-      changeScrollPos(board.id, {
-        left: getOffset(position.left, innerWidth, size.width, board.scale),
-        top: getOffset(position.top, innerHeight, size.height, board.scale),
+      editBoard(board.id, {
+        scale: 1,
+        position: {
+          left: getOffset(position.left, innerWidth, size.width),
+          top: getOffset(position.top, innerHeight, size.height),
+        },
       })
     );
   };
 }
 
-function getOffset(pos, view, size, scale) {
-  return (-pos + (view / scale - size ) / 2 ) ;
+function getOffset(pos, view, size) {
+  return - pos + (view - size) / 2;
 }

@@ -5,17 +5,16 @@ import { EDIT_NOTE } from "../actions/note/editNote";
 import { NOTE_TYPES } from "../../components/Editor/Notes/TypedNotes/CreateNote";
 import { changeItem } from "../../tools/immutable/list/changeItem";
 import { removeItem } from "../../tools/immutable/list/removeItem";
-
-import { ContentState } from "draft-js";
+import { ContentState, convertToRaw } from "draft-js";
 import { storage } from "../storage";
-import { convertToRaw } from "draft-js";
+import data from '../../data.json';
 
 export const defaultSize = {
   width: 300,
   height: 300,
 };
 
-const defaultTheme = { color: "#FCF5F0", link: "", isRepeat: false };
+const defaultTheme = { color: "#F4E6DC", link: "", isRepeat: false };
 
 function createText(text) {
   return convertToRaw(ContentState.createFromText(text));
@@ -71,7 +70,15 @@ const defaultState = [
   },
 ];
 
-export function notesReducer(state = storage.get("notes") || defaultState, action) {
+
+//console.log(JSON.stringify({ notes: storage.get("notes"), boards: storage.get("boards")}));
+
+
+
+export function notesReducer(
+  state = storage.get("notes") || data.notes,
+  action
+) {
   const { type, payload } = action;
 
   switch (type) {
@@ -82,7 +89,7 @@ export function notesReducer(state = storage.get("notes") || defaultState, actio
           id: uniqid(),
           size: defaultSize,
           position: { left: 0, top: 0 },
-          rawState: convertToRaw(ContentState.createFromText('')),
+          rawState: convertToRaw(ContentState.createFromText("")),
           theme: defaultTheme,
           ...payload,
         },

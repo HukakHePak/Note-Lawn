@@ -7,7 +7,6 @@ import "../../../../../node_modules/draft-js/dist/Draft.css";
 import "../../../../styles/textNote.css";
 
 import { editNote } from "../../../../store/actions/note/editNote";
-import { getSelectedNoteId } from "../../../../store/selectors/note/getSelectedNoteId";
 import EditorState from "draft-js/lib/EditorState";
 import { convertToRaw } from "draft-js";
 import { convertFromRaw } from "draft-js";
@@ -31,7 +30,6 @@ export function NoteText(props) {
         editorState={editorState}
         onChange={onChange}
         readOnly={!props.editable}
-        placeholder="Your text..."
       />
     </div>
   );

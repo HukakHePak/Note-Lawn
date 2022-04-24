@@ -25,6 +25,18 @@ function Home() {
     setIdRemoveBoard(id);
   }
 
+  function keyDownHandler(event) {
+    switch (event.code.toLocaleLowerCase()) {
+      case "home":
+      case "escape":
+        dispatch(closeModals());
+        break;
+
+      default:
+        break;
+    }
+  }
+
   useEffect(() => {
     setBoardsList(
       boards.filter((item) =>
@@ -48,6 +60,8 @@ function Home() {
       <div
         className="home"
         onClick={() => dispatch(closeModals())}
+        onKeyDown={keyDownHandler}
+        tabIndex="0"
       >
         <div className="home__wrapper">
           <div className="home__top">

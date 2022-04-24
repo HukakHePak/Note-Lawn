@@ -22,7 +22,7 @@ export function BoardList({ list, theme, handleRemoveConfirm }) {
 }
 
 function BoardItem({ board, theme, handleRemoveConfirm }) {
-  const { date, id } = board;
+  const { date, id, scale } = board;
   const color = fontColorContrast(theme.second);
 
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ function BoardItem({ board, theme, handleRemoveConfirm }) {
 
   return (
     <div className="home__pages-item" onClick={() => dispatch(selectBoard(id))}>
-      <Board board={board} off /> {/* off controls  */}
+      <Board board={{...board, scale: scale / 3 }} off /> {/* off controls  */}
       <div className="home__pages-overlay">
         
         <div
