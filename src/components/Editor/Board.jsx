@@ -12,9 +12,10 @@ import { changeScale } from "../../store/actions/board/changeScale";
 import { getNote } from "../../store/selectors/note/getNote";
 import { clearEvent } from "../../store/actions/clearEvent";
 import { selectEvent } from "../../store/actions/selectEvent";
-import { closeModals } from "../../store/actions/closeModals"
+import { closeModals } from "../../store/actions/closeModals";
 import { selectNote } from "../../store/actions/note/selectNote";
 import { themeToStyle } from "../../tools/themeToStyle";
+import { findNote } from "../../store/actions/note/findNote";
 
 export function Board() {
   const notes = useSelector(getNotes);
@@ -31,8 +32,6 @@ export function Board() {
   function moveHandler(event) {
     const { buttons, movementX, movementY } = event;
 
-    
-
     if (buttons !== 1 && event.type !== "onTouchMove") return;
 
     if (note) {
@@ -43,8 +42,12 @@ export function Board() {
           dispatch(
             editNote(note.id, {
               position: {
-                top: note.position.top - (position.top - event.clientY) / board.scale,
-                left: note.position.left - (position.left - event.clientX) / board.scale,
+                top:
+                  note.position.top -
+                  (position.top - event.clientY) / board.scale,
+                left:
+                  note.position.left -
+                  (position.left - event.clientX) / board.scale,
               },
             })
           );
@@ -54,20 +57,28 @@ export function Board() {
           dispatch(
             editNote(note.id, {
               size: {
-                width: note.size.width - (position.left - event.clientX) / board.scale,
-                height: note.size.height - (position.top - event.clientY) / board.scale,
+                width:
+                  note.size.width -
+                  (position.left - event.clientX) / board.scale,
+                height:
+                  note.size.height -
+                  (position.top - event.clientY) / board.scale,
               },
             })
           );
-          
+
           break;
 
         default:
           break;
       }
 
-      
-      dispatch(selectEvent({ ...noteEvent, position: { left: event.clientX, top: event.clientY }}));
+      dispatch(
+        selectEvent({
+          ...noteEvent,
+          position: { left: event.clientX, top: event.clientY },
+        })
+      );
       return;
     }
 
@@ -130,16 +141,25 @@ export function Board() {
     };
   }, [boardNode]);
 
-
   return (
     <div
       className="board"
       ref={boardNode}
       style={{
         ...themeToStyle(board.theme),
-        backgroundPosition: (board.theme.isRepeat ? (`${board.position.left * board.scale / 2}px ${board.position.top * board.scale / 2}px`) : '0 0'),
+        backgroundPosition: board.theme.isRepeat
+          ? `${(board.position.left * board.scale) / 2}px ${
+              (board.position.top * board.scale) / 2
+            }px`
+          : "0 0",
       }}
-      
+      tabIndex="0"
+      onKeyDown={(event) => {
+        if (event.code !== "Tab") return;
+
+        dispatch(findNote(event));
+        event.preventDefault();
+      }}
       //onTouchStart={console.log}
       onMouseMove={moveHandler}
       //onTouchMove={moveHandler}

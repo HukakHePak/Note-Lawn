@@ -1,16 +1,18 @@
 import { SELECT_BOARD } from "../actions/board/selectBoard";
 import { CLEAR_NOTE_EVENT } from "../actions/clearEvent";
 import { CLOSE_MODALS } from "../actions/closeModals";
+import { FIND_NOTE } from "../actions/note/findNote";
 import { SELECT_NOTE } from "../actions/note/selectNote";
 import { OPEN_MODAL } from "../actions/openModal";
 import { SELECT_NOTE_EVENT } from "../actions/selectEvent";
 
-const defaultState = { boardId: null, noteId: null, event: null, modals: {} };
+const defaultState = { boardId: null, noteId: null, event: null, modals: {}, lastNoteIndex: -1 };
 
 export function selectsReducer(state = defaultState, { type, payload }) {
   switch (type) {
     case SELECT_BOARD:
     case SELECT_NOTE:
+    case FIND_NOTE:
       return { ...state, ...payload };
 
     case SELECT_NOTE_EVENT:
@@ -20,10 +22,10 @@ export function selectsReducer(state = defaultState, { type, payload }) {
       return { ...state, event: null };
 
     case OPEN_MODAL:
-      return { ...state, modals: { ...state.modals, ...payload}}
+      return { ...state, modals: { ...state.modals, ...payload } };
 
     case CLOSE_MODALS:
-      return { ...state, modals: {}};
+      return { ...state, modals: {} };
 
     default:
       break;
