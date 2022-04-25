@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Note-Lawn/static/css/main.0e67f320.css",
-    "main.js": "/Note-Lawn/static/js/main.fd01a91f.js",
+    "main.js": "/Note-Lawn/static/js/main.34c041a4.js",
     "static/media/setting.svg": "/Note-Lawn/static/media/setting.633f6fec660fb3e2a41566d114dd489f.svg",
     "static/media/homeIcon.svg": "/Note-Lawn/static/media/homeIcon.0eed2a3c5bb45f10052fe795782c44f4.svg",
     "static/media/fontBoldIcon.svg": "/Note-Lawn/static/media/fontBoldIcon.6a6ed9e41d177d77e197ef4accb3b100.svg",
@@ -17,10 +17,10 @@
     "static/media/fontItalicIcon.svg": "/Note-Lawn/static/media/fontItalicIcon.de0a868164f56fa56248b04ebf4dc72c.svg",
     "static/media/addTextIcon.svg": "/Note-Lawn/static/media/addTextIcon.7303b564c626b16166a255808cb5e92a.svg",
     "main.0e67f320.css.map": "/Note-Lawn/static/css/main.0e67f320.css.map",
-    "main.fd01a91f.js.map": "/Note-Lawn/static/js/main.fd01a91f.js.map"
+    "main.34c041a4.js.map": "/Note-Lawn/static/js/main.34c041a4.js.map"
   },
   "entrypoints": [
     "static/css/main.0e67f320.css",
-    "static/js/main.fd01a91f.js"
+    "static/js/main.34c041a4.js"
   ]
 }
