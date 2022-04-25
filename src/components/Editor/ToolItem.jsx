@@ -9,7 +9,7 @@ export function ToolItem(props) {
 
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  const { main, second} = getAppTheme(state);
+  const { main} = getAppTheme(state);
   const fillColor = fontColorContrast(main);
 
   return (
@@ -21,6 +21,7 @@ export function ToolItem(props) {
         fill: fillColor,
         background: main,
         borderColor: fillColor,
+        color: fillColor
       }}
       draggable={draggable}
       onDragEnd={(event) => action && dispatch(action(event))}

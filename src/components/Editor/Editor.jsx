@@ -8,9 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCurrentBoard } from "../../store/selectors/board/getCurrentBoard";
 import { getSelectedNote } from "../../store/selectors/note/getSelectedNote";
 import { selectBoard } from "../../store/actions/board/selectBoard";
-import { closeModals } from "../../store/actions/closeModals";
 import { findNote } from "../../store/actions/note/findNote";
 import { removeNote } from "../../store/actions/note/removeNote";
+import { closeModals } from "../../store/actions/modals/closeModals";
+import { selectNote } from "../../store/actions/note/selectNote";
 
 export function Editor() {
   const board = useSelector(getCurrentBoard);
@@ -18,15 +19,15 @@ export function Editor() {
   const dispatch = useDispatch();
 
   function keyDownHandler(event) {
-    console.log(event);
-
     switch (event.code.toLocaleLowerCase()) {
       case "home":
         dispatch(selectBoard(null));
+        dispatch(selectNote(null));
         break;
 
       case "escape":
         dispatch(closeModals());
+        dispatch(selectNote(null));
         break;
 
       case "tab":

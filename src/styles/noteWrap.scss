@@ -58,3 +58,10 @@ $selectColor: rgba(102, 228, 102, 0.382);
 .home .resize-btn:hover {
     outline: none;
 }
+
+.note__text {
+    height: 100%;
+    padding: 1em;
+    line-height: normal;
+    overflow: hidden;
+}

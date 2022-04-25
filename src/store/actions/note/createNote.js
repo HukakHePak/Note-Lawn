@@ -5,8 +5,8 @@ import { Action } from "../Action";
 
 export const CREATE_NOTE = "createNote";
 
-export function createNote(type, event) {
-  return (dispatch, getState) => {
+export function createNote(type) {
+  return (event) => (dispatch, getState) => {
     const { id, position, scale } = getCurrentBoard(getState());
     const { main } = getAppTheme(getState());
     const { left, top } = position;

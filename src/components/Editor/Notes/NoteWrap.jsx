@@ -1,9 +1,10 @@
 import "../../../styles/noteWrap.css";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { selectNote } from "../../../store/actions/note/selectNote";
-import { selectEvent } from "../../../store/actions/selectEvent";
 import { themeToStyle } from "../../../tools/themeToStyle";
+import { selectEvent } from "../../../store/actions/event/selectEvent";
+import fontColorContrast from "font-color-contrast";
 
 export function NoteWrap(props) {
   const { selected, children, note, board } = props;
@@ -52,12 +53,13 @@ export function NoteWrap(props) {
         ...themeToStyle(theme),
         outlineColor: theme.color,
         borderColor: theme.color,
+        color: fontColorContrast(theme.color)
       }}
       onMouseDown={mouseDownHandler}
       onMouseUp={(event) => selected && event.stopPropagation()}
       onDoubleClick={doubleClickHandler}
     >
-      <div style={{ fontSize: `calc(100% * ${scale})`, overflow: "hidden" }}>
+      <div style={{ fontSize: `calc(200% * ${scale})`, overflow: "hidden" }}>
         {children}
       </div>
       <button

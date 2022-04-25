@@ -8,8 +8,8 @@ import { getBoards } from "../../store/selectors/existenceBoards";
 import { getAppTheme } from "./../../store/selectors/appTheme";
 import Settings from "./settings/Settings";
 import { OpenModalConfirmRemoveBoard } from "./OpenModalConfirmRemoveBoard";
-import { closeModals } from "../../store/actions/closeModals";
 import Style from "style-it";
+import { closeModals } from "../../store/actions/modals/closeModals";
 
 function Home() {
   const [search, setSearch] = useState("");

@@ -12,8 +12,8 @@ import {
 import { ColorCircle } from "./../../Global/ColorCircle";
 import fontColorContrast from "font-color-contrast";
 import { getModals } from "../../../store/selectors/selects/getModals";
-import { openModal } from "../../../store/actions/openModal";
-import { closeModals } from "../../../store/actions/closeModals";
+import { closeModals } from "../../../store/actions/modals/closeModals";
+import { openModal } from "../../../store/actions/modals/openModal";
 
 function SettingsModal() {
   const color = useSelector(getAppColors);

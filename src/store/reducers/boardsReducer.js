@@ -16,20 +16,6 @@ const boardDefaults = {
   scale: 1,
 };
 
-const defaultBoards = [
-  {
-    id: 1,
-    name: "Thanks to the team",
-    date: "23/04/2022 09:55",
-    theme: {
-      color: "#FCF5F0",
-      link: "https://i.pinimg.com/originals/03/42/44/034244f741ad75bd774965c7f9772879.png",
-      isRepeat: true,
-    },
-    ...boardDefaults,
-  },
-];
-
 export function boardsReducer(
   state = storage.get("boards") || data.boards,
   { type, payload }

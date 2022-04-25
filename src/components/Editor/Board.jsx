@@ -8,14 +8,12 @@ import { editNote } from "../../store/actions/note/editNote";
 import { changeScrollPos } from "../../store/actions/board/changeScrollPos";
 import { changeScale } from "../../store/actions/board/changeScale";
 import { getNote } from "../../store/selectors/note/getNote";
-import { clearEvent } from "../../store/actions/clearEvent";
-import { selectEvent } from "../../store/actions/selectEvent";
-import { closeModals } from "../../store/actions/closeModals";
 import { selectNote } from "../../store/actions/note/selectNote";
 import { themeToStyle } from "../../tools/themeToStyle";
-import { findNote } from "../../store/actions/note/findNote";
 import { getNotesOf } from "../../store/selectors/note/getNotesOf";
-import { selectBoard } from "../../store/actions/board/selectBoard";
+import { selectEvent } from "../../store/actions/event/selectEvent";
+import { clearEvent } from "../../store/actions/event/clearEvent";
+import { closeModals } from "../../store/actions/modals/closeModals";
 
 export function Board({ board }) {
   const notes = useSelector(getNotesOf(board.id));
