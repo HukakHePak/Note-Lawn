@@ -60,4 +60,11 @@
 .home .resize-btn:hover {
   outline: none;
 }
+
+.note__text {
+  height: 100%;
+  padding: 1em;
+  line-height: normal;
+  overflow: hidden;
+}
 /*# sourceMappingURL=noteWrap.css.map */

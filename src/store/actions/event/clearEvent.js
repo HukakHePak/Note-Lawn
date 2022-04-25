@@ -1,4 +1,4 @@
-import { Action } from "./Action";
+import { Action } from "../Action";
 
 export const CLEAR_NOTE_EVENT = 'clearNoteEvent';
 

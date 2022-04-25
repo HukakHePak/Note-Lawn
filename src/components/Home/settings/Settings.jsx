@@ -4,8 +4,8 @@ import { ReactComponent as SettingsSvg } from "../../../img/setting.svg";
 import fontColorContrast from "font-color-contrast";
 import { useDispatch, useSelector } from "react-redux";
 import { getModals } from "../../../store/selectors/selects/getModals";
-import { openModal } from "../../../store/actions/openModal";
 import { stopPropagation } from "../../../tools/stopPropagation";
+import { openModal } from "../../../store/actions/modals/openModal";
 
 function Settings({ theme }) {
   const active = useSelector(getModals).settings;

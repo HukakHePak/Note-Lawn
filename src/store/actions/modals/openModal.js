@@ -1,4 +1,4 @@
-import { Action } from "./Action";
+import { Action } from "../Action";
 
 export const OPEN_MODAL = 'openModal';
 

@@ -1,4 +1,4 @@
-import { Action } from "./Action";
+import { Action } from "../Action";
 
 export const CLOSE_MODALS = 'closeModals';
 

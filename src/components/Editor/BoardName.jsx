@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import fontColorContrast from "font-color-contrast";
 import { editBoard } from "../../store/actions/board/editBoard";
 import { getModals } from "../../store/selectors/selects/getModals";
-import { closeModals } from "../../store/actions/closeModals";
-import { openModal } from "../../store/actions/openModal";
 import { getAppTheme } from "../../store/selectors/appTheme";
+import { openModal } from "../../store/actions/modals/openModal";
+import { closeModals } from "../../store/actions/modals/closeModals";
 
 const filler = {
   styleClass: "board-name__modal",
