@@ -97,11 +97,10 @@ export function Board({ board }) {
           left: board.position.left - event.deltaX / board.scale,
         })
       );
-
       return;
     }
 
-    const scale = board.scale - (event.deltaY % 2) * (board.scale / 10);
+    const scale = board.scale - Math.sign(event.deltaY) * (board.scale / 10);
 
     if (scale > 15 || scale < 0.01) return;
 
