@@ -17,6 +17,8 @@ export function NoteText(props) {
   const { id, rawState } = props.note;
   const textEvent = useSelector(getEvent);
 
+  console.log(textEvent)
+
   const [editor, setEditor] = useState(
     EditorState.createWithContent(convertFromRaw(rawState))
   );
