@@ -2,7 +2,6 @@ import uniqid from "uniqid";
 import { CREATE_NOTE } from "../actions/note/createNote";
 import { REMOVE_NOTE } from "../actions/note/removeNote";
 import { EDIT_NOTE } from "../actions/note/editNote";
-import { NOTE_TYPES } from "../../components/Editor/Notes/TypedNotes/CreateNote";
 import { changeItem } from "../../tools/immutable/list/changeItem";
 import { removeItem } from "../../tools/immutable/list/removeItem";
 import { ContentState, convertToRaw } from "draft-js";
@@ -15,65 +14,6 @@ export const defaultSize = {
 };
 
 const defaultTheme = { color: "#F4E6DC", link: "", isRepeat: false };
-
-function createText(text) {
-  return convertToRaw(ContentState.createFromText(text));
-}
-
-const defaultState = [
-  {
-    type: NOTE_TYPES.TEXT,
-    id: 1,
-    boardId: 1,
-    position: {
-      top: 300,
-      left: 200,
-    },
-    size: {
-      width: 300,
-      height: 300,
-    },
-    rawState: createText(
-      "I want to thank the guys for their help in writing the project. It was nice to have a good time!"
-    ),
-    theme: defaultTheme,
-  },
-  {
-    type: NOTE_TYPES.TEXT,
-    id: 2,
-    boardId: 1,
-    position: {
-      top: 100,
-      left: 600,
-    },
-    size: {
-      width: 250,
-      height: 220,
-    },
-    rawState: createText("\n  Malivartti\n\n  Ruslan5787\n\n  karaell"),
-    theme: defaultTheme,
-  },
-  {
-    type: NOTE_TYPES.IMAGE,
-    id: 3,
-    boardId: 1,
-    position: {
-      top: 400,
-      left: 600,
-    },
-    size: {
-      width: 350,
-      height: 300,
-    },
-    link: "https://data.whicdn.com/images/322212937/original.gif",
-    theme: defaultTheme,
-  },
-];
-
-
-//console.log(JSON.stringify({ notes: storage.get("notes"), boards: storage.get("boards")}));
-
-
 
 export function notesReducer(
   state = storage.get("notes") || data.notes,
