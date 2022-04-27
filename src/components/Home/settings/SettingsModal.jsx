@@ -5,15 +5,14 @@ import {
   getAppBackground,
 } from "./../../../store/selectors/appTheme";
 import {
-  setBackgroundData,
   setMainColor,
   setSecondColor,
-} from "../../../store/actions/appTheme.js";
+} from "../../../store/reducers/appTheme.js";
 import { ColorCircle } from "./../../Global/ColorCircle";
 import fontColorContrast from "font-color-contrast";
 import { getModals } from "../../../store/selectors/selects/getModals";
-import { closeModals } from "../../../store/actions/modals/closeModals";
-import { openModal } from "../../../store/actions/modals/openModal";
+import { closeModals, openModal } from "../../../store/reducers/selectsReducer";
+
 
 function SettingsModal() {
   const color = useSelector(getAppColors);
@@ -25,7 +24,6 @@ function SettingsModal() {
   const defaults = { color: color.main, link, isRepeat };
 
   function setMain(values) {
-    dispatch(setBackgroundData(values.link, values.isRepeat));
     dispatch(setMainColor(values.color));
   }
 

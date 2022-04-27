@@ -7,11 +7,10 @@ import { selectTools } from "./tools/selectTools";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentBoard } from "../../store/selectors/board/getCurrentBoard";
 import { getSelectedNote } from "../../store/selectors/note/getSelectedNote";
-import { selectBoard } from "../../store/actions/board/selectBoard";
-import { findNote } from "../../store/actions/note/findNote";
-import { removeNote } from "../../store/actions/note/removeNote";
-import { closeModals } from "../../store/actions/modals/closeModals";
-import { selectNote } from "../../store/actions/note/selectNote";
+import { selectBoard, closeModals, selectNote } from "../../store/reducers/selectsReducer";
+import { findNoteHelper } from "../../store/actions/note/findNoteHelper";
+import { removeNote } from "../../store/reducers/notesReducer";
+
 
 export function Editor() {
   const board = useSelector(getCurrentBoard);
@@ -31,12 +30,12 @@ export function Editor() {
         break;
 
       case "tab":
-        dispatch(findNote(event));
+        dispatch(findNoteHelper(event.view))
         event.preventDefault();
         break;
       
       case "delete":
-        if(event.ctrlKey) dispatch(removeNote(note.id));
+        if (note) dispatch(removeNote(note.id));
         break;
 
       default:

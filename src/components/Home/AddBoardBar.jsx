@@ -2,12 +2,11 @@ import React from "react";
 import { ReactComponent as AddBoardSvg } from "../../img/addBoardBtn.svg";
 import { SmallModal } from "../Global/SmallModal";
 import { useDispatch, useSelector } from "react-redux";
-import { addBoard } from "../../store/actions/board/addBoard";
+import { addBoard } from "../../store/reducers/boardsReducer";
 import fontColorContrast from "font-color-contrast";
 import { getModals } from "../../store/selectors/selects/getModals";
-import { stopPropagation } from "../../tools/stopPropagation";
-import { openModal } from "../../store/actions/modals/openModal";
-import { closeModals } from "../../store/actions/modals/closeModals";
+import { openModal, closeModals } from "../../store/reducers/selectsReducer";
+import { getAppColors } from './../../store/selectors/appTheme';
 
 const filler = {
   styleClass: "new-board-modal",
@@ -15,26 +14,26 @@ const filler = {
   buttonText: "Create",
 };
 
-export function AddBoardBar({ theme }) {
+function AddBoardBar({ theme }) {
   const active = useSelector(getModals).addBoard;
   const dispatch = useDispatch();
   const color = fontColorContrast(theme.main);
+  const { second } = useSelector(getAppColors)
 
   return (
-    <div className="home__main-btn" style={{ color }} onClick={stopPropagation}>
+    <div className="home__main-btn" style={{ color }} onClick={e => e.stopPropagation()}>
       Boards
       <AddBoardSvg
         fill={color}
-        onClick={(event) => {
+        onClick={(e) => {
+          e.stopPropagation()
           dispatch(openModal({ addBoard: !active }));
-          //event.stopPropagation();
         }}
       />
       {active && (
         <SmallModal
-          action={(...args) => dispatch(addBoard(...args))}
-          onSubmit={(form) => {
-            dispatch(addBoard(form.name));
+          onSubmit={(name) => {
+            dispatch(addBoard({ name, color: second }));
             dispatch(closeModals());
           }}
           filler={filler}
@@ -42,4 +41,6 @@ export function AddBoardBar({ theme }) {
       )}
     </div>
   );
-}
+};
+
+export default AddBoardBar;

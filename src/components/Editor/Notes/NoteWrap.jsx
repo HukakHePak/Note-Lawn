@@ -1,9 +1,9 @@
 import "../../../styles/noteWrap.css";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { selectNote } from "../../../store/actions/note/selectNote";
+import { selectNote } from "../../../store/reducers/selectsReducer";
 import { themeToStyle } from "../../../tools/themeToStyle";
-import { selectEvent } from "../../../store/actions/event/selectEvent";
+import { selectEvent } from "../../../store/reducers/selectsReducer";
 import fontColorContrast from "font-color-contrast";
 
 export function NoteWrap(props) {
