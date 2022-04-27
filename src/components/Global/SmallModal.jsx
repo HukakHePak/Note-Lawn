@@ -13,7 +13,7 @@ export function SmallModal(props) {
   function clickHandler(e) { // callback - app to the parent and make onChange/onCreate
     e.preventDefault();
     if (value) {
-      onSubmit({ name: value })
+      onSubmit(value)
     }
   }
 

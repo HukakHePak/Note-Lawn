@@ -1,5 +1,5 @@
 import "../../styles/modal.css";
-import { removeBoard } from "../../store/actions/board/removeBoard";
+import { removeBoard } from "../../store/reducers/boardsReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { getAppTheme } from "../../store/selectors/appTheme";
 import fontColorContrast from "font-color-contrast";

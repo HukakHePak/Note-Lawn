@@ -1,34 +1,41 @@
-import { SELECT_BOARD } from "../actions/board/selectBoard";
-import { CLEAR_NOTE_EVENT } from "../actions/event/clearEvent";
-import { SELECT_NOTE_EVENT } from "../actions/event/selectEvent";
-import { CLOSE_MODALS } from "../actions/modals/closeModals";
-import { OPEN_MODAL } from "../actions/modals/openModal";
-import { FIND_NOTE } from "../actions/note/findNote";
-import { SELECT_NOTE } from "../actions/note/selectNote";
+import { createSlice } from '@reduxjs/toolkit'
 
-const defaultState = { boardId: null, noteId: null, event: null, modals: {}, lastNoteIndex: -1 };
 
-export function selectsReducer(state = defaultState, { type, payload }) {
-  switch (type) {
-    case SELECT_BOARD:
-    case SELECT_NOTE:
-    case FIND_NOTE:
-      return { ...state, ...payload };
+const defaultState = {
+  boardId: null,
+  noteId: null,
+  event: null,
+  modals: {},
+  lastNoteIndex: -1
+};
 
-    case SELECT_NOTE_EVENT:
-      return { ...state, event: payload };
-
-    case CLEAR_NOTE_EVENT:
-      return { ...state, event: null };
-
-    case OPEN_MODAL:
-      return { ...state, modals: { ...state.modals, ...payload } };
-
-    case CLOSE_MODALS:
-      return { ...state, modals: {} };
-
-    default:
-      break;
+const selects = createSlice({
+  name: 'selects',
+  initialState: defaultState,
+  reducers: {
+    selectBoard(state, action) {
+      state.boardId = action.payload;
+    },
+    selectNote(state, action) {
+      state.noteId = action.payload;
+    },
+    findNote(state, action) {
+      state.lastNoteIndex = action.payload;
+    },
+    selectEvent(state, action) {
+      state.event = action.payload
+    },
+    clearEvent(state) {
+      state.event = null;
+    },
+    openModal(state, action) {
+      state.modals = { ...state.modals, ...action.payload };
+    },
+    closeModals(state) {
+      state.modals = {};
+    },
   }
-  return state;
-}
+});
+
+export default selects.reducer;
+export const { selectBoard, selectNote, findNote, selectEvent, clearEvent, openModal, closeModals } = selects.actions;

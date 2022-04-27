@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../../../../../node_modules/draft-js/dist/Draft.css";
-import { editNote } from "../../../../store/actions/note/editNote";
+import { editNote } from "../../../../store/reducers/notesReducer";
 import {
   Editor,
   convertToRaw,
@@ -10,7 +10,8 @@ import {
   RichUtils,
 } from "draft-js";
 import { getEvent } from "../../../../store/selectors/selects/getEvent";
-import { clearEvent } from "../../../../store/actions/event/clearEvent";
+import { clearEvent } from "../../../../store/reducers/selectsReducer";
+
 
 export function NoteText(props) {
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ export function NoteText(props) {
     setEditor(editor);
 
     dispatch(
-      editNote(id, { rawState: convertToRaw(editor.getCurrentContent()) })
+      editNote({ id, rawState: convertToRaw(editor.getCurrentContent()) })
     );
   }
 

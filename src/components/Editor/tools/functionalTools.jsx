@@ -1,11 +1,11 @@
 import { ReactComponent as HomeSvg } from "../../../img/right-tool/homeIcon.svg";
 import { createTool } from "./createTool";
-import { selectBoard } from "../../../store/actions/board/selectBoard";
+import { selectBoard } from "../../../store/reducers/selectsReducer";
 import { getCurrentBoard } from "../../../store/selectors/board/getCurrentBoard";
 import { ColorCircle } from "../../Global/ColorCircle";
-import { editBoard } from "../../../store/actions/board/editBoard";
+import { editBoard } from "../../../store/reducers/boardsReducer";
 import { getModals } from "../../../store/selectors/selects/getModals";
-import { openModal } from "../../../store/actions/modals/openModal";
+import { openModal } from "../../../store/reducers/selectsReducer";
 
 export const functionalTools = [
   ["Домой", <HomeSvg />, () => selectBoard(null)],
@@ -22,7 +22,7 @@ export const functionalTools = [
         <ColorCircle
           defaults={{ color, link, isRepeat }}
           onChange={(theme) => {
-            dispatch(editBoard(id, { theme }));
+            dispatch(editBoard({id, theme }));
           }}
           active={!!getModals(state).boardColor}
           onClick={(visible) => {

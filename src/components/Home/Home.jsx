@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../../styles/home.css";
 import SearchBar from "./SearchBar";
-import { BoardList } from "./BoardList";
-import { AddBoardBar } from "./AddBoardBar";
+import BoardList from "./BoardList";
+import AddBoardBar from "./AddBoardBar";
+import Settings from "./settings/Settings";
 import { getBoards } from "../../store/selectors/existenceBoards";
 import { getAppTheme } from "./../../store/selectors/appTheme";
-import Settings from "./settings/Settings";
 import { OpenModalConfirmRemoveBoard } from "./OpenModalConfirmRemoveBoard";
 import Style from "style-it";
-import { closeModals } from "../../store/actions/modals/closeModals";
+import { closeModals } from "../../store/reducers/selectsReducer";
+
 
 function Home() {
   const [search, setSearch] = useState("");

@@ -1,17 +1,17 @@
-import { createStore, combineReducers, compose, applyMiddleware } from "redux";
-import thunk from 'redux-thunk'
-import { appTheme } from "./reducers/appTheme";
-import { notes } from "./reducers/notesReducer";
-import { selectsReducer } from "./reducers/selectsReducer";
-import { boards } from "./reducers/boardsReducer";
+import { configureStore } from '@reduxjs/toolkit'
+import appTheme from "./reducers/appTheme";
+import notes from "./reducers/notesReducer";
+import selects from "./reducers/selectsReducer";
+import boards from "./reducers/boardsReducer";
+import { savingStore } from './Middlewares/savingStore';
 
-const rootReducer = combineReducers({
-  notes,
-  boards,
-  appTheme,
-  selects: selectsReducer,
-  editor: 'add editor state for best moves'
+
+export const store = configureStore({
+  reducer: {
+    notes,
+    boards,
+    appTheme,
+    selects
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(savingStore)
 });
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
