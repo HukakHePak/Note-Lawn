@@ -49,11 +49,12 @@ export function NoteWrap(props) {
         left: (note.position.left + position.left) * scale,
         top: (note.position.top + position.top) * scale,
         width: size.width * scale,
-        height: size.height * scale,
+        // height: size.height * scale,
+        height: "auto",
         ...themeToStyle(theme),
         outlineColor: theme.color,
         borderColor: theme.color,
-        color: fontColorContrast(theme.color)
+        color: fontColorContrast(theme.color),
       }}
       onMouseDown={mouseDownHandler}
       onMouseUp={(event) => selected && event.stopPropagation()}
@@ -62,10 +63,7 @@ export function NoteWrap(props) {
       <div style={{ fontSize: `calc(200% * ${scale})`, overflow: "hidden" }}>
         {children}
       </div>
-      <button
-        className="resize-btn"
-        onMouseDown={buttonClickHandler}
-      />
+      <button className="resize-btn" onMouseDown={buttonClickHandler} />
     </div>
   );
 }
